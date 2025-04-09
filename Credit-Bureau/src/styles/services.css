@@ -1,0 +1,76 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-color);
+}
+
+:root {
+  --shadow-color: rgba(0, 0, 0, 0.182);
+  --primary-color: #0e594a;
+  --hover-color: #0e594a80;
+  --accent-color: #fbba3f;
+  --bg-color: #ffffff;
+  --input-bg-color: #cedbe97c;
+  --white-color: #ffffff;
+}
+
+.services-title {
+  font-size: 30px;
+  font-weight: bold;
+  color: black;
+  text-align: center;
+}
+
+p {
+  color: var(--primary-color);
+  text-align: center;
+  font-size: 15px;
+}
+
+.credit-report {
+  background-color: var(--bg-color);
+  padding: 30px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px var(--shadow-color);
+  position: absolute;
+  left: 50px;
+}
+
+.credit-score-analysis {
+  background-color: var(--bg-color);
+  padding: 30px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px var(--shadow-color);
+  position: absolute;
+  left: 380px;
+}
+
+.chart {
+  margin-left: 90px;
+}
+.report-title {
+  text-align: center;
+}
+
+.reports-paragraph {
+  color: var(--primary-color);
+  text-align: center;
+  font-size: 18px;
+}
+
+.credit-card {
+  background-color: var(--bg-color);
+  padding: 30px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px var(--shadow-color);
+  position: absolute;
+  left: 710px;
+}
+
+.card-icon {
+  margin-left: 50px;
+}
+
+.next-line2 {
+  text-align: center;
+}

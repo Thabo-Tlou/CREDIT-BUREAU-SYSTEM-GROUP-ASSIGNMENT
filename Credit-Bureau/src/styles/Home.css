@@ -1,0 +1,147 @@
+body {
+  font-family: "Arial", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+:root {
+  --shadow-color: rgba(0, 0, 0, 0.182);
+  --primary-color: #0e594a;
+  --hover-color: #0e594a80;
+  --accent-color: #fbba3f;
+  --bg-color: #f0f0f0f5;
+  --input-bg-color: #cedbe97c;
+  --white-color: #ffffff;
+}
+
+/* Container */
+.home-container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.home-image {
+  display: flex;
+  width: 350px;
+  height: 350px;
+  margin-bottom: 0px;
+  margin-top: -50px;
+}
+.home-logo-container {
+  display: flex;
+}
+.home-logo {
+  display: flex;
+  width: 100px;
+  height: 150px;
+  border-radius: 50%;
+  margin-left: 80px;
+  cursor: pointer;
+  margin-bottom: 30px;
+  margin-top: -20px;
+}
+
+.home-logo:hover {
+  box-shadow: 0px 0px 14px 10px #0e594a41;
+  scale: (1, 1);
+}
+.home-signup {
+  background: #0e594a;
+  color: #fff;
+}
+
+.home-login:hover {
+  background: #0e594a;
+  color: #fff;
+}
+
+.home-signup:hover {
+  background: #08402f;
+}
+
+/* Hero Section */
+.home-hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 50px;
+  background: #fff;
+}
+
+.home-text {
+  max-width: 500px;
+}
+
+.home-text h1 {
+  font-size: 48px;
+  margin-bottom: 10px;
+  color: #0e594a;
+}
+
+.highlight {
+  color: #fbba3f;
+}
+
+.highlight {
+  margin-top: 30px;
+}
+
+.home-text p {
+  color: #555;
+  font-size: 16px;
+}
+
+.home-read-more {
+  margin-top: 15px;
+  padding: 12px 20px;
+  background: #0e594a;
+  color: #fff;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.home-read-more:hover {
+  background: #08402f;
+}
+
+/* Stats Section */
+.home-stats {
+  display: flex;
+  justify-content: space-around;
+  padding: 30px 50px;
+  background: #0e594a;
+  color: #fff;
+}
+
+.stat-card {
+  text-align: center;
+  padding: 20px;
+}
+
+.stat-icon {
+  font-size: 50px;
+  color: #fbba3f;
+}
+
+.stat-card h2 {
+  margin: 10px 0;
+  font-size: 24px;
+}
+
+.stat-card p {
+  font-size: 14px;
+}
+
+.footer_list2 {
+  color: var(--accent-color);
+  font-size: 15px;
+}
