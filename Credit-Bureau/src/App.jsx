@@ -15,8 +15,8 @@ function App() {
       <Routes>
         <Route path="/ss" element={<Sign_up />} />{" "}
         {/* Adjusted to be the root */}
-        <Route path="/" element={<HomePage />} />{" "}
-        <Route path="/dashboard" element={<Dashboard />} />{" "}
+        <Route path="/homepage" element={<HomePage />} />{" "}
+        <Route path="/" element={<Dashboard />} />{" "}
         <Route path="/reports" element={<Reports />} />
         <Route path="/users" element={<Users />} />
         <Route path="/settings" element={<Settings />} />
