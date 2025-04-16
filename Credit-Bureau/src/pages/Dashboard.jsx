@@ -31,7 +31,6 @@ const scoreTrends = [
   { month: "Jun", score: 750 },
 ];
 
-// Imaginary user loan and payment transactions
 const userTransactions = [
   {
     user: "John Doe",
@@ -59,6 +58,10 @@ const userTransactions = [
   },
 ];
 
+const sortedTransactions = [...userTransactions].sort(
+  (a, b) => new Date(a.dueDate) - new Date(b.dueDate)
+);
+
 const Dashboard = () => {
   return (
     <div className="dashboard-wrapper">
@@ -66,11 +69,21 @@ const Dashboard = () => {
         <div className="logo">💳</div>
         <nav>
           <ul>
-            <li className="active">Home</li>
-            <li>Credit Reports</li>
-            <li>Payment History</li>
-            <li>Credit Score Analysis</li>
-            <li>Settings</li>
+            <li className="active">
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/credit-reports">Credit Reports</Link>
+            </li>
+            <li>
+              <Link to="/payment-history">Payment History</Link>
+            </li>
+            <li>
+              <Link to="/credit-score">Credit Score Analysis</Link>
+            </li>
+            <li>
+              <Link to="/settings">Settings</Link>
+            </li>
           </ul>
         </nav>
       </aside>
@@ -113,19 +126,35 @@ const Dashboard = () => {
             </ResponsiveContainer>
           </div>
 
-          <div className="upcoming-card">
-            <h2>Upcoming Payments</h2>
-            {upcomingPayments.map((p, index) => (
-              <div className="upcoming-item" key={index}>
-                <span>{p.description}</span>
-                <span>{p.dueDate}</span>
-              </div>
-            ))}
+          <div className="chart-card">
+            <h3>Credit Score Trends</h3>
+            <ResponsiveContainer width="100%" height={300}>
+              <LineChart data={scoreTrends}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="month" />
+                <YAxis domain={[650, 800]} />
+                <Tooltip />
+                <Legend />
+                <Line type="monotone" dataKey="score" stroke="#4CAF50" />
+              </LineChart>
+            </ResponsiveContainer>
           </div>
+        </div>
+
+        <div className="upcoming-card">
+          <h2>Upcoming Payments</h2>
+          {sortedTransactions.map((transaction, index) => (
+            <div className="upcoming-item" key={index}>
+              <span>
+                {transaction.user} - Last Payment: {transaction.lastPayment}
+              </span>
+              <span>Due: {transaction.dueDate}</span>
+            </div>
+          ))}
         </div>
       </main>
     </div>
   );
 };
 
-export default LoanDashboard;
+export default Dashboard;

@@ -13,8 +13,6 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/ss" element={<Sign_up />} />{" "}
-        {/* Adjusted to be the root */}
         <Route path="/homepage" element={<HomePage />} />{" "}
         <Route path="/" element={<Dashboard />} />{" "}
         <Route path="/sign-up" element={<SignUp />} />{" "}
