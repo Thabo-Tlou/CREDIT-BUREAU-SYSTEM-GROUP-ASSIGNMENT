@@ -34,7 +34,7 @@ Installation
 bash
 Copy
 Edit
-git clone https://github.com/yourusername/bokamoso-credit-bureau.git
+git clone: https://github.com/Thabo-Tlou/CREDIT-BUREAU-SYSTEM-GROUP-ASSIGNMENT
 cd bokamoso-credit-bureau
 2. Install backend dependencies
 Navigate to the backend folder and install dependencies:
