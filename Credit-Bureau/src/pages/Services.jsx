@@ -1,5 +1,6 @@
 import React from "react";
 import Header from "../components2/Header";
+import Footer from "../components2/Footer";
 import {
   FaFileAlt,
   FaChartLine,
@@ -67,6 +68,7 @@ const Services = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

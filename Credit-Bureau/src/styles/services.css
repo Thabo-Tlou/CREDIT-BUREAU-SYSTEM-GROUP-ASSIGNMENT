@@ -21,6 +21,7 @@ body {
   max-width: 1300px;
   margin: 0 auto;
   text-align: center;
+  margin-top: 400px;
 }
 
 .services-title {
@@ -56,6 +57,7 @@ body {
   margin-left: 50px;
   margin-right: 50px;
   max-width: 390px;
+  border: solid 2px var(--primary-color);
 }
 
 .service-card:hover {
