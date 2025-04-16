@@ -11,8 +11,9 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: var(--bg-color);
+  background-color: var(--bg-color) !important;
   font-family: Arial, sans-serif;
+  z-index: 999;
 }
 
 .services-container {
@@ -51,7 +52,7 @@ body {
   box-shadow: 0 4px 10px var(--shadow-color);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   text-align: center;
-  width: 92%;
+  width: 105%;
   margin-left: 50px;
   margin-right: 50px;
   max-width: 390px;
@@ -79,7 +80,6 @@ body {
   line-height: 1.5;
 }
 
-/* Wider bottom row cards */
 .wide-card {
   grid-column: span 3;
   max-width: 93%;
@@ -87,7 +87,6 @@ body {
   margin-left: 40px;
 }
 
-/* Responsive adjustments */
 @media (min-width: 900px) {
   .services-grid {
     grid-template-columns: repeat(6, 1fr);

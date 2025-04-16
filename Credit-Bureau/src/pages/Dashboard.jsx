@@ -1,19 +1,65 @@
-import React from 'react';
-import '../styles/dashboard.css';
+import React from "react";
+import { Link } from "react-router-dom";
+import {
+  PieChart,
+  Pie,
+  Cell,
+  Tooltip,
+  ResponsiveContainer,
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Legend,
+} from "recharts";
+import "../styles/dashboard.css";
 
-const LoanDashboard = () => {
-  const transactions = [
-    { date: '01/15/2024', description: 'Utility Bill', status: 'Paid' },
-    { date: '01/10/2024', description: 'Credit Card Payment', status: 'Pending' },
-    { date: '01/10/2024', description: 'Loan Payment', status: 'Paid' },
-    { date: '01/05/2024', description: 'Mortgage Payment', status: 'Overdue' },
-  ];
+const userStats = [
+  { name: "Excellent", value: 40, color: "#4CAF50" },
+  { name: "Good", value: 30, color: "#2196F3" },
+  { name: "Fair", value: 20, color: "#FFC107" },
+  { name: "Poor", value: 10, color: "#F44336" },
+];
 
-  const upcomingPayments = [
-    { description: 'Mortgage Payment', dueDate: '02/01/2024' },
-    { description: 'Loan Payment', dueDate: '02/05/2024' },
-  ];
+const scoreTrends = [
+  { month: "Jan", score: 720 },
+  { month: "Feb", score: 690 },
+  { month: "Mar", score: 730 },
+  { month: "Apr", score: 710 },
+  { month: "May", score: 740 },
+  { month: "Jun", score: 750 },
+];
 
+// Imaginary user loan and payment transactions
+const userTransactions = [
+  {
+    user: "John Doe",
+    loanAmount: "$5,000",
+    lastPayment: "$1,000",
+    dueDate: "2025-04-01",
+  },
+  {
+    user: "Jane Smith",
+    loanAmount: "$3,500",
+    lastPayment: "$500",
+    dueDate: "2025-03-15",
+  },
+  {
+    user: "Samuel Lee",
+    loanAmount: "$7,000",
+    lastPayment: "$1,200",
+    dueDate: "2025-04-10",
+  },
+  {
+    user: "Emily Davis",
+    loanAmount: "$2,000",
+    lastPayment: "$200",
+    dueDate: "2025-05-01",
+  },
+];
+
+const Dashboard = () => {
   return (
     <div className="dashboard-wrapper">
       <aside className="sidebar">
@@ -29,39 +75,42 @@ const LoanDashboard = () => {
         </nav>
       </aside>
 
-      <main className="dashboard-main">
-        <header className="dashboard-header">
-          <h1 className = "BB">Bokamoso Credit Bureau</h1>
-        </header>
-
-        <div className="dashboard-grid">
-          <div className="credit-score-card">
-            <h2>CREDIT SCORE</h2>
-            <div className="score-value">750</div>
+      <main className="main-content">
+        <div className="overview">
+          <div className="card">
+            <h3>Total Users</h3>
+            <p>5,000</p>
           </div>
+          <div className="card">
+            <h3>Total Reports Generated</h3>
+            <p>1,200</p>
+          </div>
+          <div className="card">
+            <h3>Average Credit Score</h3>
+            <p>720</p>
+          </div>
+        </div>
 
-         
-
-          <div className="transactions-card">
-            <h2>Recent Transactions</h2>
-            <table>
-              <thead>
-                <tr>
-                  <th>Date</th>
-                  <th>Description</th>
-                  <th>Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                {transactions.map((t, index) => (
-                  <tr key={index}>
-                    <td>{t.date}</td>
-                    <td>{t.description}</td>
-                    <td><span className={`status ${t.status.toLowerCase()}`}>{t.status}</span></td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+        <div className="charts">
+          <div className="chart-card">
+            <h3>User Credit Score Distribution</h3>
+            <ResponsiveContainer width="100%" height={300}>
+              <PieChart>
+                <Pie
+                  data={userStats}
+                  dataKey="value"
+                  nameKey="name"
+                  outerRadius={100}
+                  innerRadius={50}
+                  paddingAngle={5}
+                >
+                  {userStats.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={entry.color} />
+                  ))}
+                </Pie>
+                <Tooltip />
+              </PieChart>
+            </ResponsiveContainer>
           </div>
 
           <div className="upcoming-card">

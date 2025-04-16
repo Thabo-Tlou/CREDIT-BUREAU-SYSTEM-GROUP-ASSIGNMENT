@@ -1,20 +1,37 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
 :root {
   --shadow-color: rgba(0, 0, 0, 0.182);
   --primary-color: #0e594a;
   --hover-color: #0e594a80;
   --accent-color: #fbba3f;
-  --bg-color: #ffffff;
+  --bg-color: #f0f0f0f5;
   --input-bg-color: #cedbe97c;
   --white-color: #ffffff;
 }
-html,
+
 body {
-  display: block !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  height: auto !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  z-index: 1;
+}
+.container {
+  display: flex;
+  position: relative;
+  border-radius: 10px;
+  box-shadow: 0 10px 15px var(--shadow-color);
+  overflow: hidden;
+  max-width: 1200px;
+  width: 100%;
 }
 
+/* Sign-Up Container */
 .Sign_up_container {
   padding: 50px 40px;
   background-color: var(--primary-color);
@@ -28,7 +45,7 @@ body {
 }
 
 .sing_up_text {
-  color: var(--white-color);
+  color: var(--bg-color);
   font-weight: bold;
   font-size: 20px;
   margin-bottom: 20px;
@@ -53,14 +70,16 @@ body {
 }
 
 .sign_in_button {
-  background-color: transparent;
-  border: 1px solid;
+  background-color: var(--accent-color);
+  border: 1px solid var(--accent-color);
   padding: 10px 50px;
   border-radius: 70px;
   cursor: pointer;
   font-weight: bold;
   margin-top: 50px;
   transition: background-color 0.3s;
+  color: var(--white-color);
+  box-shadow: 5px 2px 3px var(--shadow-color);
 }
 
 .sign_in_button:hover {
@@ -104,6 +123,7 @@ body {
   transition: background-color 0.3s, color 0.3s;
 }
 
+/* Input Styles */
 .email {
   border: none;
   padding: 15px 20px;
@@ -142,6 +162,7 @@ body {
   padding: 5%;
 }
 
+/* Media Query for Smaller Screens */
 @media (max-width: 768px) {
   .container {
     flex-direction: column;
@@ -173,8 +194,8 @@ body {
 }
 
 .logo2 {
-  width: 75px;
-  height: 75px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   margin-left: -450px;
 }
@@ -185,7 +206,7 @@ body {
   margin-left: -240px;
   font-size: small;
   font-weight: bold;
-  margin-top: -48px;
+  margin-top: -25px;
 }
 
 .Icons {
@@ -200,16 +221,4 @@ body {
   color: var(--accent-color);
   transition: background-color 0.3s, color 0.3s;
   padding: 5%;
-}
-
-.eye-icon {
-  transform: translateY(-50%);
-  cursor: pointer;
-  color: var(--primary-color);
-  margin-left: -25px;
-}
-
-.eye-icon:hover {
-  color: var(--accent-color);
-  transition: color 0.3s ease-in-out;
 }

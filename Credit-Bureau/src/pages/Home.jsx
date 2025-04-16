@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import "../styles/Home.css"; // Import CSS
 import Logo from "../components/images/logo.png";
 import Photo from "../components/images/bank-loan.jpg";
@@ -8,7 +7,6 @@ import SavingsIcon from "@mui/icons-material/Savings";
 import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 import BarChartIcon from "@mui/icons-material/BarChart";
 import Header from "../components2/Header";
-import Sign_up from "../components2/Sign_up";
 
 const Home = () => {
   return (

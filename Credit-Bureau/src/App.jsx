@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import HomePage from "./pages/Home";
-import Sign_up from "./components2/Sign_up";
+import SignUp from "./components2/SignUp";
 import Dashboard from "./pages/Dashboard";
 import Reports from "./components2/Reports";
 import Users from "./components2/Users";
@@ -17,6 +17,9 @@ function App() {
         {/* Adjusted to be the root */}
         <Route path="/homepage" element={<HomePage />} />{" "}
         <Route path="/" element={<Dashboard />} />{" "}
+        <Route path="/sign-up" element={<SignUp />} />{" "}
+        <Route path="/" element={<HomePage />} />{" "}
+        <Route path="/SS" element={<Dashboard />} />{" "}
         <Route path="/reports" element={<Reports />} />
         <Route path="/users" element={<Users />} />
         <Route path="/settings" element={<Settings />} />
