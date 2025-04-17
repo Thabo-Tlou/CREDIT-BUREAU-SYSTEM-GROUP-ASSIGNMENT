@@ -1,0 +1,270 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --shadow-color: rgba(0, 0, 0, 0.182);
+    --primary-color: #0e594a;
+    --hover-color: #0e594a80;
+    --accent-color: #fbba3f;
+    --bg-color: #f0f0f0f5;
+    --input-bg-color: #cedbe97c;
+    --white-color: #ffffff;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url("../assets/images/backgroun.jpg");
+}
+
+.container {
+    display: flex;
+    position: relative;
+    border-radius: 10px;
+    box-shadow: 0 10px 15px var(--shadow-color);
+    overflow: hidden;
+    max-width: 1000px;
+    width: 1000px;
+    min-height: 550px;
+    transition: all 0.3s ease-in-out;
+}
+
+
+/* Sign-Up Container */
+
+.Sign_up_container {
+    padding: 50px 40px;
+    background-color: var(--primary-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    height: 85dvh;
+    margin-bottom: -40px;
+    min-height: 85vh;
+    transition: all 0.3s ease-in-out;
+}
+
+.sing_up_text {
+    color: var(--white-color);
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 20px;
+    margin-top: -80px;
+    margin-bottom: 20px;
+    text-align: center;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.sing_in_text:hover {
+    color: var(--accent-color);
+    transition: color 0.3s ease-in-out;
+    -webkit-transition: color 0.3s ease-in-out;
+    -moz-transition: color 0.3s ease-in-out;
+    -ms-transition: color 0.3s ease-in-out;
+    -o-transition: color 0.3s ease-in-out;
+}
+
+.welcome {
+    color: var(--white-color);
+    font-size: 14px;
+    text-align: center;
+    margin: 0 10px 10px 10px;
+    font-weight: bold;
+}
+
+.sign_in_button {
+    background-color: transparent;
+    border: 1px solid;
+    padding: 10px 50px;
+    border-radius: 70px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 50px;
+    transition: background-color 0.3s;
+    -webkit-transition: background-color 0.3s;
+    -moz-transition: background-color 0.3s;
+    -ms-transition: background-color 0.3s;
+    -o-transition: background-color 0.3s;
+}
+
+.sign_in_button:hover {
+    background-color: var(--accent-color);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+
+/* Sign-Up Form Container */
+
+.sign_up_form_container {
+    background-color: var(--bg-color);
+    padding: 100px;
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 85dvh;
+    width: 90dvh;
+}
+
+.create-sign {
+    color: var(--primary-color);
+    font-weight: bold;
+    text-decoration: none;
+    margin-top: 20px;
+    font-size: 35px;
+    display: flex;
+    margin-bottom: -60px;
+}
+
+.sign_up_button {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    border-radius: 40px;
+    padding: 10px 50px;
+    margin-left: 90px;
+    margin-top: 10px;
+}
+
+.sign_up_button:hover {
+    background-color: var(--accent-color);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+
+/* Input Styles */
+
+.email {
+    border: none;
+    padding: 15px 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    background-color: var(--input-bg-color);
+    color: black;
+    width: 100%;
+    max-width: 300px;
+    transition: background-color 0.3s, color 0.3s;
+    margin-top: -30px;
+}
+
+.password-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 300px;
+}
+
+.password-wrapper input {
+    width: 100%;
+    padding-right: 40px;
+    /* space for the eye icon */
+}
+
+.toggle-eye {
+    position: absolute;
+    top: 40%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #555;
+    font-size: 1.1rem;
+}
+
+.password,
+.confirm_password {
+    border: none;
+    padding: 15px 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    background-color: var(--input-bg-color);
+    color: black;
+    width: 100%;
+    max-width: 300px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.email {
+    margin-top: 80px;
+}
+
+.email:hover,
+.password:hover,
+.confirm_password:hover {
+    background-color: var(--hover-color);
+    color: var(--white-color);
+    transition: background-color 0.3s, color 0.3s;
+    -webkit-transition: background-color 0.3s, color 0.3s;
+    -moz-transition: background-color 0.3s, color 0.3s;
+    -ms-transition: background-color 0.3s, color 0.3s;
+    -o-transition: background-color 0.3s, color 0.3s;
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        border-radius: 0;
+    }
+    .Sign_up_container,
+    .sign_up_form_container {
+        width: 100%;
+        padding: 30px;
+        box-shadow: none;
+    }
+    .sign_up_form_container {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+}
+
+.terms_box {
+    background-color: var(--primary-color);
+    margin-left: 50px;
+}
+
+.terms {
+    font-size: 10px;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-left: 13px;
+}
+
+.logo2 {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-left: -450px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+
+.logo_title {
+    color: var(--primary-color);
+    font-size: 20px;
+    margin-left: -240px;
+    font-size: small;
+    font-weight: bold;
+    margin-top: -25px;
+}
+
+.Icons {
+    justify-content: center;
+    align-items: center;
+    margin-top: 90px;
+    color: var(--primary-color);
+    margin-bottom: -50px;
+}
+
+.Icons:hover {
+    color: var(--accent-color);
+    transition: background-color 0.3s, color 0.3s;
+    padding: 5%;
+}
