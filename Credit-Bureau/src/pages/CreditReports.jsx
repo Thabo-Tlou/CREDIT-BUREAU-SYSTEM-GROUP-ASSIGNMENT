@@ -1,139 +1,106 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "../styles/creditReports.css";
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-} from "recharts";
+
+const agencies = ["Loans", "Payments", "Settled"];
+const months = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+];
 
 const CreditReports = () => {
-  const reports = [
-    {
-      id: 1,
-      name: "John Doe",
-      score: 720,
-      date: "01/15/2024",
-      status: "Good",
-      trend: [650, 700, 720],
-    },
-    {
-      id: 2,
-      name: "Jane Smith",
-      score: 600,
-      date: "12/20/2023",
-      status: "Fair",
-      trend: [550, 570, 600],
-    },
-    {
-      id: 3,
-      name: "Tom Brown",
-      score: 800,
-      date: "11/10/2023",
-      status: "Excellent",
-      trend: [750, 770, 800],
-    },
-    {
-      id: 4,
-      name: "Lucy Green",
-      score: 450,
-      date: "10/05/2023",
-      status: "Poor",
-      trend: [400, 420, 450],
-    },
-  ];
-
-  const [selectedReport, setSelectedReport] = useState(null);
-  const [searchTerm, setSearchTerm] = useState("");
-
-  const handleSelectReport = (report) => {
-    setSelectedReport(report);
-  };
-
-  const handleSearchChange = (e) => {
-    setSearchTerm(e.target.value);
-  };
-
-  // Filter reports based on search term
-  const filteredReports = reports.filter((report) =>
-    report.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
   return (
     <div className="credit-reports-wrapper">
-      <div className="credit-reports-header">
+      <aside className="left-panel">
         <h2>Credit Reports</h2>
-        <input
-          type="text"
-          placeholder="Search by name..."
-          value={searchTerm}
-          onChange={handleSearchChange}
-          className="search-input"
-        />
-      </div>
+        <ul className="lender-list">
+          {[
+            "Payments",
+            "Loans Taken",
+            "Banks Involved",
+            "Accounts",
+            "Statements",
+          ].map((lender, index) => (
+            <li key={index}>
+              <span>{lender}</span>
+              <button className="view-btn">
+                {lender === "Bokamoso" ? "HIDE" : "VIEW"}
+              </button>
+            </li>
+          ))}
+          <li className="closed-accounts">
+            <span>6 Closed Accounts</span>
+            <button className="show-btn">SHOW</button>
+          </li>
+        </ul>
+      </aside>
 
-      {/* List of Reports */}
-      <div className="report-list">
-        {filteredReports.map((report) => (
-          <div
-            key={report.id}
-            className="report-item"
-            onClick={() => handleSelectReport(report)}
-          >
-            <div className="report-name">{report.name}</div>
-            <div className="report-score">{report.score}</div>
-            <div className={`report-status ${report.status.toLowerCase()}`}>
-              {report.status}
+      <main className="report-main">
+        <header className="report-header">
+          <h2>Bokamoso Credit Bureau</h2>
+        </header>
+
+        <section className="agency-info">
+          {agencies.map((agency) => (
+            <div className="agency-card" key={agency}>
+              <p>
+                <strong>{agency}</strong>
+              </p>
+              <p>Balance: M 4000</p>
+              <p>Payed: M 200</p>
+              <p>Settled/Closed</p>
+              <button className="details-btn">DETAILS</button>
             </div>
-            <div className="report-date">{report.date}</div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </section>
 
-      {/* Detailed Report View */}
-      {selectedReport && (
-        <div className="report-details">
-          <h3>Report Details</h3>
-          <div className="report-details-header">
-            <p>
-              <strong>Name:</strong> {selectedReport.name}
-            </p>
-            <p>
-              <strong>Credit Score:</strong> {selectedReport.score}
-            </p>
-            <p>
-              <strong>Status:</strong> {selectedReport.status}
-            </p>
-            <p>
-              <strong>Report Date:</strong> {selectedReport.date}
-            </p>
+        <section className="status-months">
+          <table>
+            <thead>
+              <tr>
+                <th></th>
+                {months.map((month, idx) => (
+                  <th key={idx}>{month}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {agencies.map((agency, i) => (
+                <tr key={i}>
+                  <td>{agency.slice(0, 2).toUpperCase()}</td>
+                  {months.map((_, idx) => (
+                    <td key={idx}>
+                      <span className="status-ok">✔</span>
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </section>
+
+        <h4 className="Balance-graph-text">Balance Graph (LO, PA , SE)</h4>
+        <section className="balance-graph">
+          <div className="bar-graph">
+            {months.map((_, i) => (
+              <div key={i} className="bar-month">
+                <div className="bar eq" />
+                <div className="bar ex" />
+                <div className="bar tu" />
+              </div>
+            ))}
           </div>
-          <div className="score-trend">
-            <h4>Score Trend (Last 3 months)</h4>
-            <ResponsiveContainer width="100%" height={300}>
-              <LineChart
-                data={selectedReport.trend.map((score, index) => ({
-                  month: `Month ${index + 1}`,
-                  score,
-                }))}
-              >
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="month" />
-                <YAxis />
-                <Tooltip />
-                <Line type="monotone" dataKey="score" stroke="#4caf50" />
-              </LineChart>
-            </ResponsiveContainer>
-          </div>
-          <div className="report-actions">
-            <button className="view-more">View More</button>
-            <button className="download-report">Download Report</button>
-          </div>
-        </div>
-      )}
+        </section>
+      </main>
     </div>
   );
 };
