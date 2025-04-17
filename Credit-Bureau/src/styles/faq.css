@@ -1,0 +1,95 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Arial", sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+  line-height: 1.6;
+}
+
+.faq-page {
+  max-width: 1400px;
+  margin: auto;
+  padding: 60px 20px;
+  margin-top: 1950px;
+}
+
+/* FAQ Page Title */
+.faq-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #0e594a;
+  text-align: center;
+  margin-bottom: 50px;
+  letter-spacing: 2px;
+}
+
+/* FAQ List */
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.faq-item {
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+
+.faq-item:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* FAQ Question Styling */
+.faq-question {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.faq-question h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #0e594a;
+  transition: color 0.3s ease-in-out;
+}
+
+.faq-question:hover h3 {
+  color: #fbba3f;
+}
+
+.faq-icon {
+  font-size: 2rem;
+  color: #0e594a;
+  font-weight: bold;
+  background: #f4f7f6;
+  border-radius: 50%;
+  padding: 10px;
+  transition: background 0.3s ease;
+}
+
+.faq-item:hover .faq-icon {
+  background: #fbba3f;
+  color: white;
+}
+
+/* FAQ Answer Styling */
+.faq-answer p {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.8;
+}

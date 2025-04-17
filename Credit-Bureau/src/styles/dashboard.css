@@ -91,6 +91,30 @@ body {
   color: var(--primary-color);
   padding-bottom: 20px;
 }
+.speedometer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 220px;
+  margin-top: 1rem;
+}
+
+.speedometer-gauge {
+  width: 100%;
+  max-width: 360px;
+}
+
+.speedometer-gauge path {
+  transition: stroke-dasharray 0.5s ease-in-out;
+  stroke-linecap: round;
+}
+
+.card {
+  padding: 1rem;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 
 .header-top {
   display: flex;

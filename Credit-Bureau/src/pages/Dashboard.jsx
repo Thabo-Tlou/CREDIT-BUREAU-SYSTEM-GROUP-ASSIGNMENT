@@ -1,6 +1,7 @@
 import React from "react";
 import "../styles/dashboard.css";
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
+import { Link } from "react-router-dom";
 
 const Dashboard = () => {
   const transactions = [
@@ -31,11 +32,43 @@ const Dashboard = () => {
         <div className="logo">💳</div>
         <nav aria-label="Sidebar Navigation">
           <ul className="sidebar-nav">
-            <li className="active">Home</li>
-            <li>Credit Reports</li>
-            <li>Payment History</li>
-            <li>Credit Score Analysis</li>
-            <li>Settings</li>
+            <li>
+              <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/credit-reports"
+                style={{ textDecoration: "none", color: "white" }}
+              >
+                Credit Reports
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/payment-history"
+                style={{ textDecoration: "none", color: "white" }}
+              >
+                Payment History
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/credit-score-analysis"
+                style={{ textDecoration: "none", color: "white" }}
+              >
+                Credit Score Analysis
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/settings"
+                style={{ textDecoration: "none", color: "white" }}
+              >
+                Settings
+              </Link>
+            </li>
           </ul>
         </nav>
       </aside>
