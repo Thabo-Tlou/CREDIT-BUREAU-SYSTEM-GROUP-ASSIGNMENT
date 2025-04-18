@@ -10,10 +10,9 @@ import Partners from "./pages/Partners";
 import FAQPage from "./pages/FAQPage";
 import ContactPage from "./pages/ContactPage";
 import "./App.css";
-import CreditReports from "./pages/PaymentHistory";
+import CreditReports from "./pages/CreditReports";
 import Settings from "./pages/Settings";
 import SignIn from "./components2/Sign-in";
-import PaymentHistory from "./pages/PaymentHistory";
 
 function App() {
   return (
@@ -29,7 +28,7 @@ function App() {
         <Route path="/partners" element={<Partners />} />
         <Route path="/faq" element={<FAQPage />} />
         <Route path="/contact" element={<ContactPage />} />
-        <Route path="/payment-history" element={<PaymentHistory />} />
+        <Route path="/credit-reports" element={<CreditReports />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/sign-in" element={<SignIn />} />
       </Routes>
