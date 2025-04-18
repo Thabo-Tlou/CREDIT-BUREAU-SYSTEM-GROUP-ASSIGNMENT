@@ -14,6 +14,8 @@ import "./App.css";
 import Header from "./components2/Header";
 import { Contact } from "lucide-react";
 import CreditReports from "./pages/CreditReports";
+import CreditForm from "./pages/CreditForm";
+import CreditDashboard from "./pages/CreditDashboard";
 
 function App() {
   return (
@@ -32,6 +34,8 @@ function App() {
         <Route path="/faq" element={<FAQPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/credit-reports" element={<CreditReports />} />
+        <Route path="/credit-form" element={<CreditForm />} />
+        <Route path="/credit-dashboard" element={<CreditDashboard />} />
       </Routes>
     </Router>
   );

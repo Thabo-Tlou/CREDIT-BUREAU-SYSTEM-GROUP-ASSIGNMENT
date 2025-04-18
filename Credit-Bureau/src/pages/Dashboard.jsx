@@ -47,6 +47,14 @@ const Dashboard = () => {
             </li>
             <li>
               <Link
+                to="/credit-form"
+                style={{ textDecoration: "none", color: "white" }}
+              >
+                Loan
+              </Link>
+            </li>
+            <li>
+              <Link
                 to="/payment-history"
                 style={{ textDecoration: "none", color: "white" }}
               >

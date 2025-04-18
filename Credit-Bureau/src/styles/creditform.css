@@ -1,0 +1,209 @@
+:root {
+    --shadow-color: rgba(0, 0, 0, 0.182);
+    --primary-color: #0e594a;
+    --hover-color: #0e594a80;
+    --accent-color: #fbba3f;
+    --bg-color: #f0f0f0f5;
+    --input-bg-color: #cedbe97c;
+    --white-color: #ffffff;
+    --olive: #a3b49c;
+    --cool-white: #f9fafb;   
+  }
+
+body {
+    padding-top: 65rem;
+    background-color: var(--olive);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.form-container {
+    background-color:var(--cool-white);
+    padding: 2.5rem;
+    border-radius: 16px;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+    margin: 3rem auto;
+    max-width: 960px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 18px 32px rgba(0, 0, 0, 0.12);
+}
+
+/* --- Typography --- */
+.form-title {
+    color: #0e594a;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+    top:0;
+}
+
+/* --- Section Headings --- */
+.section-title {
+    color: var(--primary-color);
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-top: 0.5rem;
+    margin-bottom: 1.4rem;
+    position: relative;
+    padding-left: 15px;
+    border-left: 4px solid var(--accent-color);
+}
+
+.loan-section,
+.bill-section {
+    padding: 1rem 1rem 2rem;
+    border: 1px solid var(--accent-color);
+    border-radius: 12px;
+    margin-bottom: 2rem;
+    background-color: var(--white-color);
+    transition: box-shadow 0.3s ease;
+    width: 40rem;
+}
+
+.loan-section:hover,
+.bill-section:hover {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+/* --- Credit Tips Card --- */
+.tips-card {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    padding: 1.8rem;
+    border-radius: 12px;
+    margin-top: 2.5rem;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.06);
+    transition: transform 0.3s ease;
+    margin-bottom: 1rem;
+}
+
+.tips-card:hover {
+    transform: translateY(-4px);
+}
+
+.tip-box ul {
+    list-style-type: none;
+    padding-left: 0;
+    color: #333;
+    line-height: 1.8;
+}
+
+.tip-box ul li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+    width: 40rem;
+}
+
+.tip-box ul li::before {
+    content: "✔";
+    color: #0e594a;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    top: 2px;
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+    .form-container {
+        padding: 1.5rem;
+    }
+
+    .form-title {
+        font-size: 1.6rem;
+    }
+
+    .section-title {
+        font-size: 1.2rem;
+    }
+}
+
+/* Form Content Styling  */
+
+form .form-group {
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+  }
+  
+  form .form-label {
+    display: block;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 0.3rem;
+  }
+  
+  form .form-control,
+  form .form-select {
+    background-color: var(--input-bg-color);
+    border: 1px solid var(--light-gray);
+    border-radius: 5px;
+    padding: 0.75rem;
+    font-size: 1rem;
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  }
+  
+  form .form-control:focus,
+  form .form-select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.15rem var(--hover-color);
+    background-color: var(--white-color);
+  }
+  
+  form .btn-primary {
+    background-color: var(--primary-color);
+    border: none;
+    color: var(--white-color);
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    margin-top: 20px;
+  }
+  
+  form .btn-primary:hover {
+    background-color: var(--hover-color);
+    color: var(--white-color);
+  }
+  
+  form .btn-accent {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    margin-top: 1rem;
+  }
+
+  .btn-accent {
+    display: flex;
+    position:relative;
+    padding-right: 20px;
+    margin-left: 410px;
+  }
+  
+  form .btn-accent:hover {
+    background-color: var(--hover-color);
+    color: var(--white-color);
+  }
+
+
+  .btn-primary {
+    display: flex;
+    position:relative;
+    padding-right: 20px;
+    margin-left: 410px;
+  }
+
+  form {
+    padding: 20px;
+  }
+
+  
