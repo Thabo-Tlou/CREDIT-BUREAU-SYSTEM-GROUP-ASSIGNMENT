@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/creditReports.css";
+import "../styles/payment_history.css";
 
 const agencies = ["Loans", "Payments", "Settled"];
 const months = [
@@ -17,7 +17,7 @@ const months = [
   "Dec",
 ];
 
-const CreditReports = () => {
+const PaymentHistory = () => {
   return (
     <div className="credit-reports-wrapper">
       <aside className="left-panel">
@@ -105,4 +105,4 @@ const CreditReports = () => {
   );
 };
 
-export default CreditReports;
+export default PaymentHistory;

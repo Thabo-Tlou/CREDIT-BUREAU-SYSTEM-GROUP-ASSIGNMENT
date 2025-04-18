@@ -1,16 +1,9 @@
-body {
-  font-family: "Arial", sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f4f4f4;
-}
-
 :root {
   --shadow-color: rgba(0, 0, 0, 0.182);
   --primary-color: #0e594a;
   --hover-color: #0e594a80;
   --accent-color: #fbba3f;
-  --bg-color: #f0f0f0f5;
+  --bg-color: #ffffff;
   --input-bg-color: #cedbe97c;
   --white-color: #ffffff;
 }
