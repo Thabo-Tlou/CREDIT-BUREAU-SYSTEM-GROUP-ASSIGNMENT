@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../styles/sign-up.css";
 import logo from "../components/images/logo.png";
+import { Link } from "react-router-dom";
 import {
   FaWhatsapp,
   FaFacebook,
@@ -19,7 +20,6 @@ const SignUp = () => {
   const [error, setError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
 
-  // States to toggle password visibility
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
@@ -43,17 +43,14 @@ const SignUp = () => {
         password,
       });
 
-      // Show success message and inform the user about email verification
       setSuccessMessage(
         "Registration successful! Please check your email to verify your account."
       );
 
-      // Optionally, redirect after a short delay or just leave the message
       setTimeout(() => {
-        navigate("/verification-pending"); // Redirect to a page informing the user about verification
+        navigate("/verification-pending");
       }, 3000);
 
-      // Reset form
       setEmail("");
       setPassword("");
       setConfirmPassword("");
@@ -65,31 +62,32 @@ const SignUp = () => {
   };
 
   return (
-    <div className="signup-page">
-      <div className="container">
-        <div className="Sign_up_container">
-          <h1 className="sing_up_text">Welcome, Back!</h1>
-          <p className="welcome">
+    <div className="signupPageUnique">
+      <div className="signupContainerUnique">
+        {/* LEFT SIDE */}
+        <div className="signupLeftPanelUnique">
+          <h1 className="signupTitleUnique">Hello Again!</h1>
+          <p className="signupSubtitleUnique">
             Sign in to view your credit
             <br />
             score and more
           </p>
-          <button type="button" className="sign_in_button">
-            SIGN IN
-          </button>
+          <Link to="/sign-in">
+            <button type="button" className="signupSwitchBtnUnique">
+              SIGN IN
+            </button>
+          </Link>
         </div>
 
-        <div className="sign_up_form_container">
-          <img src={logo} alt="logo" className="logo2" />
-          <p className="logo_title">Bokamoso Credit Bureau</p>
+        {/* RIGHT SIDE */}
+        <div className="signupFormWrapperUnique">
+          <p className="signupLogoTitleUnique">Bokamoso Credit Bureau</p>
+          <img src={logo} alt="logo" className="signupLogoUnique" />
 
-          <form className="sign_up_form" onSubmit={handleSignup}>
-            <h1 className="create-sign">Create Your Account</h1>
+          <form className="signupFormUnique" onSubmit={handleSignup}>
+            <h1 className="signupHeaderUnique">Create Your Account</h1>
 
-            <div
-              className="Icons"
-              style={{ fontSize: "1.5rem", display: "flex", gap: "1rem" }}
-            >
+            <div className="signupIconsUnique">
               <FaWhatsapp />
               <FaFacebook />
               <FaInstagram />
@@ -99,76 +97,72 @@ const SignUp = () => {
               type="email"
               placeholder="Email"
               required
-              className="email"
+              className="signupInputUnique"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              disabled={isLoading} // Disable during loading
+              disabled={isLoading}
             />
-            <br />
 
-            <div className="password-container">
+            <div className="signupPasswordGroupUnique">
               <input
                 type={showPassword ? "text" : "password"}
                 placeholder="Password"
-                className="password"
                 required
+                className="signupInputUnique"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                disabled={isLoading} // Disable during loading
+                disabled={isLoading}
               />
               <span
-                className="eye-icon"
+                className="signupEyeIconUnique"
                 onClick={() => setShowPassword(!showPassword)}
               >
                 {showPassword ? <FaEyeSlash /> : <FaEye />}
               </span>
             </div>
-            <br />
 
-            <div className="password-container">
+            <div className="signupPasswordGroupUnique">
               <input
                 type={showConfirmPassword ? "text" : "password"}
                 placeholder="Confirm Password"
-                className="confirm_password"
                 required
+                className="signupInputUnique"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
-                disabled={isLoading} // Disable during loading
+                disabled={isLoading}
               />
               <span
-                className="eye-icon"
+                className="signupEyeIconUnique"
                 onClick={() => setShowConfirmPassword(!showConfirmPassword)}
               >
                 {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
               </span>
             </div>
-            <br />
 
-            <input
-              type="checkbox"
-              id="terms"
-              name="terms_conditions"
-              value="terms"
-              className="terms_box"
-              required
-              disabled={isLoading} // Disable during loading
-            />
-            <label htmlFor="terms" className="terms">
-              Agree to our terms and conditions
-            </label>
+            <div className="signupTermsRowUnique">
+              <input
+                type="checkbox"
+                id="terms"
+                className="signupCheckboxUnique"
+                required
+                disabled={isLoading}
+              />
+              <label htmlFor="terms" className="signupTermsLabelUnique">
+                Agree to our terms and conditions
+              </label>
+            </div>
 
             <button
               type="submit"
-              className="sign_up_button"
+              className="signupSubmitBtnUnique"
               disabled={isLoading}
             >
               {isLoading ? "Signing up..." : "Sign Up"}
             </button>
-            <br />
 
-            {error && <div className="error-message">{error}</div>}
+            {error && <div className="signupErrorUnique">{error}</div>}
             {successMessage && (
-              <div className="success-message">{successMessage}</div>
+              <div className="signupSuccessUnique">{successMessage}</div>
             )}
           </form>
         </div>

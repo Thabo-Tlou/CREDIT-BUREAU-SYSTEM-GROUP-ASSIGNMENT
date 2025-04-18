@@ -8,14 +8,6 @@
   --white-color: #ffffff;
 }
 
-body {
-  margin: 0;
-  padding: 0;
-  background-color: var(--bg-color) !important;
-  font-family: Arial, sans-serif;
-  z-index: 999;
-}
-
 .services-container {
   padding: 60px 40px;
   max-width: 1300px;

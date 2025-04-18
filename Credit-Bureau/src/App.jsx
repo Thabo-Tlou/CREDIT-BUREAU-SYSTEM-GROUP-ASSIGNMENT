@@ -10,10 +10,9 @@ import Partners from "./pages/Partners";
 import FAQPage from "./pages/FAQPage";
 import ContactPage from "./pages/ContactPage";
 import "./App.css";
-import Header from "./components2/Header";
-import { Contact } from "lucide-react";
 import CreditReports from "./pages/CreditReports";
 import Settings from "./pages/Settings";
+import SignIn from "./components2/Sign-in";
 
 function App() {
   return (
@@ -21,8 +20,8 @@ function App() {
       <Routes>
         <Route path="/homepage" element={<HomePage />} />{" "}
         <Route path="/sign-up" element={<SignUp />} />{" "}
-        <Route path="/SS" element={<HomePage />} />{" "}
-        <Route path="/dashboardx  " element={<Dashboard />} />{" "}
+        <Route path="/" element={<HomePage />} />{" "}
+        <Route path="/dashboard" element={<Dashboard />} />{" "}
         <Route path="/reports" element={<Reports />} />
         <Route path="/users" element={<Users />} />
         <Route path="/services" element={<Services />} />
@@ -31,6 +30,7 @@ function App() {
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/credit-reports" element={<CreditReports />} />
         <Route path="/settings" element={<Settings />} />
+        <Route path="/sign-in" element={<SignIn />} />
       </Routes>
     </Router>
   );

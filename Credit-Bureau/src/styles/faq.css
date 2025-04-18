@@ -5,14 +5,6 @@
   padding: 0;
   box-sizing: border-box;
 }
-
-body {
-  font-family: "Arial", sans-serif;
-  background-color: #fffdfd;
-  color: #333;
-  line-height: 1.6;
-}
-
 .faq-page {
   max-width: 1400px;
   margin: auto;
