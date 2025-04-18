@@ -19,7 +19,8 @@ const SignUp = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
-
+  const [passwordStrength, setPasswordStrength] = useState("");
+  const [passwordSuggestions, setPasswordSuggestions] = useState([]);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
@@ -30,6 +31,16 @@ const SignUp = () => {
 
     if (password !== confirmPassword) {
       alert("Passwords do not match!");
+      return;
+    }
+
+    // Validate password strength
+    const passwordValidation =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
+    if (!passwordValidation.test(password)) {
+      setError(
+        "Password must be at least 8 characters long, include an uppercase letter, a lowercase letter, a number, and a special character."
+      );
       return;
     }
 
@@ -58,6 +69,41 @@ const SignUp = () => {
       setError(err.response?.data?.message || "Signup failed.");
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const handlePasswordChange = (e) => {
+    const passwordInput = e.target.value;
+    setPassword(passwordInput);
+
+    // Password strength checker
+    const hasLowerCase = /[a-z]/.test(passwordInput);
+    const hasUpperCase = /[A-Z]/.test(passwordInput);
+    const hasNumber = /\d/.test(passwordInput);
+    const hasSpecialChar = /[!@#$%^&*]/.test(passwordInput);
+
+    // Collect missing criteria
+    const suggestions = [];
+    if (!hasLowerCase) suggestions.push("at least one lowercase letter");
+    if (!hasUpperCase) suggestions.push("at least one uppercase letter");
+    if (!hasNumber) suggestions.push("at least one number");
+    if (!hasSpecialChar) suggestions.push("at least one special character");
+
+    setPasswordSuggestions(suggestions);
+
+    // Determine password strength
+    if (
+      hasLowerCase &&
+      hasUpperCase &&
+      hasNumber &&
+      hasSpecialChar &&
+      passwordInput.length >= 8
+    ) {
+      setPasswordStrength("Strong");
+    } else if (passwordInput.length >= 6) {
+      setPasswordStrength("Medium");
+    } else {
+      setPasswordStrength("Weak");
     }
   };
 
@@ -110,7 +156,7 @@ const SignUp = () => {
                 required
                 className="signupInputUnique"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={handlePasswordChange}
                 disabled={isLoading}
               />
               <span
@@ -120,6 +166,27 @@ const SignUp = () => {
                 {showPassword ? <FaEyeSlash /> : <FaEye />}
               </span>
             </div>
+
+            {passwordSuggestions.length > 0 && (
+              <div className="password-suggestions">
+                <p>
+                  <strong>Suggestions:</strong>
+                </p>
+                <ul>
+                  {passwordSuggestions.map((suggestion, index) => (
+                    <li key={index}>{suggestion}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {passwordStrength && (
+              <div
+                className={`password-strength ${passwordStrength.toLowerCase()}`}
+              >
+                {passwordStrength} Password
+              </div>
+            )}
 
             <div className="signupPasswordGroupUnique">
               <input

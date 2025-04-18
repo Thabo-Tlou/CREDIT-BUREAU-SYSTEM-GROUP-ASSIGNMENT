@@ -185,3 +185,52 @@
   background-color: #e0ffe6;
   color: #1b5e20;
 }
+.password-suggestions {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 8px;
+  margin-top: 10px;
+  width: 100%;
+  max-width: 350px;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.password-suggestions strong {
+  color: var(--primary-color);
+}
+
+.password-suggestions ul {
+  padding-left: 20px;
+}
+
+.password-suggestions li {
+  list-style-type: disc;
+  margin-bottom: 5px;
+}
+
+.password-strength {
+  text-align: center;
+  margin-top: 10px;
+  padding: 5px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  width: 100%;
+  max-width: 350px;
+}
+
+.password-strength.weak {
+  background-color: #ffdddd;
+  color: #b00020;
+}
+
+.password-strength.medium {
+  background-color: #fff5cc;
+  color: #ff7f00;
+}
+
+.password-strength.strong {
+  background-color: #e0ffe6;
+  color: #1b5e20;
+}
