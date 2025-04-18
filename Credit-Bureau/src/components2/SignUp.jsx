@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../styles/sign-up.css";
 import logo from "../components/images/logo.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   FaWhatsapp,
   FaFacebook,
@@ -10,7 +10,6 @@ import {
   FaEyeSlash,
 } from "react-icons/fa";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
@@ -34,7 +33,6 @@ const SignUp = () => {
       return;
     }
 
-    // Validate password strength
     const passwordValidation =
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
     if (!passwordValidation.test(password)) {
@@ -46,7 +44,7 @@ const SignUp = () => {
 
     setIsLoading(true);
     setError("");
-    setSuccessMessage("");
+    setSuccessMessage(""); // Reset success message before trying
 
     try {
       const res = await axios.post("http://localhost:5000/api/users/signup", {
@@ -55,12 +53,12 @@ const SignUp = () => {
       });
 
       setSuccessMessage(
-        "Registration successful! Please check your email to verify your account."
+        "🎉 Registration successful! Redirecting to Sign In..."
       );
 
       setTimeout(() => {
-        navigate("/verification-pending");
-      }, 3000);
+        navigate("/sign-in");
+      }, 4000); // Delay for 4 seconds before redirecting
 
       setEmail("");
       setPassword("");
@@ -76,13 +74,11 @@ const SignUp = () => {
     const passwordInput = e.target.value;
     setPassword(passwordInput);
 
-    // Password strength checker
     const hasLowerCase = /[a-z]/.test(passwordInput);
     const hasUpperCase = /[A-Z]/.test(passwordInput);
     const hasNumber = /\d/.test(passwordInput);
     const hasSpecialChar = /[!@#$%^&*]/.test(passwordInput);
 
-    // Collect missing criteria
     const suggestions = [];
     if (!hasLowerCase) suggestions.push("at least one lowercase letter");
     if (!hasUpperCase) suggestions.push("at least one uppercase letter");
@@ -91,7 +87,6 @@ const SignUp = () => {
 
     setPasswordSuggestions(suggestions);
 
-    // Determine password strength
     if (
       hasLowerCase &&
       hasUpperCase &&
@@ -110,7 +105,6 @@ const SignUp = () => {
   return (
     <div className="signupPageUnique">
       <div className="signupContainerUnique">
-        {/* LEFT SIDE */}
         <div className="signupLeftPanelUnique">
           <h1 className="signupTitleUnique">Hello Again!</h1>
           <p className="signupSubtitleUnique">
@@ -125,13 +119,17 @@ const SignUp = () => {
           </Link>
         </div>
 
-        {/* RIGHT SIDE */}
         <div className="signupFormWrapperUnique">
           <p className="signupLogoTitleUnique">Bokamoso Credit Bureau</p>
           <img src={logo} alt="logo" className="signupLogoUnique" />
 
           <form className="signupFormUnique" onSubmit={handleSignup}>
             <h1 className="signupHeaderUnique">Create Your Account</h1>
+
+            {/* Move the success message here */}
+            {successMessage && (
+              <div className="signupSuccessUnique">{successMessage}</div>
+            )}
 
             <div className="signupIconsUnique">
               <FaWhatsapp />
@@ -228,9 +226,6 @@ const SignUp = () => {
             </button>
 
             {error && <div className="signupErrorUnique">{error}</div>}
-            {successMessage && (
-              <div className="signupSuccessUnique">{successMessage}</div>
-            )}
           </form>
         </div>
       </div>
