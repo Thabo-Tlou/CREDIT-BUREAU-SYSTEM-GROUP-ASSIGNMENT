@@ -1,9 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/dashboard.css";
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
 import { Link } from "react-router-dom";
 
 const Dashboard = () => {
+  const [avatar, setAvatar] = useState("/images/avatar.jpg"); // Default placeholder image
+  const [userName, setUserName] = useState("User"); // Default user name
+
+  useEffect(() => {
+    // Check if profile data exists in localStorage
+    const profileData = JSON.parse(localStorage.getItem("profile"));
+
+    if (profileData) {
+      if (profileData.avatar) {
+        setAvatar(profileData.avatar); // If custom avatar exists
+      }
+      if (profileData.name) {
+        setUserName(profileData.name); // If user name exists
+      }
+    } else {
+      setAvatar("/images/avatar.jpg"); // Use placeholder image if no profile data
+      setUserName("User"); // Use default name if no profile data
+    }
+  }, []);
+
   const transactions = [
     { date: "01/15/2024", description: "Utility Bill", status: "Paid" },
     {
@@ -29,7 +49,12 @@ const Dashboard = () => {
   return (
     <div className="dashboard-wrapper">
       <aside className="sidebar">
-        <div className="logo">💳</div>
+        <div className="logo">
+          <img src={avatar} alt="User Avatar" className="avatar" />
+          {/* Display the avatar image */}
+          <p className="username">{userName}</p>
+          {/* Display the username under the avatar */}
+        </div>
         <nav aria-label="Sidebar Navigation">
           <ul className="sidebar-nav">
             <li>

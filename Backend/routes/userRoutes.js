@@ -7,56 +7,75 @@ const router = express.Router();
 
 // Signup route
 router.post("/signup", async (req, res) => {
-  const { email, password } = req.body;
+  const { email, password, username } = req.body;
+
+  // Ensure username, email, and password are provided
+  if (!username || !email || !password) {
+    return res
+      .status(400)
+      .json({ message: "Username, email, and password are required" });
+  }
 
   try {
+    // Check for existing user by email
     const userExists = await User.findOne({ email });
     if (userExists) {
       return res.status(400).json({ message: "Email already in use" });
     }
 
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const newUser = new User({
-      email,
-      password: hashedPassword,
-    });
-
-    await newUser.save();
-
-    res.status(201).json({ message: "User registered successfully" });
-  } catch (error) {
-    console.error("Signup error:", error);
-    if (error.name === "ValidationError") {
-      const messages = Object.values(error.errors).map((val) => val.message);
-      return res.status(400).json({ message: messages.join(", ") });
+    // Check if username already exists
+    const usernameExists = await User.findOne({ username });
+    if (usernameExists) {
+      return res.status(400).json({ message: "Username already in use" });
     }
 
-    res.status(500).json({ message: "Server error. Please try again." });
+    // Hash the password
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Create and save the user
+    const user = new User({
+      email,
+      password: hashedPassword,
+      username,
+    });
+    await user.save();
+
+    res.status(201).json({ message: "User registered successfully" });
+  } catch (err) {
+    console.error("Signup Error:", err);
+
+    // Mongoose validation error
+    if (err.name === "ValidationError") {
+      const errors = Object.values(err.errors).map((e) => e.message);
+      return res.status(400).json({ message: errors.join(", ") });
+    }
+
+    res.status(500).json({ message: "Server error. Please try again later." });
   }
 });
 
-// Sign-In Route
+// Signin route (for login)
 router.post("/signin", async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    // Check if user exists
     const user = await User.findOne({ email });
     if (!user) {
-      return res.status(400).json({ message: "Invalid credentials" });
+      return res.status(400).json({ message: "Invalid email or password" });
     }
 
-    // Compare the password with the hashed password
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      return res.status(400).json({ message: "Invalid credentials" });
+      return res.status(400).json({ message: "Invalid email or password" });
     }
 
-    // Send success response
-    res.status(200).json({ message: "Login successful" });
-  } catch (error) {
-    console.error("Signin error:", error);
-    res.status(500).json({ message: "Server error. Please try again." });
+    res.status(200).json({
+      message: "Login successful",
+      username: user.username, // Include the username in the response
+    });
+  } catch (err) {
+    console.error("Signin Error:", err);
+    res.status(500).json({ message: "Server error. Please try again later." });
   }
 });
 

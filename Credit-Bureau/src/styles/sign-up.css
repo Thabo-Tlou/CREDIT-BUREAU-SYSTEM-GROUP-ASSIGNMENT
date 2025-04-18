@@ -113,7 +113,7 @@
   transition: border-color 0.3s ease;
   width: 350px;
   margin: 10px;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 .signupInputUnique:focus {
