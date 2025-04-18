@@ -9,15 +9,42 @@ import {
   FaFacebook,
   FaInstagram,
 } from "react-icons/fa";
+import axios from "axios";
 
 const SignIn = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleSignIn = async (e) => {
+    e.preventDefault();
+
+    setIsLoading(true);
+    setError("");
+
+    try {
+      const res = await axios.post("http://localhost:5000/api/users/signin", {
+        email,
+        password,
+      });
+
+      // If login is successful, redirect to the dashboard or home
+      alert(res.data.message); // You can replace this with a more user-friendly method
+      navigate("/dashboard"); // Replace this with your actual dashboard route
+    } catch (err) {
+      setError(err.response?.data?.message || "Login failed.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <div className="signin-wrapper">
       <div className="signin-content">
-        {/* Left Panel - Now on the right */}
+        {/* Left Panel */}
         <div className="signin-left">
           <h1 className="signin-heading">New Here?</h1>
           <p className="signin-subtext">
@@ -39,7 +66,7 @@ const SignIn = () => {
             <p className="signin-brand">Bokamoso Credit Bureau</p>
             <img src={logo} alt="logo" className="signin-logo-inline" />
           </div>
-          <form className="signin-form">
+          <form className="signin-form" onSubmit={handleSignIn}>
             <h1 className="signin-title">Sign In to Your Account</h1>
 
             <div className="signin-social-icons">
@@ -49,10 +76,12 @@ const SignIn = () => {
             </div>
 
             <input
-              type="text"
+              type="email"
               placeholder="Email"
               required
               className="signin-input"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
             <br />
 
@@ -62,6 +91,8 @@ const SignIn = () => {
                 placeholder="Password"
                 required
                 className="signin-input"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
               <span
                 className="signin-eye-icon"
@@ -71,20 +102,14 @@ const SignIn = () => {
               </span>
             </div>
 
-            <div className="signin-remember-group">
-              <input
-                type="checkbox"
-                id="remember"
-                name="remember_me"
-                className="signin-checkbox"
-              />
-              <label htmlFor="remember" className="signin-label">
-                Remember Me
-              </label>
-            </div>
+            {error && <div className="signin-error">{error}</div>}
 
-            <button type="submit" className="signin-submit-btn">
-              Sign In
+            <button
+              type="submit"
+              className="signin-submit-btn"
+              disabled={isLoading}
+            >
+              {isLoading ? "Signing In..." : "Sign In"}
             </button>
           </form>
         </div>

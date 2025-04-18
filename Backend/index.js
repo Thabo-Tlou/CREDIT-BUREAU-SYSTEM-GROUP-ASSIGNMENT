@@ -1,7 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
-import userRoutes from "./routes/userRoutes.js";
+import userRoutes from "./routes/userRoutes.js"; // This will already include your signup and signin routes
 import loanRoutes from "./routes/loanRoutes.js";
 import paymentRoutes from "./routes/paymentRoutes.js";
 import dotenv from "dotenv";
@@ -28,7 +28,7 @@ mongoose
   .catch((err) => console.error("MongoDB Connection Failed:", err));
 
 // ✅ Use routes
-app.use("/api/users", userRoutes);
+app.use("/api/users", userRoutes); // This will include both the signup and signin routes
 app.use("/api/loans", loanRoutes);
 app.use("/api/payments", paymentRoutes);
 
