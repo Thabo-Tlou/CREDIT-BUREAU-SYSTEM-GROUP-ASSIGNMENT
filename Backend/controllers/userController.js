@@ -1,59 +1,40 @@
-// controllers/userController.js
-
+// routes/userRoutes.js
+import express from "express";
 import User from "../models/User.js";
 import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
-import { sendVerificationEmail } from "../utils/email.js"; // Import the email function
 
-// Handle user signup and send verification email
-export const signupUser = async (req, res) => {
+const router = express.Router();
+
+// Signup route
+router.post("/signup", async (req, res) => {
   const { email, password } = req.body;
 
-  // Validate user input
-  if (!email || !password) {
-    return res
-      .status(400)
-      .json({ message: "Email and password are required." });
-  }
-
   try {
-    // Check if the user already exists by email
-    const existingUser = await User.findOne({ email });
-    if (existingUser) {
-      return res.status(400).json({ message: "User already exists!" });
+    // Check for existing user
+    const userExists = await User.findOne({ email });
+    if (userExists) {
+      return res.status(400).json({ message: "Email already in use" });
     }
 
-    // Hash the password before saving
-    const hashedPassword = await bcrypt.hash(password, 12);
+    // Hash password
+    const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Create a new user
-    const newUser = new User({
-      email,
-      password: hashedPassword,
-      isVerified: false, // Not verified initially
-    });
+    // Create and save user
+    const user = new User({ email, password: hashedPassword });
+    await user.save();
 
-    // Save the new user
-    await newUser.save();
+    res.status(201).json({ message: "User registered successfully" });
+  } catch (err) {
+    console.error("Signup Error:", err);
 
-    // Generate the email verification token
-    const emailToken = jwt.sign(
-      { email: newUser.email },
-      process.env.JWT_SECRET,
-      { expiresIn: "1h" }
-    );
+    // Mongoose validation error
+    if (err.name === "ValidationError") {
+      const errors = Object.values(err.errors).map((e) => e.message);
+      return res.status(400).json({ message: errors.join(", ") });
+    }
 
-    // Send verification email
-    await sendVerificationEmail(newUser.email, emailToken);
-
-    return res.status(201).json({
-      message:
-        "Signup successful! Please check your email to verify your account.",
-    });
-  } catch (error) {
-    console.error("Error during signup:", error);
-    return res
-      .status(500)
-      .json({ message: "Signup failed, please try again." });
+    res.status(500).json({ message: "Server error. Please try again later." });
   }
-};
+});
+
+export default router;

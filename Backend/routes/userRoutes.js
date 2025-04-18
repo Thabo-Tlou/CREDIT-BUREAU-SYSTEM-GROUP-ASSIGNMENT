@@ -1,36 +1,39 @@
 import express from "express";
-import { signupUser } from "../controllers/userController.js";
+import bcrypt from "bcryptjs";
+import User from "../models/User.js";
 
 const router = express.Router();
 
-// Signup route
-router.post("/signup", signupUser);
-
-// Verify email route
-router.get("/verify-email", async (req, res) => {
-  const { token } = req.query;
-
-  if (!token) {
-    return res.status(400).json({ message: "No token provided." });
-  }
+router.post("/signup", async (req, res) => {
+  const { email, password } = req.body;
 
   try {
-    // Verify the JWT token
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
-    // Find the user and update their verification status
-    const user = await User.findOne({ email: decoded.email });
-    if (!user) {
-      return res.status(404).json({ message: "User not found." });
+    // Check if user already exists
+    const userExists = await User.findOne({ email });
+    if (userExists) {
+      return res.status(400).json({ message: "Email already in use" });
     }
 
-    user.isVerified = true;
-    await user.save();
+    // Hash password and save new user
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const newUser = new User({
+      email,
+      password: hashedPassword,
+    });
 
-    res.status(200).json({ message: "Email verified successfully!" });
+    await newUser.save();
+
+    res.status(201).json({ message: "User registered successfully" });
   } catch (error) {
-    console.error(error);
-    res.status(400).json({ message: "Invalid or expired token." });
+    console.error("Signup error:", error);
+
+    // Check for Mongoose validation error
+    if (error.name === "ValidationError") {
+      const messages = Object.values(error.errors).map((val) => val.message);
+      return res.status(400).json({ message: messages.join(", ") });
+    }
+
+    res.status(500).json({ message: "Server error. Please try again." });
   }
 });
 

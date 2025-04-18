@@ -234,3 +234,13 @@
   background-color: #e0ffe6;
   color: #1b5e20;
 }
+.signupSuccessUnique {
+  color: green;
+  background-color: #d4edda;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+  text-align: center;
+  font-weight: bold;
+  transition: opacity 0.5s ease-in-out;
+}
