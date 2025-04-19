@@ -1,5 +1,5 @@
 import React from 'react';
-import './CreditScoreAnalysis.css'; // for styling
+import "../styles/CreditScoreAnalysis.css"; // for styling
 
 const CreditScoreAnalysis = () => {
   return (
