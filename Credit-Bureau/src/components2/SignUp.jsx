@@ -12,6 +12,7 @@ import {
 import axios from "axios";
 
 const SignUp = () => {
+  const [username, setUsername] = useState(""); // Updated state name to 'username'
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -28,11 +29,13 @@ const SignUp = () => {
   const handleSignup = async (e) => {
     e.preventDefault();
 
+    // Validate password match
     if (password !== confirmPassword) {
-      alert("Passwords do not match!");
+      setError("Passwords do not match!");
       return;
     }
 
+    // Validate password strength
     const passwordValidation =
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
     if (!passwordValidation.test(password)) {
@@ -47,19 +50,38 @@ const SignUp = () => {
     setSuccessMessage(""); // Reset success message before trying
 
     try {
-      const res = await axios.post("http://localhost:5000/api/users/signup", {
-        email,
-        password,
-      });
+      const res = await axios.post(
+        "http://localhost:5000/api/users/signup",
+        {
+          username, // Send username in the request body
+          email,
+          password,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json", // Ensure proper content type
+          },
+        }
+      );
 
       setSuccessMessage(
         "🎉 Registration successful! Redirecting to Sign In..."
+      );
+
+      // Save user details to localStorage
+      localStorage.setItem(
+        "user",
+        JSON.stringify({
+          email,
+          createdAt: new Date().toISOString(),
+        })
       );
 
       setTimeout(() => {
         navigate("/sign-in");
       }, 4000); // Delay for 4 seconds before redirecting
 
+      setUsername("");
       setEmail("");
       setPassword("");
       setConfirmPassword("");
@@ -74,6 +96,7 @@ const SignUp = () => {
     const passwordInput = e.target.value;
     setPassword(passwordInput);
 
+    // Password strength validation
     const hasLowerCase = /[a-z]/.test(passwordInput);
     const hasUpperCase = /[A-Z]/.test(passwordInput);
     const hasNumber = /\d/.test(passwordInput);
@@ -126,7 +149,7 @@ const SignUp = () => {
           <form className="signupFormUnique" onSubmit={handleSignup}>
             <h1 className="signupHeaderUnique">Create Your Account</h1>
 
-            {/* Move the success message here */}
+            {/* Display success message */}
             {successMessage && (
               <div className="signupSuccessUnique">{successMessage}</div>
             )}
@@ -136,6 +159,17 @@ const SignUp = () => {
               <FaFacebook />
               <FaInstagram />
             </div>
+
+            {/* Username input field */}
+            <input
+              type="text"
+              placeholder="Full Name"
+              required
+              className="signupInputUnique"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              disabled={isLoading}
+            />
 
             <input
               type="email"
@@ -165,6 +199,7 @@ const SignUp = () => {
               </span>
             </div>
 
+            {/* Password strength suggestions */}
             {passwordSuggestions.length > 0 && (
               <div className="password-suggestions">
                 <p>
@@ -178,6 +213,7 @@ const SignUp = () => {
               </div>
             )}
 
+            {/* Password strength */}
             {passwordStrength && (
               <div
                 className={`password-strength ${passwordStrength.toLowerCase()}`}

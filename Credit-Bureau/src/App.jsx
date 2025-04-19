@@ -13,6 +13,8 @@ import "./App.css";
 import PaymentHistory from "./pages/PaymentHistory";
 import Settings from "./pages/Settings";
 import SignIn from "./components2/Sign-in";
+import CreditScoreAnalysis from './pages/CreditScoreAnalysis';
+
 
 function App() {
   return (
@@ -31,9 +33,12 @@ function App() {
         <Route path="/payment-history" element={<PaymentHistory />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/sign-in" element={<SignIn />} />
+        <Route path="/credit-score-analysis" element={<CreditScoreAnalysis />} />
       </Routes>
     </Router>
   );
 }
 
 export default App;
+
+

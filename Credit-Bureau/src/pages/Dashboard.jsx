@@ -1,11 +1,48 @@
+<<<<<<< HEAD
 import React, { useState } from "react";
+=======
+import React, { useEffect, useState } from "react";
+>>>>>>> 1abdc0d9f8cec7822c38c51c3cdcb184003e54e1
 import "../styles/dashboard.css";
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
 import { Link } from "react-router-dom";
 import CreditReport from "./CreditReport";
 
 const Dashboard = () => {
+<<<<<<< HEAD
     const [showCreditReport, setShowCreditReport] = useState(false);
+=======
+  const [avatar, setAvatar] = useState("/images/avatar.jpg"); // Default placeholder image
+  const [userName, setUserName] = useState("User"); // Default user name
+
+  useEffect(() => {
+    // Check if profile data exists in localStorage
+    const profileData = JSON.parse(localStorage.getItem("profile"));
+
+    if (profileData) {
+      if (profileData.avatar) {
+        setAvatar(profileData.avatar); // If custom avatar exists
+      }
+      if (profileData.name) {
+        setUserName(profileData.name); // If user name exists
+      }
+    } else {
+      setAvatar("/images/avatar.jpg"); // Use placeholder image if no profile data
+      setUserName("User"); // Use default name if no profile data
+    }
+  }, []);
+
+  const transactions = [
+    { date: "01/15/2024", description: "Utility Bill", status: "Paid" },
+    {
+      date: "01/10/2024",
+      description: "Credit Card Payment",
+      status: "Pending",
+    },
+    { date: "01/10/2024", description: "Loan Payment", status: "Paid" },
+    { date: "01/05/2024", description: "Mortgage Payment", status: "Overdue" },
+  ];
+>>>>>>> 1abdc0d9f8cec7822c38c51c3cdcb184003e54e1
 
     const transactions = [
         { date: "01/15/2024", description: "Utility Bill", status: "Paid" },
@@ -19,11 +56,73 @@ const Dashboard = () => {
         { description: "Loan Payment", dueDate: "02/05/2024" },
     ];
 
+<<<<<<< HEAD
     const userStats = [
         { name: "Paid", value: 3, color: "#4caf50" },
         { name: "Pending", value: 1, color: "#ff9800" },
         { name: "Overdue", value: 1, color: "#f44336" },
     ];
+=======
+  return (
+    <div className="dashboard-wrapper">
+      <aside className="sidebar">
+        <div className="logo">
+          <img src={avatar} alt="User Avatar" className="avatar" />
+          {/* Display the avatar image */}
+          <p className="username">{userName}</p>
+          {/* Display the username under the avatar */}
+        </div>
+        <nav aria-label="Sidebar Navigation">
+          <ul className="sidebar-nav">
+            <li>
+              <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/credit-reports"
+                style={{ textDecoration: "none", color: "white" }}
+              >
+                Credit Reports
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/credit-form"
+                style={{ textDecoration: "none", color: "white" }}
+              >
+                Loan
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/payment-history"
+                style={{ textDecoration: "none", color: "white" }}
+              >
+                Payment History
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/credit-score-analysis"
+                style={{ textDecoration: "none", color: "white" }}
+              >
+                Credit Score Analysis
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/settings"
+                style={{ textDecoration: "none", color: "white" }}
+              >
+                Settings
+              </Link>
+            </li>
+          </ul>
+        </nav>
+      </aside>
+>>>>>>> 1abdc0d9f8cec7822c38c51c3cdcb184003e54e1
 
     return ( <
         div className = "dashboard-wrapper" >
