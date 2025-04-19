@@ -1,0 +1,80 @@
+/* CreditReport.css */
+
+.credit-report-container {
+    font-family: Arial, sans-serif;
+    padding: 2rem;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+.header {
+    border-bottom: 2px solid #333;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.report-info {
+    display: flex;
+    justify-content: space-between;
+    background-color: #e8f4f5;
+    padding: 1rem;
+    margin-bottom: 2rem;
+}
+
+.section {
+    margin-bottom: 2rem;
+}
+
+.section h2 {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.summary-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+}
+
+.summary-table th,
+.summary-table td {
+    border: 1px solid #ccc;
+    padding: 0.5rem;
+    text-align: center;
+}
+
+.debt-chart {
+    width: 100%;
+    max-width: 400px;
+    margin: auto;
+}
+
+.account-age {
+    background-color: #f4f4f4;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.inquiries ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.inquiries li {
+    background-color: #e0f7fa;
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 4px;
+}
+
+.footer {
+    background-color: #003333;
+    color: white;
+    padding: 2rem;
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.footer p {
+    margin: 0.3rem 0;
+}
