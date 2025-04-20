@@ -269,3 +269,8 @@ h2 {
   font-weight: bold;
   color: #333; /* Set the text color */
 }
+.username {
+  text-align: center;
+  color: white;
+  font-size: 20px;
+}
