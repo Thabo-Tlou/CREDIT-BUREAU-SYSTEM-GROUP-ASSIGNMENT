@@ -9,6 +9,9 @@ import Services from "./pages/Services";
 import Partners from "./pages/Partners";
 import FAQPage from "./pages/FAQPage";
 import ContactPage from "./pages/ContactPage";
+import PaymentHistory from "./pages/PaymentHistory";
+import CreditDashboard from "./pages/CreditDashboard";
+import CreditForm from "./pages/CreditForm";
 import "./App.css";
 import Settings from "./pages/Settings";
 import SignIn from "./components2/Sign-in";
@@ -28,6 +31,8 @@ function App() {
         <Route path="/faq" element={<FAQPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/payment-history" element={<PaymentHistory />} />
+        <Route path="/credit-form" element={<CreditForm />} />
+        <Route path="/credit-dashboard" element={<CreditDashboard />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/sign-in" element={<SignIn />} />
       </Routes>
