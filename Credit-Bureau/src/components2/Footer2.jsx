@@ -1,45 +1,49 @@
-
 import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import "../styles/footer.css";
 
-
-const Footer2 = () => {
+const Footer = () => {
   return (
-    <footer className="footer mt-5">
-      <Container>
-        <Row>
-          <Col md={6} className="footer-brand">
-            <h5>Bokamoso Credit Bureau</h5>
-            <p>Securely manage your credit records and payments in one place.</p>
-          </Col>
-          <Col md={3} className="footer-links">
-            <h6>Support</h6>
-            <ul>
-              <li><a href="#">Help Center</a></li>
-              <li><a href="#">Contact Us</a></li>
-              <li><a href="#">Privacy Policy</a></li>
-            </ul>
-          </Col>
-          <Col md={3} className="footer-contact">
-            <h6>Contact</h6>
-            <p>Email: support@creditbureau.com</p>
-            <p>Phone: +123 456 7890</p>
-          </Col>
-        </Row>
+    <footer className="footer">
+      <div className="footer-container">
+        <div className="footer-brand">
+          <h2>Bokamoso Credit Bureau</h2>
+          <p>Empowering Financial Decisions with Trusted Data.</p>
+        </div>
 
-        <hr />
+        <div className="footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li>
+              <a href="/">Home</a>
+            </li>
+            <li>
+              <a href="/reports">Credit Reports</a>
+            </li>
+            <li>
+              <a href="/score">Score Analysis</a>
+            </li>
+            <li>
+              <a href="/partners">Our Partners</a>
+            </li>
+          </ul>
+        </div>
 
-        <Row className="footer-bottom">
-          <Col className="text-center">
-            <p>
-              <em>"Your credit health matters. Stay informed. Stay empowered."</em>
-            </p>
-            <small>&copy; {new Date().getFullYear()} Bokamoso Credit Bureau. All rights reserved.</small>
-          </Col>
-        </Row>
-      </Container>
+        <div className="footer-contact">
+          <h4>Contact Us</h4>
+          <p>Email: info@bokamosocredit.co.ls</p>
+          <p>Phone: +266 5000 1234</p>
+          <p>Location: Maseru, Lesotho</p>
+        </div>
+      </div>
+
+      <div className="footer-bottom">
+        <p>
+          &copy; {new Date().getFullYear()} Bokamoso Credit Bureau. All rights
+          reserved.
+        </p>
+      </div>
     </footer>
   );
 };
 
-export default Footer2;
+export default Footer;
