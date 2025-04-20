@@ -64,14 +64,20 @@ router.post("/signin", async (req, res) => {
       return res.status(400).json({ message: "Invalid email or password" });
     }
 
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) {
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (!isPasswordValid) {
       return res.status(400).json({ message: "Invalid email or password" });
     }
 
+    // Save basic profile to localStorage via frontend
+    const profile = {
+      name: user.username || "User",
+      avatar: user.avatar || "/images/avatar.jpg",
+    };
+
     res.status(200).json({
       message: "Login successful",
-      username: user.username, // Include the username in the response
+      profile,
     });
   } catch (err) {
     console.error("Signin Error:", err);

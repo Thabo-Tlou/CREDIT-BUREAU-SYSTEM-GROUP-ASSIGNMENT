@@ -16,7 +16,6 @@ import CreditForm from "./pages/CreditForm";
 import "./App.css";
 import Settings from "./pages/Settings";
 import SignIn from "./components2/Sign-in";
-import CreditScoreAnalysis from "./pages/CreditScoreAnalysis";
 
 function App() {
   return (

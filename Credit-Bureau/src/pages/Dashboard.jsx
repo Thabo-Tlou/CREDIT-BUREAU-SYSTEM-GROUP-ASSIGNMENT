@@ -3,13 +3,12 @@ import "../styles/dashboard.css";
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
 import { Link } from "react-router-dom";
 
-
-
 const Dashboard = () => {
   const [avatar, setAvatar] = useState("/images/avatar.jpg");
   const [userName, setUserName] = useState("User");
   const [showCreditReport, setShowCreditReport] = useState(false);
 
+  // Load user data from localStorage
   useEffect(() => {
     const profileData = JSON.parse(localStorage.getItem("profile"));
     if (profileData) {
@@ -18,9 +17,14 @@ const Dashboard = () => {
     }
   }, []);
 
+  // Sample data for transactions, upcoming payments, and stats
   const transactions = [
     { date: "01/15/2024", description: "Utility Bill", status: "Paid" },
-    { date: "01/10/2024", description: "Credit Card Payment", status: "Pending" },
+    {
+      date: "01/10/2024",
+      description: "Credit Card Payment",
+      status: "Pending",
+    },
     { date: "01/10/2024", description: "Loan Payment", status: "Paid" },
     { date: "01/05/2024", description: "Mortgage Payment", status: "Overdue" },
   ];
@@ -34,6 +38,13 @@ const Dashboard = () => {
     { name: "Paid", value: 3, color: "#4caf50" },
     { name: "Pending", value: 1, color: "#ff9800" },
     { name: "Overdue", value: 1, color: "#f44336" },
+  ];
+
+  // Recent activity (can be updated to real data)
+  const recentActivity = [
+    "Login from new device",
+    "Updated profile information",
+    "Checked credit report",
   ];
 
   return (
@@ -65,22 +76,34 @@ const Dashboard = () => {
               </button>
             </li>
             <li>
-              <Link to="/credit-form" style={{ textDecoration: "none", color: "white" }}>
+              <Link
+                to="/credit-form"
+                style={{ textDecoration: "none", color: "white" }}
+              >
                 Loan
               </Link>
             </li>
             <li>
-              <Link to="/payment-history" style={{ textDecoration: "none", color: "white" }}>
+              <Link
+                to="/payment-history"
+                style={{ textDecoration: "none", color: "white" }}
+              >
                 Payment History
               </Link>
             </li>
             <li>
-              <Link to="/credit-score-analysis" style={{ textDecoration: "none", color: "white" }}>
+              <Link
+                to="/credit-score-analysis"
+                style={{ textDecoration: "none", color: "white" }}
+              >
                 Credit Score Analysis
               </Link>
             </li>
             <li>
-              <Link to="/settings" style={{ textDecoration: "none", color: "white" }}>
+              <Link
+                to="/settings"
+                style={{ textDecoration: "none", color: "white" }}
+              >
                 Settings
               </Link>
             </li>
@@ -136,7 +159,9 @@ const Dashboard = () => {
                       <td>{t.date}</td>
                       <td>{t.description}</td>
                       <td>
-                        <span className={`status ${t.status.toLowerCase()}`}>{t.status}</span>
+                        <span className={`status ${t.status.toLowerCase()}`}>
+                          {t.status}
+                        </span>
                       </td>
                     </tr>
                   ))}
@@ -152,6 +177,15 @@ const Dashboard = () => {
                   <span>{p.dueDate}</span>
                 </div>
               ))}
+            </div>
+
+            <div className="recent-activity">
+              <h2>Recent Activity</h2>
+              <ul>
+                {recentActivity.map((activity, index) => (
+                  <li key={index}>{activity}</li>
+                ))}
+              </ul>
             </div>
           </div>
         ) : (
@@ -170,7 +204,7 @@ const Dashboard = () => {
             >
               ⬅ Back to Dashboard
             </button>
-            <CreditReport />
+            {/* Add the CreditReport component or content here */}
           </div>
         )}
       </main>

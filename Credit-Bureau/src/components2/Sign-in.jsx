@@ -31,9 +31,15 @@ const SignIn = () => {
         password,
       });
 
-      // If login is successful, redirect to the dashboard or home
-      alert(res.data.message); // You can replace this with a more user-friendly method
-      navigate("/dashboard"); // Replace this with your actual dashboard route
+      const { message, profile } = res.data; // Assuming your backend sends the profile
+
+      // Save profile to localStorage
+      localStorage.setItem("profile", JSON.stringify(profile));
+
+      alert(message); // Optional
+
+      // Redirect to dashboard
+      navigate("/dashboard");
     } catch (err) {
       setError(err.response?.data?.message || "Login failed.");
     } finally {
