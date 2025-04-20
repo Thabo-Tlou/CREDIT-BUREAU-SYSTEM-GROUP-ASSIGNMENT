@@ -1,66 +1,155 @@
+:root {
+  --shadow-color: rgba(0, 0, 0, 0.182);
+  --primary-color: #0e594a;
+  --hover-color: #0e594a80;
+  --accent-color: #fbba3f;
+  --bg-color: #f0f0f0f5;
+  --input-bg-color: #cedbe97c;
+  --white-color: #ffffff;
+  --olive: #a3b49c;
+  --cool-white: #f9fafb;
+}
+
 .analysis-container {
-    padding: 40px;
-    font-family: 'Segoe UI', sans-serif;
-    color: #333;
-  }
-  
-  h2 {
-    color: #006644;
-    margin-bottom: 20px;
-  }
-  
-  .score-overview {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 40px;
-    margin-bottom: 30px;
-  }
-  
-  .score-box {
-    background-color: #fefefe;
-    border: 2px solid #f0c040;
-    border-radius: 8px;
-    padding: 20px;
-    text-align: center;
-    width: 220px;
-  }
-  
-  .score-value {
-    font-size: 36px;
-    color: #f0a500;
-  }
-  
-  .score-status {
-    font-size: 18px;
-    color: green;
-    margin-top: 8px;
-  }
-  
-  .chart-placeholder {
-    background-color: #f9f9f9;
-    border: 2px dashed #ccc;
-    border-radius: 8px;
-    width: 100%;
-    height: 180px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #777;
-  }
-  
-  .score-range-section,
-  .factors-section,
-  .tips-section {
-    margin-bottom: 30px;
-  }
-  
-  ul {
-    padding-left: 20px;
-  }
-  
-  li {
-    margin-bottom: 10px;
-    line-height: 1.6;
-  }
-  
+  padding: 2rem;
+  max-width: 900px;
+  margin: auto;
+  margin-bottom: 10px;
+  background: var(--bg-color);
+  color: var(--primary-color);
+  font-family: 'Segoe UI', sans-serif;
+  border-radius: 12px;
+  box-shadow: 0 0 12px var(--shadow-color);
+}
+
+.page-title {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: var(--primary-color);
+}
+
+.score-overview {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.score-box {
+  background: var(--white-color);
+  border: 2px solid var(--accent-color);
+  border-radius: 12px;
+  padding: 1.5rem;
+  width: 250px;
+  box-shadow: 0 4px 10px var(--shadow-color);
+}
+
+.score-number {
+  font-size: 2.5rem;
+  color: var(--accent-color);
+  margin: 0.5rem 0;
+}
+
+.status-label {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.score-bar {
+  width: 100%;
+  height: 12px;
+  border-radius: 8px;
+  background-color: var(--input-bg-color);
+  appearance: none;
+}
+
+.score-bar::-webkit-progress-bar {
+  background-color: var(--input-bg-color);
+  border-radius: 8px;
+}
+
+.score-bar::-webkit-progress-value {
+  background-color: var(--primary-color);
+  border-radius: 8px;
+}
+
+.score-bar::-moz-progress-bar {
+  background-color: var(--primary-color);
+}
+
+.score-tip {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--olive);
+}
+
+.score-chart {
+  width: 300px;
+  height: 250px;
+  background: var(--white-color);
+  border: 5px;
+  border-radius: 20px;
+  padding: 1rem;
+}
+
+h4 {
+  margin-top: 1.5rem;
+  color: var(--primary-color);
+}
+
+ul {
+  padding-left: 1.5rem;
+}
+
+ul li {
+  margin-bottom: 0.5rem;
+  list-style:none;
+}
+
+.bonus-section {
+  margin-top: 2rem;
+  text-align: center;
+  background: var(--cool-white);
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px var(--shadow-color);
+}
+
+.bonus-section a {
+  color: var(--accent-color);
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.update-button {
+  margin-top: 1rem;
+  padding: 0.7rem 1.5rem;
+  border: none;
+  background-color:var(--olive);
+  color: var(--primary-color);
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.logo-credit-analysis {
+  height:40px;
+  width:30px;
+}
+
+.orgName {
+  color: var(--primary-color);
+  text-align: center;
+}
+
+.Logo-And-Name {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
