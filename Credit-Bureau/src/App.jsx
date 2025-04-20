@@ -10,7 +10,6 @@ import Partners from "./pages/Partners";
 import FAQPage from "./pages/FAQPage";
 import ContactPage from "./pages/ContactPage";
 import "./App.css";
-import PaymentHistory from "./pages/PaymentHistory";
 import Settings from "./pages/Settings";
 import SignIn from "./components2/Sign-in";
 
