@@ -3,34 +3,24 @@ import "../styles/dashboard.css";
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
 import { Link } from "react-router-dom";
 
+
+
 const Dashboard = () => {
-  const [avatar, setAvatar] = useState("/images/avatar.jpg"); // Default placeholder image
-  const [userName, setUserName] = useState("User"); // Default user name
+  const [avatar, setAvatar] = useState("/images/avatar.jpg");
+  const [userName, setUserName] = useState("User");
+  const [showCreditReport, setShowCreditReport] = useState(false);
 
   useEffect(() => {
-    // Check if profile data exists in localStorage
     const profileData = JSON.parse(localStorage.getItem("profile"));
-
     if (profileData) {
-      if (profileData.avatar) {
-        setAvatar(profileData.avatar); // If custom avatar exists
-      }
-      if (profileData.name) {
-        setUserName(profileData.name); // If user name exists
-      }
-    } else {
-      setAvatar("/images/avatar.jpg"); // Use placeholder image if no profile data
-      setUserName("User"); // Use default name if no profile data
+      if (profileData.avatar) setAvatar(profileData.avatar);
+      if (profileData.name) setUserName(profileData.name);
     }
   }, []);
 
   const transactions = [
     { date: "01/15/2024", description: "Utility Bill", status: "Paid" },
-    {
-      date: "01/10/2024",
-      description: "Credit Card Payment",
-      status: "Pending",
-    },
+    { date: "01/10/2024", description: "Credit Card Payment", status: "Pending" },
     { date: "01/10/2024", description: "Loan Payment", status: "Paid" },
     { date: "01/05/2024", description: "Mortgage Payment", status: "Overdue" },
   ];
@@ -41,9 +31,9 @@ const Dashboard = () => {
   ];
 
   const userStats = [
-    { name: "Paid", value: 3, color: "#4caf50" }, // Green color for "Paid"
-    { name: "Pending", value: 1, color: "#ff9800" }, // Orange color for "Pending"
-    { name: "Overdue", value: 1, color: "#f44336" }, // Red color for "Overdue"
+    { name: "Paid", value: 3, color: "#4caf50" },
+    { name: "Pending", value: 1, color: "#ff9800" },
+    { name: "Overdue", value: 1, color: "#f44336" },
   ];
 
   return (
@@ -51,9 +41,7 @@ const Dashboard = () => {
       <aside className="sidebar">
         <div className="logo">
           <img src={avatar} alt="User Avatar" className="avatar" />
-          {/* Display the avatar image */}
           <p className="username">{userName}</p>
-          {/* Display the username under the avatar */}
         </div>
         <nav aria-label="Sidebar Navigation">
           <ul className="sidebar-nav">
@@ -63,42 +51,36 @@ const Dashboard = () => {
               </Link>
             </li>
             <li>
-              <Link
-                to="/credit-reports"
-                style={{ textDecoration: "none", color: "white" }}
+              <button
+                onClick={() => setShowCreditReport(true)}
+                style={{
+                  textDecoration: "none",
+                  color: "white",
+                  background: "none",
+                  border: "none",
+                  cursor: "pointer",
+                }}
               >
                 Credit Reports
-              </Link>
+              </button>
             </li>
             <li>
-              <Link
-                to="/credit-form"
-                style={{ textDecoration: "none", color: "white" }}
-              >
+              <Link to="/credit-form" style={{ textDecoration: "none", color: "white" }}>
                 Loan
               </Link>
             </li>
             <li>
-              <Link
-                to="/payment-history"
-                style={{ textDecoration: "none", color: "white" }}
-              >
+              <Link to="/payment-history" style={{ textDecoration: "none", color: "white" }}>
                 Payment History
               </Link>
             </li>
             <li>
-              <Link
-                to="/credit-score-analysis"
-                style={{ textDecoration: "none", color: "white" }}
-              >
+              <Link to="/credit-score-analysis" style={{ textDecoration: "none", color: "white" }}>
                 Credit Score Analysis
               </Link>
             </li>
             <li>
-              <Link
-                to="/settings"
-                style={{ textDecoration: "none", color: "white" }}
-              >
+              <Link to="/settings" style={{ textDecoration: "none", color: "white" }}>
                 Settings
               </Link>
             </li>
@@ -114,65 +96,83 @@ const Dashboard = () => {
           </div>
         </header>
 
-        <div className="dashboard-grid">
-          <div className="credit-score-card">
-            <h2>CREDIT SCORE</h2>
-            <div className="score-value">750</div>
-            <ResponsiveContainer width="100%" height={300}>
-              <PieChart>
-                <Pie
-                  data={userStats}
-                  dataKey="value"
-                  nameKey="name"
-                  outerRadius={100}
-                  innerRadius={50}
-                  paddingAngle={5}
-                >
-                  {userStats.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={entry.color} />
-                  ))}
-                </Pie>
-                <Tooltip />
-              </PieChart>
-            </ResponsiveContainer>
-          </div>
+        {!showCreditReport ? (
+          <div className="dashboard-grid">
+            <div className="credit-score-card">
+              <h2>CREDIT SCORE</h2>
+              <div className="score-value">750</div>
+              <ResponsiveContainer width="100%" height={300}>
+                <PieChart>
+                  <Pie
+                    data={userStats}
+                    dataKey="value"
+                    nameKey="name"
+                    outerRadius={100}
+                    innerRadius={50}
+                    paddingAngle={5}
+                  >
+                    {userStats.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={entry.color} />
+                    ))}
+                  </Pie>
+                  <Tooltip />
+                </PieChart>
+              </ResponsiveContainer>
+            </div>
 
-          <div className="transactions-card">
-            <h2>Recent Transactions</h2>
-            <table>
-              <thead>
-                <tr>
-                  <th>Date</th>
-                  <th>Description</th>
-                  <th>Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                {transactions.map((t, index) => (
-                  <tr key={index}>
-                    <td>{t.date}</td>
-                    <td>{t.description}</td>
-                    <td>
-                      <span className={`status ${t.status.toLowerCase()}`}>
-                        {t.status}
-                      </span>
-                    </td>
+            <div className="transactions-card">
+              <h2>Recent Transactions</h2>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Description</th>
+                    <th>Status</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                </thead>
+                <tbody>
+                  {transactions.map((t, index) => (
+                    <tr key={index}>
+                      <td>{t.date}</td>
+                      <td>{t.description}</td>
+                      <td>
+                        <span className={`status ${t.status.toLowerCase()}`}>{t.status}</span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
 
-          <div className="upcoming-card">
-            <h2>Upcoming Payments</h2>
-            {upcomingPayments.map((p, index) => (
-              <div className="upcoming-item" key={index}>
-                <span>{p.description}</span>
-                <span>{p.dueDate}</span>
-              </div>
-            ))}
+            <div className="upcoming-card">
+              <h2>Upcoming Payments</h2>
+              {upcomingPayments.map((p, index) => (
+                <div className="upcoming-item" key={index}>
+                  <span>{p.description}</span>
+                  <span>{p.dueDate}</span>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
+        ) : (
+          <div>
+            <button
+              onClick={() => setShowCreditReport(false)}
+              style={{
+                margin: "1rem 0",
+                padding: "0.5rem 1rem",
+                background: "#4caf50",
+                color: "white",
+                border: "none",
+                borderRadius: "5px",
+                cursor: "pointer",
+              }}
+            >
+              ⬅ Back to Dashboard
+            </button>
+            <CreditReport />
+          </div>
+        )}
       </main>
     </div>
   );
