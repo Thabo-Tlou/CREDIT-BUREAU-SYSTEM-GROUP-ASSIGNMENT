@@ -31,7 +31,7 @@ const SignIn = () => {
         password,
       });
 
-      const { message, profile } = res.data; // Assuming your backend sends the profile
+      const { message, profile } = res.data;
 
       // Save profile to localStorage
       localStorage.setItem("profile", JSON.stringify(profile));

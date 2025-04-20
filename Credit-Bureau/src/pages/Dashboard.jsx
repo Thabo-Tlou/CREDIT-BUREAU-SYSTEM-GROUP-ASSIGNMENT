@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from "react";
 import "../styles/dashboard.css";
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
   const [avatar, setAvatar] = useState("/images/avatar.jpg"); // Default avatar
   const [userName, setUserName] = useState("User");
   const [showCreditReport, setShowCreditReport] = useState(false);
+  const navigate = useNavigate();
 
   // Load user data from localStorage
   useEffect(() => {
     const profileData = JSON.parse(localStorage.getItem("profile"));
     if (profileData) {
-      if (profileData.avatar) setAvatar(profileData.avatar);
-      if (profileData.name) setUserName(profileData.name);
+      setAvatar(profileData.avatar || "/images/avatar.jpg"); // Fallback to default avatar if none exists
+      setUserName(profileData.name || "User");
     }
   }, []);
 
@@ -23,18 +24,26 @@ const Dashboard = () => {
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        setAvatar(reader.result); // Update avatar state with the uploaded image
-        // Optionally, save the avatar to localStorage
-        localStorage.setItem(
-          "profile",
-          JSON.stringify({ avatar: reader.result, name: userName })
-        );
+        const newAvatar = reader.result;
+        setAvatar(newAvatar);
+
+        // Merge with existing profile to preserve name
+        const existingProfile =
+          JSON.parse(localStorage.getItem("profile")) || {};
+        const updatedProfile = {
+          ...existingProfile,
+          avatar: newAvatar,
+        };
+
+        localStorage.setItem("profile", JSON.stringify(updatedProfile));
+
+        // Optionally, you could update the backend here to store the avatar in the database
       };
-      reader.readAsDataURL(file); // Convert the image to a base64 string
+      reader.readAsDataURL(file);
     }
   };
 
-  // Sample data for transactions, upcoming payments, and stats
+  // Example data
   const transactions = [
     { date: "01/15/2024", description: "Utility Bill", status: "Paid" },
     {
@@ -57,7 +66,6 @@ const Dashboard = () => {
     { name: "Overdue", value: 1, color: "#f44336" },
   ];
 
-  // Recent activity (can be updated to real data)
   const recentActivity = [
     "Login from new device",
     "Updated profile information",
@@ -83,6 +91,7 @@ const Dashboard = () => {
           </div>
           <p className="username">{userName}</p>
         </div>
+
         <nav aria-label="Sidebar Navigation">
           <ul className="sidebar-nav">
             <li>
@@ -233,7 +242,10 @@ const Dashboard = () => {
             >
               ⬅ Back to Dashboard
             </button>
-            {/* Add the CreditReport component or content here */}
+            {/* CreditReport component placeholder */}
+            <p style={{ fontSize: "1.2rem" }}>
+              Credit Report content goes here...
+            </p>
           </div>
         )}
       </main>
