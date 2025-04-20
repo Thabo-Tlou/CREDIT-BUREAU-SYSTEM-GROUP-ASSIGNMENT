@@ -12,7 +12,7 @@ import {
 import axios from "axios";
 
 const SignUp = () => {
-  const [username, setUsername] = useState(""); // Updated state name to 'username'
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -53,13 +53,13 @@ const SignUp = () => {
       const res = await axios.post(
         "http://localhost:5000/api/users/signup",
         {
-          username, // Send username in the request body
+          username,
           email,
           password,
         },
         {
           headers: {
-            "Content-Type": "application/json", // Ensure proper content type
+            "Content-Type": "application/json",
           },
         }
       );
@@ -149,7 +149,6 @@ const SignUp = () => {
           <form className="signupFormUnique" onSubmit={handleSignup}>
             <h1 className="signupHeaderUnique">Create Your Account</h1>
 
-            {/* Display success message */}
             {successMessage && (
               <div className="signupSuccessUnique">{successMessage}</div>
             )}
@@ -160,7 +159,6 @@ const SignUp = () => {
               <FaInstagram />
             </div>
 
-            {/* Username input field */}
             <input
               type="text"
               placeholder="Full Name"
@@ -199,22 +197,23 @@ const SignUp = () => {
               </span>
             </div>
 
-            {/* Password strength suggestions */}
-            {passwordSuggestions.length > 0 && (
-              <div className="password-suggestions">
-                <p>
-                  <strong>Suggestions:</strong>
-                </p>
-                <ul>
-                  {passwordSuggestions.map((suggestion, index) => (
-                    <li key={index}>{suggestion}</li>
-                  ))}
-                </ul>
-              </div>
-            )}
+            {/* Display password suggestions */}
+            {passwordSuggestions.length > 0 &&
+              passwordStrength !== "Strong" && (
+                <div className="password-suggestions">
+                  <p>
+                    <strong>Suggestions:</strong>
+                  </p>
+                  <ul>
+                    {passwordSuggestions.map((suggestion, index) => (
+                      <li key={index}>{suggestion}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
 
-            {/* Password strength */}
-            {passwordStrength && (
+            {/* Password strength display, hide if it's "Strong" */}
+            {passwordStrength && passwordStrength !== "Strong" && (
               <div
                 className={`password-strength ${passwordStrength.toLowerCase()}`}
               >
