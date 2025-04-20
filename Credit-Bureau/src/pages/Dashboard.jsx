@@ -4,7 +4,7 @@ import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
 import { Link } from "react-router-dom";
 
 const Dashboard = () => {
-  const [avatar, setAvatar] = useState("/images/avatar.jpg");
+  const [avatar, setAvatar] = useState("/images/avatar.jpg"); // Default avatar
   const [userName, setUserName] = useState("User");
   const [showCreditReport, setShowCreditReport] = useState(false);
 
@@ -16,6 +16,23 @@ const Dashboard = () => {
       if (profileData.name) setUserName(profileData.name);
     }
   }, []);
+
+  // Handle file change for avatar upload
+  const handleAvatarChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setAvatar(reader.result); // Update avatar state with the uploaded image
+        // Optionally, save the avatar to localStorage
+        localStorage.setItem(
+          "profile",
+          JSON.stringify({ avatar: reader.result, name: userName })
+        );
+      };
+      reader.readAsDataURL(file); // Convert the image to a base64 string
+    }
+  };
 
   // Sample data for transactions, upcoming payments, and stats
   const transactions = [
@@ -51,7 +68,19 @@ const Dashboard = () => {
     <div className="dashboard-wrapper">
       <aside className="sidebar">
         <div className="logo">
-          <img src={avatar} alt="User Avatar" className="avatar" />
+          <div className="avatar-container">
+            <img src={avatar} alt="User Avatar" className="avatar" />
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleAvatarChange}
+              id="file-upload"
+              className="hidden-file-input"
+            />
+            <label htmlFor="file-upload" className="upload-btn">
+              +
+            </label>
+          </div>
           <p className="username">{userName}</p>
         </div>
         <nav aria-label="Sidebar Navigation">
