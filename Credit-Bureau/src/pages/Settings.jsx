@@ -207,18 +207,7 @@ const Settings = () => {
             </div>
 
             <div className="form-row">
-              <div className="form-group">
-                <label>Preferred Language</label>
-                <select
-                  name="language"
-                  value={formData.language}
-                  onChange={handleChange}
-                >
-                  <option>English</option>
-                  <option>Sesotho</option>
-                  <option>Afrikaans</option>
-                </select>
-              </div>
+              <div className="form-group"></div>
 
               <div className="form-group">
                 <label>Theme</label>
