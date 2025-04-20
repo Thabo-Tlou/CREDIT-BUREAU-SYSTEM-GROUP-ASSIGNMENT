@@ -76,7 +76,6 @@ body {
   box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.03);
 }
 
-/* === HEADER === */
 .BB {
   margin: 0;
   font-weight: bold;
@@ -139,7 +138,6 @@ body {
   color: var(--primary-color);
 }
 
-/* === GRID LAYOUT === */
 .dashboard-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -148,7 +146,6 @@ body {
   flex-grow: 1;
 }
 
-/* === CARDS === */
 .credit-score-card,
 .upcoming-card,
 .transactions-card {
@@ -169,7 +166,6 @@ body {
   color: var(--accent-color);
 }
 
-/* === TRANSACTIONS === */
 .transactions-card table {
   width: 100%;
   border-collapse: collapse;
@@ -209,7 +205,6 @@ body {
   color: #c0392b;
 }
 
-/* === UPCOMING PAYMENTS === */
 .upcoming-item {
   display: flex;
   justify-content: space-between;
@@ -224,7 +219,6 @@ h2 {
   margin-bottom: 15px;
 }
 
-/* === RESPONSIVE === */
 @media (max-width: 768px) {
   .dashboard-wrapper {
     flex-direction: column;

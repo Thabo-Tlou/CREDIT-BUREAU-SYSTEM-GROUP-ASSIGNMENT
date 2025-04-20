@@ -1,3 +1,15 @@
+:root {
+  --shadow-color: rgba(0, 0, 0, 0.182);
+  --primary-color: #0e594a;
+  --hover-color: #0e594a80;
+  --accent-color: #fbba3f;
+  --bg-color: #f0f0f0f5;
+  --input-bg-color: #cedbe97c;
+  --white-color: #ffffff;
+  --olive: #a3b49c;
+  --cool-white: #f9fafb;   
+}
+
 .footer {
   background-color: var(--primary-color);
   color: var(--white-color);
@@ -5,6 +17,10 @@
   font-family: "Segoe UI", sans-serif;
   margin-top: auto;
   width: 100%;
+  position: relative;
+  bottom: 0;
+  padding: 20px;
+  left: 0;
 }
 
 .footer-container {

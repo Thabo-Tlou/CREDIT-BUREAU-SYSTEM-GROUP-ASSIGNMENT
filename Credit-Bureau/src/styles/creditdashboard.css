@@ -1,0 +1,53 @@
+:root {
+    --shadow-color: rgba(0, 0, 0, 0.182);
+    --primary-color: #0e594a;
+    --hover-color: #0e594a80;
+    --accent-color: #fbba3f;
+    --bg-color: #f0f0f0f5;
+    --input-bg-color: #cedbe97c;
+    --white-color: #ffffff;
+    --olive: #a3b49c;
+    --cool-white: #f9fafb;   
+  }
+  
+  .credit-dashboard {
+    padding: 2rem;
+    background-color: var(--cool-white);
+    min-height: 100vh;
+  }
+  
+  .dashboard-title {
+    text-align: center;
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 2rem;
+  }
+  
+  .dashboard-sections {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap; 
+  }
+  
+  .dashboard-box {
+    flex: 0 1 45%;
+    background-color: var(--white-color);
+    box-shadow: 0 4px 8px var(--shadow-color);
+    border-radius: 16px;
+    padding: 1.5rem;
+    text-align: left;
+  }
+  
+  .dashboard-box h3 {
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .dashboard-box p {
+    color: var(--olive);
+    font-style: italic;
+  }
+  

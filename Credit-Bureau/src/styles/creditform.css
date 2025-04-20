@@ -12,11 +12,23 @@
 
 body {
     padding-top: 65rem;
-    background-color: var(--olive);
+    background-color: var(--bg-color);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: auto;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    display: flex;
+    flex-direction:column;
+    min-height: 100vh;
 }
 
 .form-container {
+    padding: 2rem;
+    overflow-y: auto;
+    min-height: 100vh;        
     background-color:var(--cool-white);
     padding: 2.5rem;
     border-radius: 16px;
@@ -140,6 +152,7 @@ form .form-group {
     font-weight: 600;
     color: var(--primary-color);
     margin-bottom: 0.3rem;
+    margin-left: 40px;
   }
   
   form .form-control,
@@ -150,6 +163,8 @@ form .form-group {
     padding: 0.75rem;
     font-size: 1rem;
     transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    margin-left: 40px;
+    margin-bottom: 7px;
   }
   
   form .form-control:focus,
@@ -199,7 +214,7 @@ form .form-group {
     display: flex;
     position:relative;
     padding-right: 20px;
-    margin-left: 410px;
+    margin-left: 450px;
   }
 
   form {
