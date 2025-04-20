@@ -11,6 +11,7 @@ import FAQPage from "./pages/FAQPage";
 import ContactPage from "./pages/ContactPage";
 import PaymentHistory from "./pages/PaymentHistory";
 import CreditDashboard from "./pages/CreditDashboard";
+import CreditScoreAnalysis from "./pages/CreditScoreAnalysis";
 import CreditForm from "./pages/CreditForm";
 import "./App.css";
 import Settings from "./pages/Settings";
@@ -33,6 +34,7 @@ function App() {
         <Route path="/payment-history" element={<PaymentHistory />} />
         <Route path="/credit-form" element={<CreditForm />} />
         <Route path="/credit-dashboard" element={<CreditDashboard />} />
+        <Route path="/credit-score-analysis" element={<CreditScoreAnalysis />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/sign-in" element={<SignIn />} />
       </Routes>
