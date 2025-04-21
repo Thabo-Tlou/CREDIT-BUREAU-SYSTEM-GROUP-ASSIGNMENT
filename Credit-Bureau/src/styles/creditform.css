@@ -1,224 +1,192 @@
-:root {
-    --shadow-color: rgba(0, 0, 0, 0.182);
-    --primary-color: #0e594a;
-    --hover-color: #0e594a80;
-    --accent-color: #fbba3f;
-    --bg-color: #f0f0f0f5;
-    --input-bg-color: #cedbe97c;
-    --white-color: #ffffff;
-    --olive: #a3b49c;
-    --cool-white: #f9fafb;   
-  }
-
+/* Body setup */
 body {
-    padding-top: 65rem;
-    background-color: var(--bg-color);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    height: auto;
-    min-height: 100vh;
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-    overflow-y: auto;
-    display: flex;
-    flex-direction:column;
-    min-height: 100vh;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  flex-direction: column;
 }
 
+/* --- Main Form Container with Sidebar --- */
 .form-container {
-    padding: 2rem;
-    overflow-y: auto;
-    min-height: 100vh;        
-    background-color:var(--cool-white);
-    padding: 2.5rem;
-    border-radius: 16px;
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
-    margin: 3rem auto;
-    max-width: 960px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  flex-direction: column;
+  display: flex;
+  flex-direction: row;
+  height: 100%; /* Take full height */
+  padding: 2rem;
+  gap: 2rem;
+  margin: 0px;
+  width: 100vw;
+  max-width: 1400px;
+  overflow: hidden; /* Prevent global scroll */
 }
 
-.form-container:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 18px 32px rgba(0, 0, 0, 0.12);
+/* --- Scrollable Content Area --- */
+.form-content {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 1rem;
+  padding-bottom: 3rem;
+  height: 100%; /* Ensure content takes full height */
+  margin-bottom: 0; /* Prevent any margin at the bottom */
 }
 
 /* --- Typography --- */
 .form-title {
-    color: #0e594a;
-    font-weight: 500;
-    margin-bottom: 1rem;
-    text-align: center;
-    font-size: 1.8rem;
-    letter-spacing: 1px;
-    top:0;
+  color: var(--primary-color);
+  font-weight: 600;
+  font-size: 1.8rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  letter-spacing: 1px;
 }
 
-/* --- Section Headings --- */
+/* --- Section Titles --- */
 .section-title {
-    color: var(--primary-color);
-    font-size: 1.4rem;
-    font-weight: 600;
-    margin-top: 0.5rem;
-    margin-bottom: 1.4rem;
-    position: relative;
-    padding-left: 15px;
-    border-left: 4px solid var(--accent-color);
+  color: var(--primary-color);
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 1rem 0;
+  padding-left: 15px;
+  border-left: 4px solid var(--accent-color);
 }
 
+/* --- Cards (Loan / Bill Sections) --- */
 .loan-section,
 .bill-section {
-    padding: 1rem 1rem 2rem;
-    border: 1px solid var(--accent-color);
-    border-radius: 12px;
-    margin-bottom: 2rem;
-    background-color: var(--white-color);
-    transition: box-shadow 0.3s ease;
-    width: 40rem;
+  background-color: var(--white-color);
+  border: 1px solid var(--accent-color);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+  transition: box-shadow 0.3s ease;
 }
 
 .loan-section:hover,
 .bill-section:hover {
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
 }
 
-/* --- Credit Tips Card --- */
+/* --- Tips Card --- */
 .tips-card {
-    background-color: #ffffff;
-    border: 1px solid #e0e0e0;
-    padding: 1.8rem;
-    border-radius: 12px;
-    margin-top: 2.5rem;
-    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.06);
-    transition: transform 0.3s ease;
-    margin-bottom: 1rem;
+  background-color: var(--white-color);
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 1.8rem;
+  margin: 2rem 0;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s ease;
 }
 
 .tips-card:hover {
-    transform: translateY(-4px);
+  transform: translateY(-4px);
 }
 
+/* --- Tip List --- */
 .tip-box ul {
-    list-style-type: none;
-    padding-left: 0;
-    color: #333;
-    line-height: 1.8;
+  list-style-type: none;
+  padding-left: 0;
+  color: #333;
+  line-height: 1.8;
 }
 
 .tip-box ul li {
-    position: relative;
-    padding-left: 1.5rem;
-    margin-bottom: 1rem;
-    font-size: 0.95rem;
-    width: 40rem;
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
 }
 
 .tip-box ul li::before {
-    content: "✔";
-    color: #0e594a;
-    font-weight: bold;
-    position: absolute;
-    left: 0;
-    top: 2px;
+  content: "✔";
+  color: var(--primary-color);
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+  top: 2px;
+}
+
+/* --- Form Elements --- */
+form {
+  padding: 20px;
+}
+
+form .form-group {
+  margin-bottom: 2rem;
+}
+
+form .form-label {
+  display: block;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+  margin-left: 20px;
+}
+
+form .form-control,
+form .form-select {
+  width: calc(100% - 40px);
+  margin-left: 20px;
+  background-color: var(--input-bg-color);
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 0.75rem;
+  font-size: 1rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+form .form-control:focus,
+form .form-select:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.15rem var(--hover-color);
+  background-color: var(--white-color);
+}
+
+/* --- Buttons --- */
+form .btn-primary,
+form .btn-accent {
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  border: none;
+  padding: 0.6rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  margin: 1rem 0 1rem 20px;
+  transition: background-color 0.3s;
+}
+
+form .btn-primary:hover,
+form .btn-accent:hover {
+  background-color: var(--hover-color);
 }
 
 /* --- Responsive --- */
-@media (max-width: 768px) {
-    .form-container {
-        padding: 1.5rem;
-    }
+@media (max-width: 1024px) {
+  .form-container {
+    flex-direction: column;
+    padding: 1.5rem;
+  }
 
-    .form-title {
-        font-size: 1.6rem;
-    }
+  .sidebar {
+    width: 100%;
+    position: static;
+  }
 
-    .section-title {
-        font-size: 1.2rem;
-    }
+  .form-content {
+    height: auto;
+  }
 }
 
-/* Form Content Styling  */
-
-form .form-group {
-    margin-bottom: 2rem;
-    margin-top: 2rem;
-  }
-  
-  form .form-label {
-    display: block;
-    font-weight: 600;
-    color: var(--primary-color);
-    margin-bottom: 0.3rem;
-    margin-left: 40px;
-  }
-  
-  form .form-control,
-  form .form-select {
-    background-color: var(--input-bg-color);
-    border: 1px solid var(--light-gray);
-    border-radius: 5px;
-    padding: 0.75rem;
-    font-size: 1rem;
-    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-    margin-left: 40px;
-    margin-bottom: 7px;
-  }
-  
-  form .form-control:focus,
-  form .form-select:focus {
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 0.15rem var(--hover-color);
-    background-color: var(--white-color);
-  }
-  
-  form .btn-primary {
-    background-color: var(--primary-color);
-    border: none;
-    color: var(--white-color);
-    padding: 0.6rem 1.2rem;
-    border-radius: 6px;
-    margin-top: 20px;
-  }
-  
-  form .btn-primary:hover {
-    background-color: var(--hover-color);
-    color: var(--white-color);
-  }
-  
-  form .btn-accent {
-    background-color: var(--primary-color);
-    color: var(--white-color);
-    border: none;
-    padding: 0.6rem 1.2rem;
-    border-radius: 6px;
-    margin-top: 1rem;
+@media (max-width: 768px) {
+  .form-title {
+    font-size: 1.6rem;
   }
 
-  .btn-accent {
-    display: flex;
-    position:relative;
-    padding-right: 20px;
-    margin-left: 410px;
-  }
-  
-  form .btn-accent:hover {
-    background-color: var(--hover-color);
-    color: var(--white-color);
+  .section-title {
+    font-size: 1.2rem;
   }
 
-
-  .btn-primary {
-    display: flex;
-    position:relative;
-    padding-right: 20px;
-    margin-left: 450px;
+  .form-container {
+    margin: 1rem;
   }
-
-  form {
-    padding: 20px;
-  }
-
-  
+}

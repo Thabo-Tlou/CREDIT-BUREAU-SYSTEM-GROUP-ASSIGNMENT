@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../styles/dashboard.css";
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
 import { Link, useNavigate } from "react-router-dom";
+import Sidebar from "../components2/Sidebar";
 
 const Dashboard = () => {
   const [avatar, setAvatar] = useState("/images/avatar.jpg"); // Default avatar
@@ -42,7 +43,6 @@ const Dashboard = () => {
       reader.readAsDataURL(file);
     }
   };
-
   // Example data
   const transactions = [
     { date: "01/15/2024", description: "Utility Bill", status: "Paid" },
@@ -74,81 +74,7 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard-wrapper">
-      <aside className="sidebar">
-        <div className="logo">
-          <div className="avatar-container">
-            <img src={avatar} alt="User Avatar" className="avatar" />
-            <input
-              type="file"
-              accept="image/*"
-              onChange={handleAvatarChange}
-              id="file-upload"
-              className="hidden-file-input"
-            />
-            <label htmlFor="file-upload" className="upload-btn">
-              +
-            </label>
-          </div>
-          <p className="username">{userName}</p>
-        </div>
-
-        <nav aria-label="Sidebar Navigation">
-          <ul className="sidebar-nav">
-            <li>
-              <Link to="/" style={{ textDecoration: "none", color: "white" }}>
-                Home
-              </Link>
-            </li>
-            <li>
-              <button
-                onClick={() => setShowCreditReport(true)}
-                style={{
-                  textDecoration: "none",
-                  color: "white",
-                  background: "none",
-                  border: "none",
-                  cursor: "pointer",
-                }}
-              >
-                Credit Reports
-              </button>
-            </li>
-            <li>
-              <Link
-                to="/credit-form"
-                style={{ textDecoration: "none", color: "white" }}
-              >
-                Loan
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/payment-history"
-                style={{ textDecoration: "none", color: "white" }}
-              >
-                Payment History
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/credit-score-analysis"
-                style={{ textDecoration: "none", color: "white" }}
-              >
-                Credit Score Analysis
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/settings"
-                style={{ textDecoration: "none", color: "white" }}
-              >
-                Settings
-              </Link>
-            </li>
-          </ul>
-        </nav>
-      </aside>
-
+      <Sidebar />
       <main className="dashboard-main">
         <header className="dashboard-header">
           <div className="header-top">
