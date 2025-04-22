@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
 import "../styles/CreditScoreAnalysis.css";
 import Footer2 from "../components2/Footer2";
@@ -6,6 +6,7 @@ import Logo from "../components/images/logo.png";
 import Sidebar from "../components2/Sidebar";
 
 const CreditScoreAnalysis = () => {
+  const [darkMode, setDarkMode] = useState(false);
   const score = 750;
 
   const chartData = [
@@ -28,12 +29,27 @@ const CreditScoreAnalysis = () => {
 
   const status = getScoreStatus(score);
 
+  useEffect(() => {
+    document.documentElement.setAttribute(
+      "data-theme",
+      darkMode ? "dark" : "light"
+    );
+  }, [darkMode]);
+
   return (
-    <div className="main-layout">
+    <div className={`main-layout`}>
       <Sidebar />
       <div className="main-content">
         <div className="analysis-container">
-          <h2 className="page-title">📊 Credit Score Analysis</h2>
+          <div className="analysis-header">
+            <h2 className="page-title">📊 Credit Score Analysis</h2>
+            <button
+              className="dark-toggle-btn"
+              onClick={() => setDarkMode(!darkMode)}
+            >
+              {darkMode ? "☀️ Light Mode" : "🌙 Dark Mode"}
+            </button>
+          </div>
 
           <div className="score-overview">
             <div className="score-box">

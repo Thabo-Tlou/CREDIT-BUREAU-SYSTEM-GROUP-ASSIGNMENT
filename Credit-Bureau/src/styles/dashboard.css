@@ -36,7 +36,6 @@ body {
   flex-shrink: 0;
   height: 100vh;
   box-shadow: 2px 0 5px var(--shadow-color);
-  top: 0;
   align-items: center;
 }
 
@@ -132,7 +131,8 @@ label[for="file-upload"] {
 /* === MAIN AREA === */
 .dashboard-main {
   flex-grow: 1;
-  overflow-y: auto;
+  overflow-y: auto; /* Allow vertical scroll ONLY here */
+  overflow-x: hidden; /* Prevent horizontal scroll */
   background-color: var(--white-color);
   padding: 25px;
   height: 100vh;

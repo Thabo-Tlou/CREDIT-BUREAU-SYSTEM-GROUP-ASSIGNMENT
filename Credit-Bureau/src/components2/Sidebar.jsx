@@ -64,23 +64,20 @@ const Sidebar = () => {
       <nav aria-label="Sidebar Navigation">
         <ul className="sidebar-nav">
           <li>
-            <Link to="/" style={{ textDecoration: "none", color: "white" }}>
-              Home
+            <Link
+              to="/dashboard"
+              style={{ textDecoration: "none", color: "white" }}
+            >
+              Dashboard
             </Link>
           </li>
           <li>
-            <button
-              onClick={() => setShowCreditReport(true)}
-              style={{
-                textDecoration: "none",
-                color: "white",
-                background: "none",
-                border: "none",
-                cursor: "pointer",
-              }}
+            <Link
+              to="/credit-report"
+              style={{ textDecoration: "none", color: "white" }}
             >
               Credit Reports
-            </button>
+            </Link>
           </li>
           <li>
             <Link

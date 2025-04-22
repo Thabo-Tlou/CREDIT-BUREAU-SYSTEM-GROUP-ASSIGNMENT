@@ -16,6 +16,7 @@ import CreditForm from "./pages/CreditForm";
 import "./App.css";
 import Settings from "./pages/Settings";
 import SignIn from "./components2/Sign-in";
+import CreditReport from "./pages/CreditReport";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
         <Route path="/payment-history" element={<PaymentHistory />} />
         <Route path="/credit-form" element={<CreditForm />} />
         <Route path="/credit-dashboard" element={<CreditDashboard />} />
+        <Route path="/credit-report" element={<CreditReport />} />
         <Route
           path="/credit-score-analysis"
           element={<CreditScoreAnalysis />}

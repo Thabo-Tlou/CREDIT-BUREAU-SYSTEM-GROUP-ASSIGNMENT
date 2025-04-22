@@ -1,80 +1,267 @@
-/* CreditReport.css */
-
-.credit-report-container {
-    font-family: Arial, sans-serif;
-    padding: 2rem;
-    background-color: #f9f9f9;
-    color: #333;
+/* Global Styles */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Arial", sans-serif;
+  background-color: #f4f4f4;
+  overflow-x: hidden; /* Ensures no horizontal scrolling */
 }
 
-.header {
-    border-bottom: 2px solid #333;
-    padding-bottom: 0.5rem;
-    margin-bottom: 1rem;
+/* Layout */
+.report-layout {
+  display: flex;
+  height: 100vh;
+}
+
+.report-content {
+  flex: 1;
+  padding: 2rem;
+  overflow-y: auto;
+  background-color: #fff;
+  margin-left: 0px;
+}
+
+/* Header Section */
+.report-header {
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #333;
+}
+
+.report-header h1 {
+  font-size: 2.5rem;
+  color: #0e594a;
+  margin-bottom: 1rem;
 }
 
 .report-info {
-    display: flex;
-    justify-content: space-between;
-    background-color: #e8f4f5;
-    padding: 1rem;
-    margin-bottom: 2rem;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
 }
 
-.section {
-    margin-bottom: 2rem;
+.report-info div {
+  flex: 1;
+  padding: 0.5rem;
 }
 
-.section h2 {
-    margin-bottom: 1rem;
-    font-size: 1.5rem;
+.report-info p {
+  margin: 0.5rem 0;
+}
+
+.report-info strong {
+  font-weight: bold;
+}
+
+/* Credit Summary Section */
+.credit-summary {
+  margin-bottom: 3rem;
+}
+
+.credit-summary h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: #0e594a;
 }
 
 .summary-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 1rem;
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
 }
 
 .summary-table th,
 .summary-table td {
-    border: 1px solid #ccc;
-    padding: 0.5rem;
-    text-align: center;
+  border: 1px solid #ddd;
+  padding: 1rem;
+  text-align: left;
+  font-size: 1rem;
 }
 
+.summary-table th {
+  background-color: #f1f1f1;
+}
+
+.summary-table td {
+  background-color: #fafafa;
+}
+
+.summary-table tr:nth-child(even) td {
+  background-color: #f9f9f9;
+}
+
+.total-row {
+  background-color: #0e594a;
+  color: white;
+}
+
+/* Debt Chart Section */
 .debt-chart {
-    width: 100%;
-    max-width: 400px;
-    margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 2rem;
 }
 
+.bar {
+  width: 30px;
+  height: 100%;
+  margin: 0 10px;
+  border-radius: 4px;
+}
+
+.mortgage {
+  height: 60%;
+  background-color: #0e594a;
+}
+
+.credit {
+  height: 80%;
+  background-color: #fbba3f;
+}
+
+.car {
+  height: 40%;
+  background-color: #f4511e;
+}
+
+.labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+/* Account Age Section */
 .account-age {
-    background-color: #f4f4f4;
-    padding: 1rem;
-    border-radius: 8px;
+  background-color: #f4f4f4;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+}
+
+.account-age h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.account-age p {
+  margin: 0.5rem 0;
+}
+
+.account-age strong {
+  font-weight: bold;
+}
+
+/* Inquiries Section */
+.inquiries {
+  margin-bottom: 3rem;
+}
+
+.inquiries h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: #0e594a;
+}
+
+.inquiries p {
+  margin-bottom: 1rem;
 }
 
 .inquiries ul {
-    list-style-type: none;
-    padding: 0;
+  list-style-type: none;
+  padding: 0;
 }
 
 .inquiries li {
-    background-color: #e0f7fa;
-    margin-bottom: 0.5rem;
-    padding: 0.5rem;
-    border-radius: 4px;
+  background-color: #e0f7fa;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 4px;
 }
 
-.footer {
-    background-color: #003333;
-    color: white;
-    padding: 2rem;
-    text-align: center;
-    margin-top: 3rem;
+/* Footer Section */
+.report-footer {
+  background-color: var(--primary-color);
+  color: #fff;
+  padding: 2rem;
+  text-align: center;
+  margin-top: 3rem;
 }
 
-.footer p {
-    margin: 0.3rem 0;
+.report-footer p {
+  margin: 0.3rem 0;
+}
+
+/* Download Button */
+.download-btn {
+  background-color: #0e594a;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 1rem;
+}
+
+.download-btn:hover {
+  background-color: #fbba3f;
+}
+/* credit-report.css */
+
+/* Normal screen styles */
+.report-container {
+  display: flex;
+  flex-direction: row;
+  background-color: #fff;
+}
+
+.report-content {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+/* Print styles */
+@media print {
+  /* Adjust content width for printing */
+  .report-content {
+    width: 100%;
+    padding: 0;
+  }
+
+  /* Style for the print header */
+  .report-header {
+    display: none; /* Hide the header in print */
+  }
+
+  .download-btn,
+  .print-btn {
+    display: none; /* Hide the buttons in print */
+  }
+
+  /* Add page break if the content is long */
+  .report-content {
+    page-break-before: always;
+  }
+}
+
+/* Ensure layout accounts for sidebar */
+.report-layout {
+  display: flex;
+  height: 100vh;
+}
+
+/* Only .report-content scrolls */
+.report-content {
+  margin-left: 20px; /* Offset for fixed sidebar */
+  flex: 1;
+  padding: 2rem;
+  overflow-y: auto;
+  height: 100vh;
+  background-color: #fff;
 }

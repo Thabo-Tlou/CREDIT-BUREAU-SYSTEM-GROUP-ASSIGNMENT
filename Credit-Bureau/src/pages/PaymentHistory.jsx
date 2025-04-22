@@ -21,7 +21,7 @@ const PaymentHistory = () => {
   return (
     <div className="credit-reports-wrapper">
       <aside className="left-panel">
-        <h2>Credit Reports</h2>
+        <h2>Payment History</h2>
         <ul className="lender-list">
           {[
             "Payments",
