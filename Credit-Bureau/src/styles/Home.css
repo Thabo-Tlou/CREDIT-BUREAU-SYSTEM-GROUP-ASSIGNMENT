@@ -38,7 +38,7 @@
   margin-left: 80px;
   cursor: pointer;
   margin-bottom: 30px;
-  margin-top: -20px;
+  margin-top: -40px;
 }
 
 .home-logo:hover {
@@ -59,15 +59,25 @@
   background: #08402f;
 }
 
-/* Hero Section */
-.home-hero {
+/* Home Section */
+.home-section {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 50px;
   background: #fff;
 }
-
+.home-lender {
+  margin-left: 20px;
+  margin-top: 15px;
+  padding: 12px 20px;
+  background: #0e594a;
+  color: #fff;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
 .home-text {
   max-width: 500px;
 }
