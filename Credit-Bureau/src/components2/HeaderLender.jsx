@@ -12,7 +12,7 @@ const HeaderLender = () => {
         <Link to="/partners">Partners</Link>
         <Link to="/faq">FAQ</Link>
         <Link to="/contact">Contact</Link>
-        <Link to="/sign-in">
+        <Link to="/sign-in-lender-form">
           <button className="log-in-btn">Log in</button>
         </Link>
         <Link to="/sign-up">

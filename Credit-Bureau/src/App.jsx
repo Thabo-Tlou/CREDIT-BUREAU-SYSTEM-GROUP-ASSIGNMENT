@@ -19,6 +19,8 @@ import SignIn from "./components2/Sign-in";
 import CreditReport from "./pages/CreditReport";
 import LenderHome from "./pages/LenderHome";
 import HeaderLender from "./components2/HeaderLender";
+import SignInLender from "./components2/Sign-in-Lender";
+import SignUpPartner from "./components2/SignUp-Partner";
 
 function App() {
   return (
@@ -39,6 +41,8 @@ function App() {
         <Route path="/credit-dashboard" element={<CreditDashboard />} />
         <Route path="/credit-report" element={<CreditReport />} />
         <Route path="/lender-home" element={<LenderHome />} />
+        <Route path="/sign-in-lender-form" element={<SignInLender />} />
+        <Route path="/sign-up-partner" element={<SignUpPartner />} />
         <Route
           path="/credit-score-analysis"
           element={<CreditScoreAnalysis />}
