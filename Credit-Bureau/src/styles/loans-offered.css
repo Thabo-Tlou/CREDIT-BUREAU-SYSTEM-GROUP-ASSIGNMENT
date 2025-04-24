@@ -1,0 +1,120 @@
+:root {
+  --primary-color: #0e594a;
+  --hover-color: #0e594a80;
+  --accent-color: #fbba3f;
+  --bg-color: #f0f0f0f5;
+  --white-color: #ffffff;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+.loans-offered-page {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--bg-color);
+  width: 100vw;
+}
+
+.loans-main-content {
+  flex: 1;
+  padding: 40px;
+  overflow-y: auto;
+}
+
+.loans-header {
+  margin-bottom: 30px;
+}
+
+.loans-header h1 {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  margin-bottom: 10px;
+}
+
+.loans-header p {
+  font-size: 1rem;
+  color: #444;
+}
+
+.loans-controls {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.loan-search,
+.loan-filter {
+  padding: 12px 16px;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  flex: 1;
+  max-width: 300px;
+  background-color: var(--white-color);
+}
+
+.loan-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+}
+
+.loan-card {
+  background-color: var(--white-color);
+  border-radius: 16px;
+  box-shadow: 0 2px 8px var(--shadow-color);
+  padding: 24px;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.loan-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+.loan-card h3 {
+  color: var(--primary-color);
+  margin-bottom: 10px;
+  font-size: 1.25rem;
+}
+
+.loan-description {
+  font-size: 0.95rem;
+  color: #555;
+  margin-bottom: 16px;
+  flex-grow: 1;
+}
+
+.loan-info {
+  font-size: 0.9rem;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 16px;
+}
+
+.apply-now-btn {
+  background-color: var(--accent-color);
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
+}
+
+.apply-now-btn:hover {
+  background-color: #f9aa2f;
+}
+
+.no-loans-message {
+  font-size: 1.1rem;
+  color: #777;
+  margin-top: 20px;
+}

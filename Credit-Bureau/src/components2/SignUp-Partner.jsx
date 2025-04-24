@@ -16,7 +16,7 @@ const SignUpPartner = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [partner, setPartner] = useState(""); // 👈 New state for partner selection
+  const [partner, setPartner] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
@@ -60,7 +60,7 @@ const SignUpPartner = () => {
           username,
           email,
           password,
-          partner, // 👈 Include partner in the request
+          partner,
         },
         {
           headers: {
@@ -183,21 +183,6 @@ const SignUpPartner = () => {
               disabled={isLoading}
             />
 
-            {/* Partner Dropdown */}
-            <select
-              className="signupInputUnique"
-              value={partner}
-              onChange={(e) => setPartner(e.target.value)}
-              required
-              disabled={isLoading}
-            >
-              <option value="">-- Select a Partner --</option>
-              <option value="FNB">FNB</option>
-              <option value="Nedbank">Nedbank</option>
-              <option value="Alliance Lesotho">Alliance Lesotho</option>
-              <option value="Postbank">Postbank</option>
-            </select>
-
             <div className="signupPasswordGroupUnique">
               <input
                 type={showPassword ? "text" : "password"}
@@ -269,13 +254,31 @@ const SignUpPartner = () => {
               </label>
             </div>
 
-            <button
-              type="submit"
-              className="signupSubmitBtnUnique"
-              disabled={isLoading}
-            >
-              {isLoading ? "Signing up..." : "Sign Up"}
-            </button>
+            <div className="signupActionRowUnique">
+              <div className="partnerSelectWrapper">
+                <select
+                  className="partnerSelectStyled"
+                  value={partner}
+                  onChange={(e) => setPartner(e.target.value)}
+                  disabled={isLoading}
+                  required
+                >
+                  <option value="">Pick a Partner</option>
+                  <option value="FNB">FNB</option>
+                  <option value="Nedbank">Nedbank</option>
+                  <option value="Alliance Lesotho">Alliance Lesotho</option>
+                  <option value="Postbank">Postbank</option>
+                </select>
+
+                <button
+                  type="submit"
+                  className="signupSubmitBtnUnique"
+                  disabled={isLoading}
+                >
+                  {isLoading ? "Signing up..." : "Sign Up"}
+                </button>
+              </div>
+            </div>
 
             {error && <div className="signupErrorUnique">{error}</div>}
           </form>

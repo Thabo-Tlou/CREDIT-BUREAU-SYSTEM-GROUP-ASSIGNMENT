@@ -39,7 +39,7 @@ const SignInLender = () => {
       alert(message); // Optional
 
       // Redirect to dashboard
-      navigate("/dashboard");
+      navigate("/partner-dashboard");
     } catch (err) {
       setError(err.response?.data?.message || "Login failed.");
     } finally {
