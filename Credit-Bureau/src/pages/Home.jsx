@@ -7,12 +7,13 @@ import SavingsIcon from "@mui/icons-material/Savings";
 import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 import BarChartIcon from "@mui/icons-material/BarChart";
 import Header from "../components2/Header";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
     <div className="home-container">
       <Header />
-      <section className="home-hero">
+      <section className="home-section">
         <div className="home-text">
           <img src={Logo} alt="Logo" className="home-logo" />
           <h1 className="Financial">
@@ -26,6 +27,9 @@ const Home = () => {
             opportunities, and build a stronger financial future.
           </p>
           <button className="home-read-more">Read More</button>
+          <Link to="/lender-home">
+            <button className="home-lender">Lenders Page</button>
+          </Link>
         </div>
         <div className="home-image">
           <img src={Photo} alt="Businessman" />

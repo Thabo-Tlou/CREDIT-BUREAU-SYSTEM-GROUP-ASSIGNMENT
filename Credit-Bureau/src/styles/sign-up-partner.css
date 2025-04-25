@@ -1,0 +1,272 @@
+:root {
+  --shadow-color: rgba(0, 0, 0, 0.182);
+  --primary-color: #0e594a;
+  --hover-color: #0e594a80;
+  --accent-color: #fbba3f;
+  --bg-color: #ffffff;
+  --input-bg-color: #cedbe97c;
+  --white-color: #ffffff;
+}
+.signupPageUnique {
+  background-image: url("../components/images/backgroun.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  width: 100vw;
+}
+
+.signupContainerUnique {
+  display: flex;
+  width: 65%;
+  max-width: 1200px;
+  box-shadow: 0 4px 15px var(--shadow-color);
+  border-radius: 10px;
+  overflow: hidden;
+  height: 530px;
+}
+
+.signupLeftPanelUnique {
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  padding: 2rem 1.5rem;
+  flex: 0 0 260px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.signupTitleUnique {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.signupSubtitleUnique {
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.signupSwitchBtnUnique {
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  border: 2px solid var(--dark-text-color);
+  padding: 0.5rem 3rem;
+  font-size: 0.9rem;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.signupSwitchBtnUnique:hover {
+  background-color: var(--accent-color);
+}
+
+.signupFormWrapperUnique {
+  flex: 1;
+  background-color: var(--white-color);
+  padding: 3rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.signupLogoUnique {
+  width: 20px;
+  height: 25px;
+  margin-bottom: 0.3rem;
+  margin-left: 200px;
+  margin-top: -45px;
+}
+
+.signupLogoTitleUnique {
+  font-size: 0.8rem;
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+  margin-top: -30px;
+  font-weight: bold;
+}
+
+.signupFormUnique {
+  width: 100%;
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+}
+
+.signupHeaderUnique {
+  font-size: 1.3rem;
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.signupIconsUnique {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+  color: var(--primary-color);
+}
+
+.signupInputUnique,
+.signupDropdownUnique {
+  padding: 0.65rem 0.75rem;
+  margin-bottom: 0.85rem;
+  border: 1px solid var(--input-bg-color);
+  border-radius: 8px;
+  background-color: var(--input-bg-color);
+  outline: none;
+  transition: border-color 0.3s ease;
+  width: 100%;
+  font-size: 0.9rem;
+}
+
+.signupInputUnique:focus,
+.signupDropdownUnique:focus {
+  border-color: var(--primary-color);
+}
+
+.signupPasswordGroupUnique {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.signupEyeIconUnique {
+  position: absolute;
+  right: 1rem;
+  cursor: pointer;
+  color: var(--primary-color);
+  top: 21px;
+}
+
+.signupTermsRowUnique {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.signupCheckboxUnique {
+  margin-right: 0.5rem;
+}
+
+.signupTermsLabelUnique {
+  font-size: 0.8rem;
+}
+
+.signupSubmitBtnUnique {
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  width: 100%;
+  max-width: 180px;
+  transition: background-color 0.3s ease;
+  align-self: center;
+  margin-top: -37px;
+  margin-left: 190px;
+  display: flex;
+}
+
+.signupSubmitBtnUnique:hover {
+  background-color: var(--accent-color);
+}
+
+.signupErrorUnique,
+.signupSuccessUnique {
+  text-align: center;
+  font-size: 0.8rem;
+  margin-top: 1rem;
+  padding: 0.5rem;
+  border-radius: 5px;
+}
+
+.signupErrorUnique {
+  background-color: #ffe0e0;
+  color: #b00020;
+}
+
+.signupSuccessUnique {
+  background-color: #d4edda;
+  color: green;
+  font-weight: bold;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.password-suggestions {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 8px;
+  margin-top: 10px;
+  width: 100%;
+  max-width: 350px;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.password-suggestions strong {
+  color: var(--primary-color);
+}
+
+.password-suggestions ul {
+  padding-left: 20px;
+}
+
+.password-suggestions li {
+  list-style-type: disc;
+  margin-bottom: 5px;
+}
+
+.password-strength {
+  text-align: center;
+  margin-top: 10px;
+  padding: 5px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  width: 100%;
+  max-width: 350px;
+}
+
+.password-strength.weak {
+  background-color: #ffdddd;
+  color: #b00020;
+}
+
+.password-strength.medium {
+  background-color: #fff5cc;
+  color: #ff7f00;
+}
+
+.password-strength.strong {
+  background-color: #e0ffe6;
+  color: #1b5e20;
+}
+
+.partnerSelectWrapper {
+  margin-right: 1rem;
+}
+
+.partnerSelectStyled {
+  background-color: var(--white-color);
+  border: 2px solid var(--primary-color);
+  border-radius: 20px;
+  padding: 0.6rem 1rem;
+  font-weight: bold;
+  color: var(--primary-color);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.partnerSelectStyled:hover {
+  background-color: var(--hover-color);
+  color: white;
+}

@@ -1,0 +1,162 @@
+.partner-sidebar {
+  width: 250px;
+  background-color: var(--primary-color); /* Use your custom primary */
+  color: white;
+  height: 100vh;
+  padding: 20px 15px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.partner-nav-section {
+  margin-top: 50px;
+  padding-top: 10px;
+  border-top: 1px solid var(--accent-color);
+}
+
+.partner-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  max-width: 100%;
+  word-wrap: break-word;
+}
+.partner-avatar-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.partner-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+  border: 2px solid #fff;
+}
+
+.upload-partner-btn {
+  position: absolute;
+  bottom: 5px;
+  right: calc(50% - 10px);
+  background-color: var(--accent-color);
+  color: white;
+  font-size: 16px;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  line-height: 20px;
+  cursor: pointer;
+}
+
+.hidden-partner-file-input {
+  display: none;
+}
+
+.username {
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 5px;
+  white-space: nowrap; /* Prevent line break */
+  overflow: hidden; /* Hide anything that overflows */
+  text-overflow: ellipsis; /* Add "..." if too long */
+  max-width: 100%;
+  padding: 0 10px;
+  color: white;
+  font-weight: bold;
+}
+
+.partner-sidebar-nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.partner-sidebar-nav li {
+  margin: 15px 0;
+}
+
+.partner-nav-link {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  transition: color 0.2s ease;
+}
+
+.partner-nav-link:hover {
+  color: var(--accent-color);
+}
+.partner-sidebar {
+  width: 250px;
+  height: 100vh;
+  background-color: var(--primary-color);
+  color: white;
+  padding-top: 20px;
+}
+
+.logo {
+  text-align: center;
+}
+
+.avatar-container {
+  position: relative;
+}
+
+.avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+
+.hidden-file-input {
+  display: none;
+}
+
+.upload-btn {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: #fbba3f;
+  color: white;
+  border-radius: 50%;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.partner-name {
+  margin-top: 10px;
+  font-size: 18px;
+}
+
+.sidebar-nav {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.sidebar-nav li {
+  padding: 8px;
+  text-align: center;
+}
+
+.sidebar-nav a {
+  color: white;
+  font-size: 16px;
+  display: block;
+  padding: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.sidebar-nav a:hover {
+  background-color: var(--accent-color);
+}
