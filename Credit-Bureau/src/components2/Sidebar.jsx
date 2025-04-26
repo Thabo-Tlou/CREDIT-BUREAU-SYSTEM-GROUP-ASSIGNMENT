@@ -1,23 +1,30 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import "../styles/dashboard.css";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import {
+  FaTachometerAlt,
+  FaFileAlt,
+  FaMoneyCheckAlt,
+  FaHistory,
+  FaChartLine,
+  FaCog,
+} from "react-icons/fa";
+
+import "../styles/sidebar.css";
 
 const Sidebar = () => {
-  const [avatar, setAvatar] = useState("/images/avatar.jpg"); // Default avatar
+  const [avatar, setAvatar] = useState("/images/avatar.jpg");
   const [userName, setUserName] = useState("User");
-  const [showCreditReport, setShowCreditReport] = useState(false);
+  const location = useLocation();
   const navigate = useNavigate();
 
-  // Load user data from localStorage
   useEffect(() => {
     const profileData = JSON.parse(localStorage.getItem("profile"));
     if (profileData) {
-      setAvatar(profileData.avatar || "/images/avatar.jpg"); // Fallback to default avatar if none exists
+      setAvatar(profileData.avatar || "/images/avatar.jpg");
       setUserName(profileData.name || "User");
     }
   }, []);
 
-  // Handle file change for avatar upload
   const handleAvatarChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -25,22 +32,28 @@ const Sidebar = () => {
       reader.onloadend = () => {
         const newAvatar = reader.result;
         setAvatar(newAvatar);
-
-        // Merge with existing profile to preserve name
         const existingProfile =
           JSON.parse(localStorage.getItem("profile")) || {};
         const updatedProfile = {
           ...existingProfile,
           avatar: newAvatar,
         };
-
         localStorage.setItem("profile", JSON.stringify(updatedProfile));
-
-        // Optionally, you could update the backend here to store the avatar in the database
       };
       reader.readAsDataURL(file);
     }
   };
+
+  const isActive = (path) => location.pathname === path;
+
+  const navLinks = [
+    { to: "/dashboard", label: "Dashboard", icon: <FaTachometerAlt /> },
+    { to: "/credit-report", label: "Credit Reports", icon: <FaFileAlt /> },
+    { to: "/credit-form", label: "Loan", icon: <FaMoneyCheckAlt /> },
+    { to: "/payment-history", label: "Payment History", icon: <FaHistory /> },
+    { to: "/credit-score-analysis", label: "Credit Score Analysis", icon: <FaChartLine /> },
+    { to: "/settings", label: "Settings", icon: <FaCog /> },
+  ];
 
   return (
     <aside className="sidebar">
@@ -63,54 +76,14 @@ const Sidebar = () => {
 
       <nav aria-label="Sidebar Navigation">
         <ul className="sidebar-nav">
-          <li>
-            <Link
-              to="/dashboard"
-              style={{ textDecoration: "none", color: "white" }}
-            >
-              Dashboard
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/credit-report"
-              style={{ textDecoration: "none", color: "white" }}
-            >
-              Credit Reports
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/credit-form"
-              style={{ textDecoration: "none", color: "white" }}
-            >
-              Loan
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/payment-history"
-              style={{ textDecoration: "none", color: "white" }}
-            >
-              Payment History
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/credit-score-analysis"
-              style={{ textDecoration: "none", color: "white" }}
-            >
-              Credit Score Analysis
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/settings"
-              style={{ textDecoration: "none", color: "white" }}
-            >
-              Settings
-            </Link>
-          </li>
+          {navLinks.map((link) => (
+            <li key={link.to} className={isActive(link.to) ? "active" : ""}>
+              <Link to={link.to} className="sidebar-link">
+                <span className="icon">{link.icon}</span>
+                <span className="label">{link.label}</span>
+              </Link>
+            </li>
+          ))}
         </ul>
       </nav>
     </aside>
