@@ -4,6 +4,7 @@ import cors from "cors";
 import userRoutes from "./routes/userRoutes.js"; // This will already include your signup and signin routes
 import loanRoutes from "./routes/loanRoutes.js";
 import paymentRoutes from "./routes/paymentRoutes.js";
+import LoanRecordRoute from "./routes/LoanRecordRoute.js";
 import dotenv from "dotenv";
 dotenv.config(); // load the variables from the .env file
 
@@ -31,6 +32,7 @@ mongoose
 app.use("/api/users", userRoutes); // This will include both the signup and signin routes
 app.use("/api/loans", loanRoutes);
 app.use("/api/payments", paymentRoutes);
+app.use("/api/loan-records", LoanRecordRoute);  //api for credit form
 
 // ✅ Start server
 const PORT = 5000;

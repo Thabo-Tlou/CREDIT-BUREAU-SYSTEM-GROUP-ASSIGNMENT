@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Container, Form, Button, Row, Col } from "react-bootstrap";
+import { Container, Form, Button, Row, Col, Spinner } from "react-bootstrap";
 import "../styles/creditForm.css";
-import Footer2 from "../components2/Footer";
+/*import Footer2 from "../components2/Footer";*/
 import Sidebar from "../components2/Sidebar";
 
 const CreditForm = ({ onSubmit }) => {
@@ -28,21 +28,27 @@ const CreditForm = ({ onSubmit }) => {
     },
   ]);
 
+  const [isLoading, setIsLoading] = useState(false); // State for loading
+
   const handleLoanChange = (index, field, value) => {
-    const updatedLoans = [...loans];
-    updatedLoans[index][field] = value;
-    setLoans(updatedLoans);
+    setLoans((prevLoans) =>
+      prevLoans.map((loan, i) =>
+        i === index ? { ...loan, [field]: value } : loan
+      )
+    );
   };
 
   const handleBillChange = (index, field, value) => {
-    const updatedBills = [...bills];
-    updatedBills[index][field] = value;
-    setBills(updatedBills);
+    setBills((prevBills) =>
+      prevBills.map((bill, i) =>
+        i === index ? { ...bill, [field]: value } : bill
+      )
+    );
   };
 
   const addLoan = () => {
-    setLoans([
-      ...loans,
+    setLoans((prevLoans) => [
+      ...prevLoans,
       {
         loanId: "",
         lender: "",
@@ -57,8 +63,8 @@ const CreditForm = ({ onSubmit }) => {
   };
 
   const addBill = () => {
-    setBills([
-      ...bills,
+    setBills((prevBills) => [
+      ...prevBills,
       {
         billType: "",
         amount: "",
@@ -69,26 +75,72 @@ const CreditForm = ({ onSubmit }) => {
     ]);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true); // Set loading to true when submitting
     const userData = { loans, bills };
-    console.log("Submitted:", userData);
-    if (onSubmit) onSubmit(userData);
+
+    try {
+      const response = await fetch('http://localhost:5000/api/loan-records', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userData),
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        console.log('Success:', result);
+        alert('Data submitted successfully!');
+        setLoans([
+          {
+            loanId: "",
+            lender: "",
+            amount: "",
+            type: "",
+            interestRate: "",
+            status: "",
+            startDate: "",
+            dueDate: "",
+          },
+        ]);
+        setBills([
+          {
+            billType: "",
+            amount: "",
+            dueDate: "",
+            paymentDate: "",
+            status: "",
+          },
+        ]);
+      } else {
+        const errorData = await response.json();
+        console.error('Error:', errorData);
+        alert('Failed to submit data.');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert('An unexpected error occurred.');
+    } finally {
+      setIsLoading(false); // Set loading to false after submitting
+    }
   };
 
   return (
     <>
-      <Container className="form-container">
+      <Container fluid className="form-container">
         <Sidebar />
 
         <div className="form-content">
           <h2 className="form-title">Loan and Bill Payment Form</h2>
 
           <Form onSubmit={handleSubmit}>
+            {/* Loan Section */}
             <div className="loan-section">
               <h4 className="section-title">Loan Details</h4>
               {loans.map((loan, index) => (
-                <div key={index}>
+                <div key={index} className="loan-entry">
                   <Row>
                     <Col md={6}>
                       <Form.Group controlId={`loanId-${index}`}>
@@ -142,9 +194,9 @@ const CreditForm = ({ onSubmit }) => {
                           }
                         >
                           <option value="">Select</option>
-                          <option>Personal</option>
-                          <option>Business</option>
-                          <option>School</option>
+                          <option value="Personal">Personal</option>
+                          <option value="Business">Business</option>
+                          <option value="School">School</option>
                         </Form.Select>
                       </Form.Group>
                     </Col>
@@ -153,10 +205,10 @@ const CreditForm = ({ onSubmit }) => {
                   <Row>
                     <Col md={6}>
                       <Form.Group controlId={`interestRate-${index}`}>
-                        <Form.Label>Interest Rate</Form.Label>
+                        <Form.Label>Interest Rate (%)</Form.Label>
                         <Form.Control
                           type="number"
-                          placeholder="e.g. 10%"
+                          placeholder="e.g. 10"
                           value={loan.interestRate}
                           onChange={(e) =>
                             handleLoanChange(
@@ -178,8 +230,8 @@ const CreditForm = ({ onSubmit }) => {
                           }
                         >
                           <option value="">Select</option>
-                          <option>Active</option>
-                          <option>Closed</option>
+                          <option value="Active">Active</option>
+                          <option value="Closed">Closed</option>
                         </Form.Select>
                       </Form.Group>
                     </Col>
@@ -217,15 +269,15 @@ const CreditForm = ({ onSubmit }) => {
               ))}
 
               <Button className="btn-accent" type="button" onClick={addLoan}>
-                Add Another Loan
+                + Add Another Loan
               </Button>
             </div>
 
             {/* Bill Section */}
-            <div className="bill-section">
+            <div className="bill-section mt-5">
               <h4 className="section-title">Bill Payments</h4>
               {bills.map((bill, index) => (
-                <div key={index}>
+                <div key={index} className="bill-entry">
                   <Row>
                     <Col md={6}>
                       <Form.Group controlId={`billType-${index}`}>
@@ -237,8 +289,8 @@ const CreditForm = ({ onSubmit }) => {
                           }
                         >
                           <option value="">Select</option>
-                          <option>Phone</option>
-                          <option>Credit Card</option>
+                          <option value="Phone">Phone</option>
+                          <option value="Credit Card">Credit Card</option>
                         </Form.Select>
                       </Form.Group>
                     </Col>
@@ -299,8 +351,8 @@ const CreditForm = ({ onSubmit }) => {
                           }
                         >
                           <option value="">Select</option>
-                          <option>Paid</option>
-                          <option>Pending</option>
+                          <option value="Paid">Paid</option>
+                          <option value="Pending">Pending</option>
                         </Form.Select>
                       </Form.Group>
                     </Col>
@@ -315,15 +367,20 @@ const CreditForm = ({ onSubmit }) => {
                 type="button"
                 onClick={addBill}
               >
-                Add Another Bill
+                + Add Another Bill
               </Button>
             </div>
 
-            <Button type="submit" className="btn-primary mt-4">
-              Submit Form
+            <Button type="submit" className="btn-primary mt-4" disabled={isLoading}>
+              {isLoading ? (
+                <Spinner animation="border" size="sm" /> // Display the spinner
+              ) : (
+                "Submit Form"
+              )}
             </Button>
           </Form>
 
+          {/* Smart Credit Tips */}
           <div className="tips-card mt-5">
             <h4 className="section-title">Smart Credit Tips</h4>
             <div className="tip-box">
@@ -353,6 +410,8 @@ const CreditForm = ({ onSubmit }) => {
           </div>
         </div>
       </Container>
+
+      /*<Footer2 />*/
     </>
   );
 };
