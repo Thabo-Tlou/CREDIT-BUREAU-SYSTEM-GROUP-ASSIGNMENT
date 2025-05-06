@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { Container, Form, Button, Row, Col, Spinner } from "react-bootstrap";
 import "../styles/creditForm.css";
-/*import Footer2 from "../components2/Footer";*/
-import Sidebar from "../components2/Sidebar";
+import Header2 from "../components2/Header2";
 
 const CreditForm = ({ onSubmit }) => {
   const [loans, setLoans] = useState([
@@ -130,7 +129,7 @@ const CreditForm = ({ onSubmit }) => {
   return (
     <>
       <Container fluid className="form-container">
-        <Sidebar />
+        <Header2 />
 
         <div className="form-content">
           <h2 className="form-title">Loan and Bill Payment Form</h2>
@@ -410,8 +409,6 @@ const CreditForm = ({ onSubmit }) => {
           </div>
         </div>
       </Container>
-
-      /*<Footer2 />*/
     </>
   );
 };

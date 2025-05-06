@@ -1,5 +1,4 @@
-//Credit form schema
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const LoanRecordSchema = new mongoose.Schema({
   loans: [
@@ -7,7 +6,7 @@ const LoanRecordSchema = new mongoose.Schema({
       loanId: {
         type: String,
         required: true,
-        unique: true, 
+        unique: true,
         trim: true,
       },
       lender: {
@@ -18,7 +17,7 @@ const LoanRecordSchema = new mongoose.Schema({
       amount: {
         type: Number,
         required: true,
-        min: 1, 
+        min: 1,
       },
       type: {
         type: String,
@@ -29,7 +28,7 @@ const LoanRecordSchema = new mongoose.Schema({
         type: Number,
         required: true,
         min: 0,
-      }, 
+      },
       status: {
         type: String,
         enum: ["Active", "Closed"],
@@ -78,4 +77,4 @@ const LoanRecordSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("LoanRecord", LoanRecordSchema);
+export default mongoose.model("LoanRecord", LoanRecordSchema);

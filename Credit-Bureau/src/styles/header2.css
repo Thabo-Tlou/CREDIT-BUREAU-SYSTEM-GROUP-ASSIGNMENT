@@ -1,0 +1,119 @@
+:root {
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --primary-color: #0e594a;
+    --hover-color: #0e594a80;
+    --accent-color: #fbba3f;
+    --bg-color: #ffffff;
+    --input-bg-color: #cedbe97c;
+    --white-color: #ffffff;
+  }
+  
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    background-color: var(--bg-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 16px;
+    box-shadow: 0 2px 4px var(--shadow-color);
+    flex-wrap: wrap;
+  }
+  
+  .left-section {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .avatar-container {
+    position: relative;
+  }
+  
+  .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid var(--primary-color);
+  }
+  
+  .hidden-file-input {
+    display: none;
+  }
+  
+  .upload-btn {
+    position: absolute;
+    bottom: -4px;
+    right: -4px;
+    background-color: var(--accent-color);
+    color: #fff;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    font-size: 12px;
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid #fff;
+  }
+  
+  .username {
+    font-weight: bold;
+    color: var(--primary-color);
+  }
+  
+  .nav-menu {
+    flex-grow: 1;
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .nav-links {
+    display: flex;
+    list-style: none;
+    gap: 16px;
+    padding: 0;
+    margin: 0;
+    flex-wrap: wrap;
+  }
+  
+  .nav-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--primary-color);
+    font-weight: 500;
+    transition: color 0.3s;
+  }
+  
+  .nav-link:hover {
+    color: var(--accent-color);
+  }
+  
+  .active .nav-link {
+    color: var(--accent-color);
+  }
+  
+  .icon {
+    margin-right: 6px;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .nav-menu {
+      width: 100%;
+      justify-content: flex-start;
+      margin-top: 8px;
+    }
+  
+    .nav-links {
+      flex-direction: column;
+      gap: 8px;
+    }
+  }
+  
