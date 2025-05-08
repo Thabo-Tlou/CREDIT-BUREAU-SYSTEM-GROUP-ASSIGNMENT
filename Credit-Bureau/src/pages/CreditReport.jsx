@@ -1,6 +1,6 @@
 import React from "react";
 import Sidebar from "../components2/Sidebar";
-import { jsPDF } from "jspdf";
+import jsPDF from "https://esm.sh/jspdf";
 import "../styles/credit-report.css";
 
 const CreditReport = () => {
@@ -105,7 +105,7 @@ const CreditReport = () => {
               📄 Download PDF
             </button>
             <button className="print-btn" onClick={handlePrint}>
-              🖨️ Print Statement
+              🖨 Print Statement
             </button>
           </div>
         </header>
