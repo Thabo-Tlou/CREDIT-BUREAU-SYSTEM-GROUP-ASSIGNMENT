@@ -122,17 +122,6 @@
   display: none;
 }
 
-.upload-btn {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  background-color: #fbba3f;
-  color: white;
-  border-radius: 50%;
-  padding: 5px;
-  cursor: pointer;
-}
-
 .partner-name {
   margin-top: 10px;
   font-size: 18px;
