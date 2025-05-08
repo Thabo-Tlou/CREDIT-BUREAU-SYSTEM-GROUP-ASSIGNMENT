@@ -27,7 +27,7 @@ const CreditForm = ({ onSubmit }) => {
     },
   ]);
 
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false); // State for loading
 
   const handleLoanChange = (index, field, value) => {
     setLoans((prevLoans) =>
@@ -76,18 +76,22 @@ const CreditForm = ({ onSubmit }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsLoading(true);
+    setIsLoading(true); // Set loading to true when submitting
     const userData = { loans, bills };
 
     try {
-      const response = await fetch("http://localhost:5000/api/loan-records", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+      const response = await fetch('http://localhost:5000/api/loan-records', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
         body: JSON.stringify(userData),
       });
 
       if (response.ok) {
-        alert("Data submitted successfully!");
+        const result = await response.json();
+        console.log('Success:', result);
+        alert('Data submitted successfully!');
         setLoans([
           {
             loanId: "",
@@ -110,12 +114,15 @@ const CreditForm = ({ onSubmit }) => {
           },
         ]);
       } else {
-        alert("Failed to submit data.");
+        const errorData = await response.json();
+        console.error('Error:', errorData);
+        alert('Failed to submit data.');
       }
     } catch (error) {
-      alert("An unexpected error occurred.");
+      console.error('Error submitting form:', error);
+      alert('An unexpected error occurred.');
     } finally {
-      setIsLoading(false);
+      setIsLoading(false); // Set loading to false after submitting
     }
   };
 
@@ -123,237 +130,293 @@ const CreditForm = ({ onSubmit }) => {
     <>
       <Container fluid className="form-container">
         <Header2 />
+
         <div className="form-content">
           <h2 className="form-title">Loan and Bill Payment Form</h2>
+
           <Form onSubmit={handleSubmit}>
-            <Row>
-              {/* Loan Column */}
-              <Col md={6}>
-                <div className="loan-section">
-                  <h4 className="section-title">Loan Details</h4>
-                  {loans.map((loan, index) => (
-                    <div key={index} className="loan-entry">
-                      <Row>
-                        <Col md={6}>
-                          <Form.Group controlId={`loanId-${index}`}>
-                            <Form.Label>Loan ID</Form.Label>
-                            <Form.Control
-                              type="text"
-                              value={loan.loanId}
-                              onChange={(e) =>
-                                handleLoanChange(index, "loanId", e.target.value)
-                              }
-                            />
-                          </Form.Group>
-                        </Col>
-                        <Col md={6}>
-                          <Form.Group controlId={`lender-${index}`}>
-                            <Form.Label>Lender</Form.Label>
-                            <Form.Control
-                              type="text"
-                              value={loan.lender}
-                              onChange={(e) =>
-                                handleLoanChange(index, "lender", e.target.value)
-                              }
-                            />
-                          </Form.Group>
-                        </Col>
-                      </Row>
+            {/* Loan Section */}
+            <div className="form-sections-wrapper">
+            <div className="loan-section">
+              <h4 className="section-title">Loan Details</h4>
+              {loans.map((loan, index) => (
+                <div key={index} className="loan-entry">
+                  <Row>
+                    <Col md={6}>
+                      <Form.Group controlId={`loanId-${index}`}>
+                        <Form.Label>Loan ID</Form.Label>
+                        <Form.Control
+                          type="text"
+                          placeholder="Enter Loan ID"
+                          value={loan.loanId}
+                          onChange={(e) =>
+                            handleLoanChange(index, "loanId", e.target.value)
+                          }
+                        />
+                      </Form.Group>
+                    </Col>
+                    <Col md={6}>
+                      <Form.Group controlId={`lender-${index}`}>
+                        <Form.Label>Lender</Form.Label>
+                        <Form.Control
+                          type="text"
+                          placeholder="Lender Name"
+                          value={loan.lender}
+                          onChange={(e) =>
+                            handleLoanChange(index, "lender", e.target.value)
+                          }
+                        />
+                      </Form.Group>
+                    </Col>
+                  </Row>
 
-                      <Row>
-                        <Col md={6}>
-                          <Form.Group controlId={`amount-${index}`}>
-                            <Form.Label>Amount</Form.Label>
-                            <Form.Control
-                              type="number"
-                              value={loan.amount}
-                              onChange={(e) =>
-                                handleLoanChange(index, "amount", e.target.value)
-                              }
-                            />
-                          </Form.Group>
-                        </Col>
-                        <Col md={6}>
-                          <Form.Group controlId={`type-${index}`}>
-                            <Form.Label>Type</Form.Label>
-                            <Form.Select
-                              value={loan.type}
-                              onChange={(e) =>
-                                handleLoanChange(index, "type", e.target.value)
-                              }
-                            >
-                              <option value="">Select</option>
-                              <option value="Personal">Personal</option>
-                              <option value="Business">Business</option>
-                              <option value="School">School</option>
-                            </Form.Select>
-                          </Form.Group>
-                        </Col>
-                      </Row>
+                  <Row>
+                    <Col md={6}>
+                      <Form.Group controlId={`amount-${index}`}>
+                        <Form.Label>Amount</Form.Label>
+                        <Form.Control
+                          type="number"
+                          placeholder="e.g. 5000"
+                          value={loan.amount}
+                          onChange={(e) =>
+                            handleLoanChange(index, "amount", e.target.value)
+                          }
+                        />
+                      </Form.Group>
+                    </Col>
+                    <Col md={6}>
+                      <Form.Group controlId={`type-${index}`}>
+                        <Form.Label>Type</Form.Label>
+                        <Form.Select
+                          value={loan.type}
+                          onChange={(e) =>
+                            handleLoanChange(index, "type", e.target.value)
+                          }
+                        >
+                          <option value="">Select</option>
+                          <option value="Personal">Personal</option>
+                          <option value="Business">Business</option>
+                          <option value="School">School</option>
+                        </Form.Select>
+                      </Form.Group>
+                    </Col>
+                  </Row>
 
-                      <Row>
-                        <Col md={6}>
-                          <Form.Group controlId={`interestRate-${index}`}>
-                            <Form.Label>Interest Rate (%)</Form.Label>
-                            <Form.Control
-                              type="number"
-                              value={loan.interestRate}
-                              onChange={(e) =>
-                                handleLoanChange(index, "interestRate", e.target.value)
-                              }
-                            />
-                          </Form.Group>
-                        </Col>
-                        <Col md={6}>
-                          <Form.Group controlId={`status-${index}`}>
-                            <Form.Label>Status</Form.Label>
-                            <Form.Select
-                              value={loan.status}
-                              onChange={(e) =>
-                                handleLoanChange(index, "status", e.target.value)
-                              }
-                            >
-                              <option value="">Select</option>
-                              <option value="Active">Active</option>
-                              <option value="Closed">Closed</option>
-                            </Form.Select>
-                          </Form.Group>
-                        </Col>
-                      </Row>
+                  <Row>
+                    <Col md={6}>
+                      <Form.Group controlId={`interestRate-${index}`}>
+                        <Form.Label>Interest Rate (%)</Form.Label>
+                        <Form.Control
+                          type="number"
+                          placeholder="e.g. 10"
+                          value={loan.interestRate}
+                          onChange={(e) =>
+                            handleLoanChange(
+                              index,
+                              "interestRate",
+                              e.target.value
+                            )
+                          }
+                        />
+                      </Form.Group>
+                    </Col>
+                    <Col md={6}>
+                      <Form.Group controlId={`status-${index}`}>
+                        <Form.Label>Status</Form.Label>
+                        <Form.Select
+                          value={loan.status}
+                          onChange={(e) =>
+                            handleLoanChange(index, "status", e.target.value)
+                          }
+                        >
+                          <option value="">Select</option>
+                          <option value="Active">Active</option>
+                          <option value="Closed">Closed</option>
+                        </Form.Select>
+                      </Form.Group>
+                    </Col>
+                  </Row>
 
-                      <Row>
-                        <Col md={6}>
-                          <Form.Group controlId={`startDate-${index}`}>
-                            <Form.Label>Start Date</Form.Label>
-                            <Form.Control
-                              type="date"
-                              value={loan.startDate}
-                              onChange={(e) =>
-                                handleLoanChange(index, "startDate", e.target.value)
-                              }
-                            />
-                          </Form.Group>
-                        </Col>
-                        <Col md={6}>
-                          <Form.Group controlId={`dueDate-${index}`}>
-                            <Form.Label>Due Date</Form.Label>
-                            <Form.Control
-                              type="date"
-                              value={loan.dueDate}
-                              onChange={(e) =>
-                                handleLoanChange(index, "dueDate", e.target.value)
-                              }
-                            />
-                          </Form.Group>
-                        </Col>
-                      </Row>
-                      <hr />
-                    </div>
-                  ))}
+                  <Row>
+                    <Col md={6}>
+                      <Form.Group controlId={`startDate-${index}`}>
+                        <Form.Label>Start Date</Form.Label>
+                        <Form.Control
+                          type="date"
+                          value={loan.startDate}
+                          onChange={(e) =>
+                            handleLoanChange(index, "startDate", e.target.value)
+                          }
+                        />
+                      </Form.Group>
+                    </Col>
+                    <Col md={6}>
+                      <Form.Group controlId={`dueDate-${index}`}>
+                        <Form.Label>Due Date</Form.Label>
+                        <Form.Control
+                          type="date"
+                          value={loan.dueDate}
+                          onChange={(e) =>
+                            handleLoanChange(index, "dueDate", e.target.value)
+                          }
+                        />
+                      </Form.Group>
+                    </Col>
+                  </Row>
 
-                  <Button className="btn-accent" type="button" onClick={addLoan}>
-                    + Add Another Loan
-                  </Button>
+                  <hr />
                 </div>
-              </Col>
+              ))}
 
-              {/* Bill Column */}
-              <Col md={6}>
-                <div className="bill-section">
-                  <h4 className="section-title">Bill Payments</h4>
-                  {bills.map((bill, index) => (
-                    <div key={index} className="bill-entry">
-                      <Row>
-                        <Col md={6}>
-                          <Form.Group controlId={`billType-${index}`}>
-                            <Form.Label>Bill Type</Form.Label>
-                            <Form.Select
-                              value={bill.billType}
-                              onChange={(e) =>
-                                handleBillChange(index, "billType", e.target.value)
-                              }
-                            >
-                              <option value="">Select</option>
-                              <option value="Phone">Phone</option>
-                              <option value="Credit Card">Credit Card</option>
-                            </Form.Select>
-                          </Form.Group>
-                        </Col>
-                        <Col md={6}>
-                          <Form.Group controlId={`billAmount-${index}`}>
-                            <Form.Label>Amount</Form.Label>
-                            <Form.Control
-                              type="number"
-                              value={bill.amount}
-                              onChange={(e) =>
-                                handleBillChange(index, "amount", e.target.value)
-                              }
-                            />
-                          </Form.Group>
-                        </Col>
-                      </Row>
-
-                      <Row>
-                        <Col md={6}>
-                          <Form.Group controlId={`billDueDate-${index}`}>
-                            <Form.Label>Due Date</Form.Label>
-                            <Form.Control
-                              type="date"
-                              value={bill.dueDate}
-                              onChange={(e) =>
-                                handleBillChange(index, "dueDate", e.target.value)
-                              }
-                            />
-                          </Form.Group>
-                        </Col>
-                        <Col md={6}>
-                          <Form.Group controlId={`paymentDate-${index}`}>
-                            <Form.Label>Payment Date</Form.Label>
-                            <Form.Control
-                              type="date"
-                              value={bill.paymentDate}
-                              onChange={(e) =>
-                                handleBillChange(index, "paymentDate", e.target.value)
-                              }
-                            />
-                          </Form.Group>
-                        </Col>
-                      </Row>
-
-                      <Row>
-                        <Col md={6}>
-                          <Form.Group controlId={`billStatus-${index}`}>
-                            <Form.Label>Status</Form.Label>
-                            <Form.Select
-                              value={bill.status}
-                              onChange={(e) =>
-                                handleBillChange(index, "status", e.target.value)
-                              }
-                            >
-                              <option value="">Select</option>
-                              <option value="Paid">Paid</option>
-                              <option value="Pending">Pending</option>
-                            </Form.Select>
-                          </Form.Group>
-                        </Col>
-                      </Row>
-                      <hr />
-                    </div>
-                  ))}
-
-                  <Button className="btn-accent mt-2" type="button" onClick={addBill}>
-                    + Add Another Bill
-                  </Button>
-                </div>
-              </Col>
-            </Row>
-
-            <div className="text-center mt-4">
-              <Button type="submit" className="btn-primary" disabled={isLoading}>
-                {isLoading ? <Spinner animation="border" size="sm" /> : "Submit"}
+              <Button className="btn-accent" type="button" onClick={addLoan}>
+                + Add Another Loan
               </Button>
             </div>
+            </div>
+            {/* Bill Section */}
+            <div className="bill-section mt-5">
+              <h4 className="section-title">Bill Payments</h4>
+              {bills.map((bill, index) => (
+                <div key={index} className="bill-entry">
+                  <Row>
+                    <Col md={6}>
+                      <Form.Group controlId={`billType-${index}`}>
+                        <Form.Label>Bill Type</Form.Label>
+                        <Form.Select
+                          value={bill.billType}
+                          onChange={(e) =>
+                            handleBillChange(index, "billType", e.target.value)
+                          }
+                        >
+                          <option value="">Select</option>
+                          <option value="Phone">Phone</option>
+                          <option value="Credit Card">Credit Card</option>
+                        </Form.Select>
+                      </Form.Group>
+                    </Col>
+                    <Col md={6}>
+                      <Form.Group controlId={`billAmount-${index}`}>
+                        <Form.Label>Amount</Form.Label>
+                        <Form.Control
+                          type="number"
+                          placeholder="e.g. 300"
+                          value={bill.amount}
+                          onChange={(e) =>
+                            handleBillChange(index, "amount", e.target.value)
+                          }
+                        />
+                      </Form.Group>
+                    </Col>
+                  </Row>
+
+                  <Row>
+                    <Col md={6}>
+                      <Form.Group controlId={`billDueDate-${index}`}>
+                        <Form.Label>Due Date</Form.Label>
+                        <Form.Control
+                          type="date"
+                          value={bill.dueDate}
+                          onChange={(e) =>
+                            handleBillChange(index, "dueDate", e.target.value)
+                          }
+                        />
+                      </Form.Group>
+                    </Col>
+                    <Col md={6}>
+                      <Form.Group controlId={`paymentDate-${index}`}>
+                        <Form.Label>Payment Date</Form.Label>
+                        <Form.Control
+                          type="date"
+                          value={bill.paymentDate}
+                          onChange={(e) =>
+                            handleBillChange(
+                              index,
+                              "paymentDate",
+                              e.target.value
+                            )
+                          }
+                        />
+                      </Form.Group>
+                    </Col>
+                  </Row>
+
+                  <Row>
+                    <Col md={6}>
+                      <Form.Group controlId={`billStatus-${index}`}>
+                        <Form.Label>Status</Form.Label>
+                        <Form.Select
+                          value={bill.status}
+                          onChange={(e) =>
+                            handleBillChange(index, "status", e.target.value)
+                          }
+                        >
+                          <option value="">Select</option>
+                          <option value="Paid">Paid</option>
+                          <option value="Pending">Pending</option>
+                        </Form.Select>
+                      </Form.Group>
+                    </Col>
+                  </Row>
+
+                  <hr />
+                </div>
+              ))}
+
+              <Button
+                className="btn-accent mt-2"
+                type="button"
+                onClick={addBill}
+              >
+                + Add Another Bill
+              </Button>
+            </div>
+
+            <Button type="submit" className="btn-primary mt-4" disabled={isLoading}>
+            {isLoading ? (
+    <>
+      <Spinner
+        as="span"
+        animation="border"
+        size="sm"
+        role="status"
+        aria-hidden="true"
+      />{" "}
+      Submitting...
+    </>
+  ) : (
+    "Submit"
+  )}
+            </Button>
           </Form>
+
+          {/* Smart Credit Tips */}
+          <div className="tips-card mt-5">
+            <h4 className="section-title">Smart Credit Tips</h4>
+            <div className="tip-box">
+              <ul>
+                <li>
+                  <strong>Pay on time:</strong> Timely payments improve your
+                  credit rating.
+                </li>
+                <li>
+                  <strong>Keep balances low:</strong> Don’t max out your credit
+                  cards.
+                </li>
+                <li>
+                  <strong>Check reports:</strong> Review your credit report
+                  regularly for errors.
+                </li>
+                <li>
+                  <strong>Limit applications:</strong> Avoid too many credit
+                  applications in a short time.
+                </li>
+                <li>
+                  <strong>Stay informed:</strong> Understand how credit works
+                  and stay updated.
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       </Container>
     </>

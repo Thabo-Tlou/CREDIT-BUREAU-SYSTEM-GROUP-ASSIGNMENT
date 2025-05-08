@@ -53,7 +53,7 @@ body {
 .loan-section,
 .bill-section {
   background-color: var(--white-color);
-  border: 1px solid var(--accent-color);
+  border: 5px solid  red;
   border-radius: 12px;
   padding: 1rem;
   margin-bottom: 2rem;
@@ -188,5 +188,49 @@ form .btn-accent:hover {
 
   .form-container {
     margin: 1rem;
+  }
+}
+
+.form-sections-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.loan-section,
+.bill-section {
+  flex: 1 1 400px;
+  background-color: var(--form-bg);
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px var(--shadow-color);
+}
+
+/* Tips Card section */
+.tips-card-section {
+  margin-top: 1rem;
+  background-color: var(--panel-dark);
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px var(--shadow-color);
+  color: var(--white);
+}
+
+.tip-text {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--lighter-gray);
+}
+
+/* Make form fully responsive */
+@media screen and (max-width: 768px) {
+  .form-sections-wrapper {
+    flex-direction: column;
+  }
+
+  .loan-section,
+  .bill-section {
+    width: 100%;
   }
 }
