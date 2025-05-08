@@ -1,53 +1,91 @@
 :root {
-    --shadow-color: rgba(0, 0, 0, 0.182);
-    --primary-color: #0e594a;
-    --hover-color: #0e594a80;
-    --accent-color: #fbba3f;
-    --bg-color: #f0f0f0f5;
-    --input-bg-color: #cedbe97c;
-    --white-color: #ffffff;
-    --olive: #a3b49c;
-    --cool-white: #f9fafb;   
+  --shadow-color: rgba(0, 0, 0, 0.2);
+  --primary-color: #0e594a;
+  --hover-color: #0e594a80;
+  --accent-color: #fbba3f;
+  --bg-color: #f0f0f0f5;
+  --input-bg-color: #cedbe97c;
+  --white-color: #ffffff;
+  --olive: #a3b49c;
+  --cool-white: #f9fafb;
+  --panel-dark: #2d2d3d;
+  --form-bg: #29293d;
+  --white: #ffffff;
+  --error-red: #ff6b6b;
+}
+
+.credit-dashboard {
+  margin-top: 150px;
+  padding: 2rem;
+  background-color: var(--cool-white);
+  color: var(--white);
+  min-height: 100vh;
+  animation: fadeIn 1s ease-in;
+}
+
+.dashboard-title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: var(--primary-color);
+}
+
+.loading-text,
+.error-text {
+  text-align: center;
+  font-size: 1.2rem;
+  color: var(--error-red);
+}
+
+.dashboard-sections {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.dashboard-box {
+  flex: 1 1 45%;
+  background-color: var(--panel-dark);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 0 12px var(--shadow-color);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dashboard-box:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 16px var(--accent-color);
+}
+
+.dashboard-box h3 {
+  color: var(--accent-color);
+  margin-bottom: 1rem;
+  border-bottom: 2px solid var(--accent-color);
+  padding-bottom: 0.3rem;
+}
+
+.record-card {
+  background-color: var(--input-bg-color);
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 0 6px var(--shadow-color);
+  margin-bottom: 1rem;
+  color: #1e1e1e;
+  transition: transform 0.3s ease;
+}
+
+.record-card:hover {
+  transform: scale(1.01);
+}
+
+.fade-in {
+  animation: fadeIn 0.7s ease-in-out both;
+  opacity: 0;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
   }
-  
-  .credit-dashboard {
-    padding: 2rem;
-    background-color: var(--cool-white);
-    min-height: 100vh;
-  }
-  
-  .dashboard-title {
-    text-align: center;
-    font-size: 2rem;
-    color: var(--primary-color);
-    margin-bottom: 2rem;
-  }
-  
-  .dashboard-sections {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    flex-wrap: wrap; 
-  }
-  
-  .dashboard-box {
-    flex: 0 1 45%;
-    background-color: var(--white-color);
-    box-shadow: 0 4px 8px var(--shadow-color);
-    border-radius: 16px;
-    padding: 1.5rem;
-    text-align: left;
-  }
-  
-  .dashboard-box h3 {
-    color: var(--primary-color);
-    border-bottom: 2px solid var(--accent-color);
-    padding-bottom: 0.5rem;
-    margin-bottom: 1rem;
-  }
-  
-  .dashboard-box p {
-    color: var(--olive);
-    font-style: italic;
-  }
-  
+}
