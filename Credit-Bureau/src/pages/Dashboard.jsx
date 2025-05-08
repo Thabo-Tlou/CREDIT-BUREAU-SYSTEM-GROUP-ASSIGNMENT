@@ -3,6 +3,7 @@ import "../styles/dashboard.css";
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
 import { Link, useNavigate } from "react-router-dom";
 import Sidebar from "../components2/Sidebar";
+import Header from "../components2/Header2";
 
 const Dashboard = () => {
   const [avatar, setAvatar] = useState("/images/avatar.jpg"); // Default avatar
@@ -73,8 +74,8 @@ const Dashboard = () => {
   ];
 
   return (
-    <div className="dashboard-wrapper">
-      <Sidebar />
+    <div className="bashboard-wrapper">
+      <Header />
       <main className="dashboard-main">
         <header className="dashboard-header">
           <div className="header-top">
