@@ -1,25 +1,21 @@
 import React, { useEffect, useState } from "react";
-import "../styles/dashboard.css";
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
-import { Link, useNavigate } from "react-router-dom";
-import Sidebar from "../components2/Sidebar";
+import Header from "../components2/Header2";
+import "../styles/dashboard.css";
 
 const Dashboard = () => {
-  const [avatar, setAvatar] = useState("/images/avatar.jpg"); // Default avatar
+  const [avatar, setAvatar] = useState("/images/avatar.jpg");
   const [userName, setUserName] = useState("User");
   const [showCreditReport, setShowCreditReport] = useState(false);
-  const navigate = useNavigate();
 
-  // Load user data from localStorage
   useEffect(() => {
     const profileData = JSON.parse(localStorage.getItem("profile"));
     if (profileData) {
-      setAvatar(profileData.avatar || "/images/avatar.jpg"); // Fallback to default avatar if none exists
+      setAvatar(profileData.avatar || "/images/avatar.jpg");
       setUserName(profileData.name || "User");
     }
   }, []);
 
-  // Handle file change for avatar upload
   const handleAvatarChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -27,23 +23,17 @@ const Dashboard = () => {
       reader.onloadend = () => {
         const newAvatar = reader.result;
         setAvatar(newAvatar);
-
-        // Merge with existing profile to preserve name
         const existingProfile =
           JSON.parse(localStorage.getItem("profile")) || {};
-        const updatedProfile = {
-          ...existingProfile,
-          avatar: newAvatar,
-        };
-
-        localStorage.setItem("profile", JSON.stringify(updatedProfile));
-
-        // Optionally, you could update the backend here to store the avatar in the database
+        localStorage.setItem(
+          "profile",
+          JSON.stringify({ ...existingProfile, avatar: newAvatar })
+        );
       };
       reader.readAsDataURL(file);
     }
   };
-  // Example data
+
   const transactions = [
     { date: "01/15/2024", description: "Utility Bill", status: "Paid" },
     {
@@ -74,14 +64,12 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard-wrapper">
-      <Sidebar />
+      <Header />
       <main className="dashboard-main">
-        <header className="dashboard-header">
-          <div className="header-top">
-            <h1 className="BB">Bokamoso Credit Bureau</h1>
-            <input type="text" placeholder="Search..." aria-label="Search" />
-          </div>
-        </header>
+        <div className="dashboard-header">
+          <h1 className="BB">Bokamoso Credit Bureau</h1>
+          <input type="text" placeholder="Search..." aria-label="Search" />
+        </div>
 
         {!showCreditReport ? (
           <div className="dashboard-grid">
@@ -156,19 +144,10 @@ const Dashboard = () => {
           <div>
             <button
               onClick={() => setShowCreditReport(false)}
-              style={{
-                margin: "1rem 0",
-                padding: "0.5rem 1rem",
-                background: "#4caf50",
-                color: "white",
-                border: "none",
-                borderRadius: "5px",
-                cursor: "pointer",
-              }}
+              className="back-button"
             >
               ⬅ Back to Dashboard
             </button>
-            {/* CreditReport component placeholder */}
             <p style={{ fontSize: "1.2rem" }}>
               Credit Report content goes here...
             </p>

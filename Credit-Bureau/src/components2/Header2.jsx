@@ -5,6 +5,7 @@ import "../styles/header2.css";
 const Header = () => {
   const [avatar, setAvatar] = useState("/images/avatar.jpg");
   const [userName, setUserName] = useState("User");
+  const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -46,19 +47,29 @@ const Header = () => {
     <header className="header">
       <div className="header-left">
         <div className="brand">Credit Bureau</div>
+        <button
+          className="hamburger"
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Toggle menu"
+        >
+          ☰
+        </button>
       </div>
 
-      <nav className="header-nav">
+      <nav className={`header-nav ${menuOpen ? "open" : ""}`}>
         <ul>
           {navLinks.map((link) => (
             <li key={link.to} className={isActive(link.to) ? "active" : ""}>
-              <Link to={link.to}>{link.label}</Link>
+              <Link to={link.to} onClick={() => setMenuOpen(false)}>
+                {link.label}
+              </Link>
             </li>
           ))}
         </ul>
       </nav>
 
       <div className="header-right">
+        <span className="username">{userName}</span>
         <div className="user-info">
           <img src={avatar} alt="Avatar" className="avatar" />
           <input
@@ -68,8 +79,9 @@ const Header = () => {
             id="file-upload"
             className="hidden-file-input"
           />
-          <label htmlFor="file-upload" className="upload-btn">+</label>
-          <span className="username">{userName}</span>
+          <label htmlFor="file-upload" className="upload-btn">
+            +
+          </label>
         </div>
       </div>
     </header>
