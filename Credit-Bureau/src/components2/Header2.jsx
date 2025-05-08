@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import "../styles/header.css";
+import "../styles/header2.css";
 
 const Header = () => {
   const [avatar, setAvatar] = useState("/images/avatar.jpg");
