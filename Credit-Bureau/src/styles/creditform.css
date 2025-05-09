@@ -43,7 +43,6 @@ body {
   margin-bottom: 0px; /* Prevent any margin at the bottom */
 }
 
-/* --- Typography --- */
 .form-title {
   color: var(--primary-color);
   font-weight: 600;
