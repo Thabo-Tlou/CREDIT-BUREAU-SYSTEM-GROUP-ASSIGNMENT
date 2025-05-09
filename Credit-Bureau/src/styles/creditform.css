@@ -1,4 +1,19 @@
-/* Body setup */
+:root {
+  --shadow-color: rgba(0, 0, 0, 0.2);
+  --primary-color: #0e594a;
+  --hover-color: #0e594a80;
+  --accent-color: #fbba3f;
+  --bg-color: #f0f0f0f5;
+  --input-bg-color: #cedbe97c;
+  --white-color: #ffffff;
+  --olive: #a3b49c;
+  --cool-white: #f9fafb;
+  --panel-dark: #2d2d3d;
+  --form-bg: #29293d;
+  --white: #ffffff;
+  --error-red: #ff6b6b;
+}
+
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   display: flex;
