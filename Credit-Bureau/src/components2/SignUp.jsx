@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../styles/sign-up.css";
 import logo from "../components/images/logo.png";
 import { Link, useNavigate } from "react-router-dom";
+
 import {
   FaWhatsapp,
   FaFacebook,
@@ -29,13 +30,11 @@ const SignUp = () => {
   const handleSignup = async (e) => {
     e.preventDefault();
 
-    // Validate password match
     if (password !== confirmPassword) {
       setError("Passwords do not match!");
       return;
     }
 
-    // Validate password strength
     const passwordValidation =
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
     if (!passwordValidation.test(password)) {
@@ -47,7 +46,7 @@ const SignUp = () => {
 
     setIsLoading(true);
     setError("");
-    setSuccessMessage(""); // Reset success message before trying
+    setSuccessMessage("");
 
     try {
       const res = await axios.post(
@@ -68,7 +67,6 @@ const SignUp = () => {
         "🎉 Registration successful! Redirecting to Sign In..."
       );
 
-      // Save user details to localStorage
       localStorage.setItem(
         "user",
         JSON.stringify({
@@ -79,7 +77,7 @@ const SignUp = () => {
 
       setTimeout(() => {
         navigate("/sign-in");
-      }, 4000); // Delay for 4 seconds before redirecting
+      }, 4000);
 
       setUsername("");
       setEmail("");
@@ -96,17 +94,24 @@ const SignUp = () => {
     const passwordInput = e.target.value;
     setPassword(passwordInput);
 
-    // Password strength validation
     const hasLowerCase = /[a-z]/.test(passwordInput);
     const hasUpperCase = /[A-Z]/.test(passwordInput);
     const hasNumber = /\d/.test(passwordInput);
     const hasSpecialChar = /[!@#$%^&*]/.test(passwordInput);
 
     const suggestions = [];
-    if (!hasLowerCase) suggestions.push("at least one lowercase letter");
-    if (!hasUpperCase) suggestions.push("at least one uppercase letter");
-    if (!hasNumber) suggestions.push("at least one number");
-    if (!hasSpecialChar) suggestions.push("at least one special character");
+    if (!hasLowerCase) {
+      suggestions.push("at least one lowercase letter");
+    }
+    if (!hasUpperCase) {
+      suggestions.push("at least one uppercase letter");
+    }
+    if (!hasNumber) {
+      suggestions.push("at least one number");
+    }
+    if (!hasSpecialChar) {
+      suggestions.push("at least one special character");
+    }
 
     setPasswordSuggestions(suggestions);
 
@@ -197,7 +202,6 @@ const SignUp = () => {
               </span>
             </div>
 
-            {/* Display password suggestions */}
             {passwordSuggestions.length > 0 &&
               passwordStrength !== "Strong" && (
                 <div className="password-suggestions">
@@ -212,7 +216,6 @@ const SignUp = () => {
                 </div>
               )}
 
-            {/* Password strength display, hide if it's "Strong" */}
             {passwordStrength && passwordStrength !== "Strong" && (
               <div
                 className={`password-strength ${passwordStrength.toLowerCase()}`}
