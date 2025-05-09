@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Container, Form, Button, Row, Col, Spinner } from "react-bootstrap";
 import "../styles/creditForm.css";
 import Header2 from "../components2/Header2";
+import FormFooter from "../components2/FormFooter";
 
 const CreditForm = ({ onSubmit }) => {
   const [loans, setLoans] = useState([
@@ -146,7 +147,11 @@ const CreditForm = ({ onSubmit }) => {
                               type="text"
                               value={loan.loanId}
                               onChange={(e) =>
-                                handleLoanChange(index, "loanId", e.target.value)
+                                handleLoanChange(
+                                  index,
+                                  "loanId",
+                                  e.target.value
+                                )
                               }
                             />
                           </Form.Group>
@@ -158,7 +163,11 @@ const CreditForm = ({ onSubmit }) => {
                               type="text"
                               value={loan.lender}
                               onChange={(e) =>
-                                handleLoanChange(index, "lender", e.target.value)
+                                handleLoanChange(
+                                  index,
+                                  "lender",
+                                  e.target.value
+                                )
                               }
                             />
                           </Form.Group>
@@ -172,7 +181,11 @@ const CreditForm = ({ onSubmit }) => {
                               type="number"
                               value={loan.amount}
                               onChange={(e) =>
-                                handleLoanChange(index, "amount", e.target.value)
+                                handleLoanChange(
+                                  index,
+                                  "amount",
+                                  e.target.value
+                                )
                               }
                             />
                           </Form.Group>
@@ -202,7 +215,11 @@ const CreditForm = ({ onSubmit }) => {
                               type="number"
                               value={loan.interestRate}
                               onChange={(e) =>
-                                handleLoanChange(index, "interestRate", e.target.value)
+                                handleLoanChange(
+                                  index,
+                                  "interestRate",
+                                  e.target.value
+                                )
                               }
                             />
                           </Form.Group>
@@ -213,7 +230,11 @@ const CreditForm = ({ onSubmit }) => {
                             <Form.Select
                               value={loan.status}
                               onChange={(e) =>
-                                handleLoanChange(index, "status", e.target.value)
+                                handleLoanChange(
+                                  index,
+                                  "status",
+                                  e.target.value
+                                )
                               }
                             >
                               <option value="">Select</option>
@@ -231,7 +252,11 @@ const CreditForm = ({ onSubmit }) => {
                               type="date"
                               value={loan.startDate}
                               onChange={(e) =>
-                                handleLoanChange(index, "startDate", e.target.value)
+                                handleLoanChange(
+                                  index,
+                                  "startDate",
+                                  e.target.value
+                                )
                               }
                             />
                           </Form.Group>
@@ -243,7 +268,11 @@ const CreditForm = ({ onSubmit }) => {
                               type="date"
                               value={loan.dueDate}
                               onChange={(e) =>
-                                handleLoanChange(index, "dueDate", e.target.value)
+                                handleLoanChange(
+                                  index,
+                                  "dueDate",
+                                  e.target.value
+                                )
                               }
                             />
                           </Form.Group>
@@ -252,8 +281,12 @@ const CreditForm = ({ onSubmit }) => {
                       <hr />
                     </div>
                   ))}
-                  <Button className="btn-accent" type="button" onClick={addLoan}>
-                     Add Another Loan
+                  <Button
+                    className="btn-accent"
+                    type="button"
+                    onClick={addLoan}
+                  >
+                    Add Another Loan
                   </Button>
                 </div>
               </Col>
@@ -271,7 +304,11 @@ const CreditForm = ({ onSubmit }) => {
                             <Form.Select
                               value={bill.billType}
                               onChange={(e) =>
-                                handleBillChange(index, "billType", e.target.value)
+                                handleBillChange(
+                                  index,
+                                  "billType",
+                                  e.target.value
+                                )
                               }
                             >
                               <option value="">Select</option>
@@ -287,7 +324,11 @@ const CreditForm = ({ onSubmit }) => {
                               type="number"
                               value={bill.amount}
                               onChange={(e) =>
-                                handleBillChange(index, "amount", e.target.value)
+                                handleBillChange(
+                                  index,
+                                  "amount",
+                                  e.target.value
+                                )
                               }
                             />
                           </Form.Group>
@@ -301,7 +342,11 @@ const CreditForm = ({ onSubmit }) => {
                               type="date"
                               value={bill.dueDate}
                               onChange={(e) =>
-                                handleBillChange(index, "dueDate", e.target.value)
+                                handleBillChange(
+                                  index,
+                                  "dueDate",
+                                  e.target.value
+                                )
                               }
                             />
                           </Form.Group>
@@ -313,7 +358,11 @@ const CreditForm = ({ onSubmit }) => {
                               type="date"
                               value={bill.paymentDate}
                               onChange={(e) =>
-                                handleBillChange(index, "paymentDate", e.target.value)
+                                handleBillChange(
+                                  index,
+                                  "paymentDate",
+                                  e.target.value
+                                )
                               }
                             />
                           </Form.Group>
@@ -326,7 +375,11 @@ const CreditForm = ({ onSubmit }) => {
                             <Form.Select
                               value={bill.status}
                               onChange={(e) =>
-                                handleBillChange(index, "status", e.target.value)
+                                handleBillChange(
+                                  index,
+                                  "status",
+                                  e.target.value
+                                )
                               }
                             >
                               <option value="">Select</option>
@@ -339,8 +392,12 @@ const CreditForm = ({ onSubmit }) => {
                       <hr />
                     </div>
                   ))}
-                  <Button className="btn-accent" type="button" onClick={addBill}>
-                     Add Another Bill
+                  <Button
+                    className="btn-accent"
+                    type="button"
+                    onClick={addBill}
+                  >
+                    Add Another Bill
                   </Button>
                 </div>
               </Col>
@@ -349,40 +406,45 @@ const CreditForm = ({ onSubmit }) => {
             {/* Submit Button */}
             <div className="mt-4">
               <Button type="submit" className="btn-accent" disabled={isLoading}>
-                {isLoading ? <Spinner animation="border" size="sm" /> : "Submit"}
+                {isLoading ? (
+                  <Spinner animation="border" size="sm" />
+                ) : (
+                  "Submit"
+                )}
               </Button>
             </div>
 
             {/* Tips Card (Placeholder) */}
             <div className="tips-card mt-5">
-            <h4 className="section-title">Smart Credit Tips</h4>
-            <div className="tip-box">
-              <ul>
-                <li>
-                  <strong>Pay on time:</strong> Timely payments improve your
-                  credit rating.
-                </li>
-                <li>
-                  <strong>Keep balances low:</strong> Don’t max out your credit
-                  cards.
-                </li>
-                <li>
-                  <strong>Check reports:</strong> Review your credit report
-                  regularly for errors.
-                </li>
-                <li>
-                  <strong>Limit applications:</strong> Avoid too many credit
-                  applications in a short time.
-                </li>
-                <li>
-                  <strong>Stay informed:</strong> Understand how credit works
-                  and stay updated.
-                </li>
-              </ul>
+              <h4 className="section-title">Smart Credit Tips</h4>
+              <div className="tip-box">
+                <ul>
+                  <li>
+                    <strong>Pay on time:</strong> Timely payments improve your
+                    credit rating.
+                  </li>
+                  <li>
+                    <strong>Keep balances low:</strong> Don’t max out your
+                    credit cards.
+                  </li>
+                  <li>
+                    <strong>Check reports:</strong> Review your credit report
+                    regularly for errors.
+                  </li>
+                  <li>
+                    <strong>Limit applications:</strong> Avoid too many credit
+                    applications in a short time.
+                  </li>
+                  <li>
+                    <strong>Stay informed:</strong> Understand how credit works
+                    and stay updated.
+                  </li>
+                </ul>
+              </div>
             </div>
-          </div>
           </Form>
         </div>
+        <form-footer />
       </Container>
     </>
   );

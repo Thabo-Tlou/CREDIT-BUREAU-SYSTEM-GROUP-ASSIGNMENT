@@ -1,0 +1,38 @@
+:root {
+  --shadow-color: rgba(0, 0, 0, 0.2);
+  --primary-color: #0e594a;
+  --hover-color: #0e594a80;
+  --accent-color: #fbba3f;
+  --bg-color: #f0f0f0f5;
+  --input-bg-color: #cedbe97c;
+  --white-color: #ffffff;
+  --olive: #a3b49c;
+  --cool-white: #f9fafb;
+  --panel-dark: #2d2d3d;
+  --form-bg: #29293d;
+  --white: #ffffff;
+  --error-red: #ff6b6b;
+}
+
+.admin-footer {
+  width: 100%;
+  padding: 10px 20px;
+  background-color: var(--cool-white);
+  border-top: 1px solid var(--input-bg-color);
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--olive);
+  margin-top: 40px;
+  box-shadow: 0 -2px 6px var(--shadow-color);
+}
+
+.footer-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.footer-separator {
+  color: var(--input-bg-color);
+}

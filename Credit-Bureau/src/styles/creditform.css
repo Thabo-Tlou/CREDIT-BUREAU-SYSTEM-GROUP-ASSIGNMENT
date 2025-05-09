@@ -23,9 +23,9 @@ body {
 /* --- Main Form Container with Sidebar --- */
 .form-container {
   width: 100vw;
-  align-items: flex-start; 
-  justify-content: center; 
-  height: 100%;  
+  align-items: flex-start;
+  justify-content: center;
+  height: 100%;
   gap: 2rem;
   padding: 2rem;
   margin-top: 100px;
@@ -34,11 +34,11 @@ body {
 
 /* --- Scrollable Content Area --- */
 .form-content {
-  overflow-y:scroll;
+  overflow-y: scroll;
   padding-right: 1rem;
   padding-bottom: 3rem;
   height: 100%; /* Ensure content takes full height */
-  margin-bottom: 0px; /* Prevent any margin at the bottom */
+  margin-bottom: 220px; /* Prevent any margin at the bottom */
 }
 
 .form-title {
@@ -65,7 +65,7 @@ body {
 .bill-section {
   margin-top: 0px;
   background-color: var(--white-color);
-  border: 1px solid  var(--accent-color);
+  border: 1px solid var(--accent-color);
   border-radius: 12px;
   padding: 1rem;
   margin-bottom: 0.5rem;
@@ -210,8 +210,8 @@ form .btn-accent:hover {
   margin-top: 1rem;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center; 
-  align-items: flex-start;     
+  justify-content: center;
+  align-items: flex-start;
   gap: 3rem; /* Increased gap between sections */
   margin-bottom: 0.5rem;
 }
@@ -249,7 +249,7 @@ form .btn-accent:hover {
   .form-sections-wrapper {
     gap: 2rem;
   }
-  
+
   .loan-section,
   .bill-section {
     min-width: 400px;
@@ -261,7 +261,7 @@ form .btn-accent:hover {
     flex-direction: column;
     align-items: center;
   }
-  
+
   .loan-section,
   .bill-section {
     width: 100%;
@@ -270,7 +270,6 @@ form .btn-accent:hover {
   }
 }
 
-
 /* --- Buttons Alignment --- */
 .form-actions {
   display: flex;
@@ -278,8 +277,9 @@ form .btn-accent:hover {
   margin-top: 1.5rem;
 }
 
-.btn-primary, 
-.btn-accent, .mt-4 {
+.btn-primary,
+.btn-accent,
+.mt-4 {
   background-color: var(--primary-color);
   color: var(--white-color);
   border: none;
@@ -300,7 +300,8 @@ form .btn-accent:hover {
 
 /* Specific button in loan/bill sections */
 .loan-section .btn-primary,
-.bill-section .btn-primary, .mt-4 {
+.bill-section .btn-primary,
+.mt-4 {
   margin: 1.5rem auto 0 auto;
   display: block;
   width: fit-content;
@@ -314,7 +315,8 @@ form .btn-accent:hover {
   padding: 1rem 0;
 }
 
-.submit-section .btn-accent, .mt-4 {
+.submit-section .btn-accent,
+.mt-4 {
   padding: 0.8rem 2.5rem;
   font-size: 1.1rem;
 }

@@ -7,7 +7,7 @@
   --input-bg-color: #cedbe97c;
   --white-color: #ffffff;
   --olive: #a3b49c;
-  --cool-white: #f9fafb;   
+  --cool-white: #f9fafb;
 }
 
 .footer {
@@ -15,11 +15,11 @@
   color: var(--white-color);
   padding: 40px 20px 20px;
   font-family: "Segoe UI", sans-serif;
-  margin-top: auto;
+  margin-top: -280px;
   width: 100%;
   position: relative;
   bottom: 0;
-  padding: 20px;
+
   left: 0;
 }
 
