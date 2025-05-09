@@ -1,225 +1,238 @@
 :root {
-  --shadow-color: rgba(0, 0, 0, 0.182);
-  --primary-color: #0e594a;
-  --hover-color: #0e594a80;
-  --accent-color: #fbba3f;
-  --bg-color: #f0f0f0f5;
-  --input-bg-color: #cedbe97c;
-  --white-color: #ffffff;
-  --dark-bg-color: #121212;
-  --dark-primary-color: #1a7c64;
-  --dark-hover-color: #1a7c6480;
-  --dark-text-color: #e1e1e1;
-  --dark-input-bg-color: #2c2c2c;
-  --dark-border-color: #444444;
-  --dark-btn-bg-color: #007a5b;
-  --dark-btn-hover-bg-color: #006b4a;
+    --shadow-color: rgba(0, 0, 0, 0.182);
+    --primary-color: #0e594a;
+    --hover-color: #0e594a80;
+    --accent-color: #fbba3f;
+    --bg-color: #f0f0f0f5;
+    --input-bg-color: #cedbe97c;
+    --white-color: #ffffff;
+    --dark-bg-color: #121212;
+    --dark-primary-color: #1a7c64;
+    --dark-hover-color: #1a7c6480;
+    --dark-text-color: #e1e1e1;
+    --dark-input-bg-color: #2c2c2c;
+    --dark-border-color: #444444;
+    --dark-btn-bg-color: #007a5b;
+    --dark-btn-hover-bg-color: #006b4a;
 }
 
 body {
-  font-family: "Segoe UI", sans-serif;
-  transition: background-color 0.3s, color 0.3s;
+    font-family: "Segoe UI", sans-serif;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .settings-wrapper {
-  display: flex;
-  height: 100vh;
-  background-color: var(--bg-color);
-  width: 100vw;
-  transition: background-color 0.3s;
+    display: flex;
+    height: 100vh;
+    background-color: var(--bg-color);
+    width: 100vw;
+    transition: background-color 0.3s;
 }
 
 .settings-wrapper.dark-mode {
-  background-color: var(--dark-bg-color);
+    background-color: var(--dark-bg-color);
 }
 
 .settings-sidebar {
-  width: 220px;
-  background-color: var(--primary-color);
-  color: var(--white-color);
-  padding: 30px 20px;
-  box-shadow: 2px 0 10px var(--shadow-color);
-  transition: background-color 0.3s, color 0.3s;
+    width: 220px;
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    padding: 30px 20px;
+    box-shadow: 2px 0 10px var(--shadow-color);
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .settings-sidebar.dark-mode {
-  background-color: var(--dark-primary-color);
-  color: var(--dark-text-color);
+    background-color: var(--dark-primary-color);
+    color: var(--dark-text-color);
 }
 
 .settings-sidebar h3 {
-  font-size: 20px;
-  margin-bottom: 20px;
+    font-size: 20px;
+    margin-bottom: 20px;
 }
 
 .settings-sidebar ul {
-  list-style: none;
-  padding: 0;
+    list-style: none;
+    padding: 0;
 }
 
 .settings-sidebar li {
-  padding: 10px 0;
-  cursor: pointer;
-  transition: background-color 0.3s, padding-left 0.3s;
+    padding: 10px 0;
+    cursor: pointer;
+    transition: background-color 0.3s, padding-left 0.3s;
 }
 
 .settings-sidebar li:hover,
 .settings-sidebar li.active {
-  background-color: var(--hover-color);
-  padding-left: 15px;
+    background-color: var(--hover-color);
+    padding-left: 15px;
 }
 
 .settings-sidebar.dark-mode li:hover,
 .settings-sidebar.dark-mode li.active {
-  background-color: var(--dark-hover-color);
+    background-color: var(--dark-hover-color);
 }
 
+
 /* Dark Mode Toggle Button */
+
 .mode-toggle {
-  background: none;
-  border: none;
-  color: var(--white-color);
-  font-weight: bold;
-  cursor: pointer;
-  font-size: 15px;
-  transition: color 0.3s;
+    background: none;
+    border: none;
+    color: var(--white-color);
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 15px;
+    transition: color 0.3s;
 }
 
 .settings-container {
-  flex: 1;
-  padding: 40px;
-  overflow-y: auto;
-  transition: background-color 0.3s, color 0.3s;
+    flex: 1;
+    padding: 40px;
+    overflow-y: auto;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .settings-container.dark-mode {
-  background-color: var(--dark-bg-color);
-  color: var(--dark-text-color);
+    background-color: var(--dark-bg-color);
+    color: var(--dark-text-color);
 }
 
 .settings-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .settings-header h2 {
-  color: var(--primary-color);
+    color: var(--primary-color);
+    margin-top: -0.5rem;
+    margin-right: 3rem;
 }
 
 .settings-header.dark-mode h2 {
-  color: var(--dark-text-color);
+    color: var(--dark-text-color);
 }
 
 .back-btn {
-  background: none;
-  border: none;
-  color: var(--primary-color);
-  font-weight: bold;
-  cursor: pointer;
-  font-size: 15px;
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 23px;
+    margin-top: -0.5rem;
+    margin-left: 2.5rem;
 }
 
 .back-btn.dark-mode {
-  color: var(--dark-text-color);
+    color: var(--dark-text-color);
 }
 
 .settings-card {
-  background-color: var(--white-color);
-  border: 2px solid var(--accent-color);
-  border-radius: 8px;
-  padding: 30px;
-  margin-top: 20px;
-  transition: background-color 0.3s, border-color 0.3s;
+    background-color: var(--white-color);
+    border: 1.5px solid var(--accent-color);
+    border-radius: 8px;
+    padding: 10px;
+    margin-top: -0.5rem;
+    max-height: 46.5rem;
+    max-width: 75rem;
+    margin-left: 2.5rem;
+    transition: background-color 0.3s, border-color 0.3s;
 }
 
 .settings-card.dark-mode {
-  background-color: #333333;
-  border-color: var(--dark-border-color);
+    background-color: #333333;
+    border-color: var(--dark-border-color);
 }
 
 .form-group {
-  margin-bottom: 20px;
-  display: flex;
-  flex-direction: column;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
 }
 
 .form-group label {
-  margin-bottom: 6px;
-  font-weight: 500;
-  color: #333;
+    margin-bottom: 6px;
+    font-weight: 500;
+    color: #333;
+    margin-left: 1.5rem;
 }
 
 .form-group.dark-mode label {
-  color: var(--dark-text-color);
+    color: var(--dark-text-color);
 }
 
 .form-group input,
 .form-group select {
-  padding: 10px;
-  background-color: var(--input-bg-color);
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  transition: background-color 0.3s, border-color 0.3s;
+    padding: 10px;
+    max-width: 50rem;
+    background-color: var(--input-bg-color);
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-left: 1.5rem;
+    transition: background-color 0.3s, border-color 0.3s;
 }
 
 .form-group input.dark-mode,
 .form-group select.dark-mode {
-  background-color: var(--dark-input-bg-color);
-  border-color: var(--dark-border-color);
+    background-color: var(--dark-input-bg-color);
+    border-color: var(--dark-border-color);
 }
 
 .form-row {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
 }
 
 .checkbox-group input {
-  margin-right: 8px;
+    margin-right: 8px;
 }
 
 .error {
-  color: red;
-  font-size: 13px;
-  margin-top: 5px;
+    color: red;
+    font-size: 13px;
+    margin-top: 5px;
 }
 
 .success-msg {
-  color: green;
-  margin-top: 15px;
+    color: green;
+    margin-top: 15px;
 }
 
 .save-btn {
-  background-color: var(--primary-color);
-  color: var(--white-color);
-  padding: 12px 20px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  margin-top: 10px;
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-bottom: 3rem;
+    margin-left: 2rem;
 }
 
 .save-btn:hover {
-  background-color: #004d33;
+    background-color: #004d33;
 }
 
 .save-btn.dark-mode {
-  background-color: var(--dark-btn-bg-color);
+    background-color: var(--dark-btn-bg-color);
 }
 
 .save-btn.dark-mode:hover {
-  background-color: var(--dark-btn-hover-bg-color);
+    background-color: var(--dark-btn-hover-bg-color);
 }
 
 .settings-footer {
-  margin-top: 40px;
-  text-align: center;
-  font-size: 14px;
-  color: #777;
+    margin-top: 40px;
+    text-align: center;
+    font-size: 14px;
+    color: #777;
 }
 
 .settings-footer.dark-mode {
-  color: var(--dark-text-color);
+    color: var(--dark-text-color);
 }
