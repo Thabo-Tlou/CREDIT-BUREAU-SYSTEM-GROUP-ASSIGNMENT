@@ -1,4 +1,19 @@
-/* Body setup */
+:root {
+  --shadow-color: rgba(0, 0, 0, 0.2);
+  --primary-color: #0e594a;
+  --hover-color: #0e594a80;
+  --accent-color: #fbba3f;
+  --bg-color: #f0f0f0f5;
+  --input-bg-color: #cedbe97c;
+  --white-color: #ffffff;
+  --olive: #a3b49c;
+  --cool-white: #f9fafb;
+  --panel-dark: #2d2d3d;
+  --form-bg: #29293d;
+  --white: #ffffff;
+  --error-red: #ff6b6b;
+}
+
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   display: flex;
@@ -7,14 +22,14 @@ body {
 
 /* --- Main Form Container with Sidebar --- */
 .form-container {
-  flex-direction: column;
-  display: flex;
+  width: 100vw;
+  
   align-items: flex-start; 
   justify-content: center; 
   height: 100%;  
   gap: 2rem;
   padding: 2rem;
-  margin-top: 95px;
+  margin-top: 100px;
   overflow: hidden; /* Prevent global scroll */
 }
 
@@ -28,7 +43,6 @@ body {
   margin-bottom: 0px; /* Prevent any margin at the bottom */
 }
 
-/* --- Typography --- */
 .form-title {
   color: var(--primary-color);
   font-weight: 600;
@@ -192,9 +206,13 @@ form .btn-accent:hover {
 }
 
 .form-sections-wrapper {
+  flex: 1;
+  padding-left: 40px;
   margin-top: 1rem;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center; 
+  align-items: center;     
   gap: 2rem;
   margin-bottom: 0.5rem;
 }

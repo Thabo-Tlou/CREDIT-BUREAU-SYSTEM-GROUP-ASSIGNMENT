@@ -10,6 +10,7 @@ import {
   FaSun,
 } from "react-icons/fa";
 import "../styles/Settings.css";
+import Header from "../components2/Header2";
 
 const Settings = () => {
   const navigate = useNavigate();
@@ -77,171 +78,156 @@ const Settings = () => {
   };
 
   return (
-    <div className={`settings-wrapper ${darkMode ? "dark-mode" : ""}`}>
-      <aside className="settings-sidebar">
-        <div className="sidebar-header">
-          <h3>⚙️ Settings</h3>
-        </div>
-        <ul>
-          <li onClick={() => navigate("/dashboard")}>
-            <FaTachometerAlt /> Dashboard
-          </li>
-          <li className="active">
-            <FaUserCog /> Account Settings
-          </li>
-          <li onClick={() => navigate("/credit-reports")}>
-            <FaFileAlt /> Credit Reports
-          </li>
-          <li onClick={() => navigate("/history")}>
-            <FaHistory /> Payment History
-          </li>
-          <li onClick={() => navigate("/support")}>
-            <FaHeadset /> Support
-          </li>
-        </ul>
+    
+    <>
+    <Header />
+    <main className="dashboard-main">
+      <div className="dashboard-header">
+        <h1 className="BB">Bokamoso Credit Bureau</h1>
+        <input type="text" placeholder="Search..." aria-label="Search" />
+      </div>
 
-        <button className="mode-toggle" onClick={toggleDarkMode}>
-          {darkMode ? <FaSun /> : <FaMoon />} Toggle{" "}
-          {darkMode ? "Light" : "Dark"} Mode
-        </button>
-      </aside>
+      <div className={`settings-wrapper ${darkMode ? "dark-mode" : ""}`}>
+        <div className="settings-container">
+          <div className="settings-header">
+            <button className="back-btn" onClick={handleBack}>
+              ← Back to Dashboard
+            </button>
+            <h2>Account Settings</h2>
+          </div>
 
-      <div className="settings-container">
-        <div className="settings-header">
-          <button className="back-btn" onClick={handleBack}>
-            ← Back to Dashboard
-          </button>
-          <h2>Account Settings</h2>
-        </div>
-
-        <div className="settings-card">
-          <form onSubmit={handleSubmit} noValidate>
-            <div className="form-group">
-              <label>Full Name</label>
-              <input
-                name="fullName"
-                type="text"
-                placeholder="Enter your full name"
-                value={formData.fullName}
-                onChange={handleChange}
-              />
-              {errors.fullName && (
-                <span className="error">{errors.fullName}</span>
-              )}
-            </div>
-
-            <div className="form-group">
-              <label>Email Address</label>
-              <input
-                name="email"
-                type="email"
-                placeholder="Enter your email"
-                value={formData.email}
-                onChange={handleChange}
-              />
-              {errors.email && <span className="error">{errors.email}</span>}
-            </div>
-
-            <div className="form-row">
+          <div className="settings-card">
+            <form onSubmit={handleSubmit} noValidate>
               <div className="form-group">
-                <label>New Password</label>
+                <label>Full Name</label>
                 <input
-                  name="password"
-                  type="password"
-                  placeholder="New password"
-                  value={formData.password}
+                  name="fullName"
+                  type="text"
+                  placeholder="Enter your full name"
+                  value={formData.fullName}
                   onChange={handleChange}
                 />
-              </div>
-
-              <div className="form-group">
-                <label>Confirm Password</label>
-                <input
-                  name="confirmPassword"
-                  type="password"
-                  placeholder="Confirm password"
-                  value={formData.confirmPassword}
-                  onChange={handleChange}
-                />
-                {errors.confirmPassword && (
-                  <span className="error">{errors.confirmPassword}</span>
+                {errors.fullName && (
+                  <span className="error">{errors.fullName}</span>
                 )}
               </div>
-            </div>
-
-            <div className="form-group">
-              <label>Phone Number</label>
-              <input
-                name="phone"
-                type="tel"
-                placeholder="Enter your phone number"
-                value={formData.phone}
-                onChange={handleChange}
-              />
-            </div>
-
-            <div className="form-group">
-              <label>Notification Preferences</label>
-              <select
-                name="notification"
-                value={formData.notification}
-                onChange={handleChange}
-              >
-                <option>Email & SMS</option>
-                <option>Email Only</option>
-                <option>SMS Only</option>
-                <option>None</option>
-              </select>
-            </div>
-
-            <div className="form-group checkbox-group">
-              <label>
-                <input
-                  type="checkbox"
-                  name="twoFactorAuth"
-                  checked={formData.twoFactorAuth}
-                  onChange={handleChange}
-                />
-                Enable Two-Factor Authentication
-              </label>
-            </div>
-
-            <div className="form-row">
-              <div className="form-group"></div>
 
               <div className="form-group">
-                <label>Theme</label>
+                <label>Email Address</label>
+                <input
+                  name="email"
+                  type="email"
+                  placeholder="Enter your email"
+                  value={formData.email}
+                  onChange={handleChange}
+                />
+                {errors.email && <span className="error">{errors.email}</span>}
+              </div>
+
+              <div className="form-row">
+                <div className="form-group">
+                  <label>New Password</label>
+                  <input
+                    name="password"
+                    type="password"
+                    placeholder="New password"
+                    value={formData.password}
+                    onChange={handleChange}
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label>Confirm Password</label>
+                  <input
+                    name="confirmPassword"
+                    type="password"
+                    placeholder="Confirm password"
+                    value={formData.confirmPassword}
+                    onChange={handleChange}
+                  />
+                  {errors.confirmPassword && (
+                    <span className="error">{errors.confirmPassword}</span>
+                  )}
+                </div>
+              </div>
+
+              <div className="form-group">
+                <label>Phone Number</label>
+                <input
+                  name="phone"
+                  type="tel"
+                  placeholder="Enter your phone number"
+                  value={formData.phone}
+                  onChange={handleChange}
+                />
+              </div>
+
+              <div className="form-group">
+                <label>Notification Preferences</label>
                 <select
-                  name="theme"
-                  value={formData.theme}
+                  name="notification"
+                  value={formData.notification}
                   onChange={handleChange}
                 >
-                  <option>System Default</option>
-                  <option>Light</option>
-                  <option>Dark</option>
+                  <option>Email & SMS</option>
+                  <option>Email Only</option>
+                  <option>SMS Only</option>
+                  <option>None</option>
                 </select>
               </div>
-            </div>
 
-            <button type="submit" className="save-btn">
-              Save Changes
-            </button>
+              <div className="form-group checkbox-group">
+                <label>
+                  <input
+                    type="checkbox"
+                    name="twoFactorAuth"
+                    checked={formData.twoFactorAuth}
+                    onChange={handleChange}
+                  />
+                  Enable Two-Factor Authentication
+                </label>
+              </div>
 
-            {saved && (
-              <div className="success-msg">Settings saved successfully!</div>
-            )}
-          </form>
+              <div className="form-row">
+                <div className="form-group"></div>
+
+                <div className="form-group">
+                  <label>Theme</label>
+                  <select
+                    name="theme"
+                    value={formData.theme}
+                    onChange={handleChange}
+                  >
+                    <option>System Default</option>
+                    <option>Light</option>
+                    <option>Dark</option>
+                  </select>
+                </div>
+              </div>
+
+              <button type="submit" className="save-btn">
+                Save Changes
+              </button>
+
+              {saved && (
+                <div className="success-msg">
+                  Settings saved successfully!
+                </div>
+              )}
+            </form>
+          </div>
+
+          <footer className="settings-footer">
+            <p>
+              &copy; {new Date().getFullYear()} Bokamoso Credit Bureau | All
+              rights reserved
+            </p>
+          </footer>
         </div>
-
-        <footer className="settings-footer">
-          <p>
-            &copy; {new Date().getFullYear()} Bokamoso Credit Bureau | All
-            rights reserved
-          </p>
-        </footer>
       </div>
-    </div>
-  );
+    </main>
+  </>
+);
 };
 
 export default Settings;
