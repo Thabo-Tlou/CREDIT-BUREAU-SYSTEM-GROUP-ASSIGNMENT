@@ -253,7 +253,7 @@ const CreditForm = ({ onSubmit }) => {
                     </div>
                   ))}
                   <Button className="btn-accent" type="button" onClick={addLoan}>
-                    + Add Another Loan
+                     Add Another Loan
                   </Button>
                 </div>
               </Col>
@@ -340,7 +340,7 @@ const CreditForm = ({ onSubmit }) => {
                     </div>
                   ))}
                   <Button className="btn-accent" type="button" onClick={addBill}>
-                    + Add Another Bill
+                     Add Another Bill
                   </Button>
                 </div>
               </Col>

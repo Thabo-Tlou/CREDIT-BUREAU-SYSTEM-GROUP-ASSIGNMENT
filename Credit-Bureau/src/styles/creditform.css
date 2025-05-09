@@ -23,7 +23,6 @@ body {
 /* --- Main Form Container with Sidebar --- */
 .form-container {
   width: 100vw;
-  
   align-items: flex-start; 
   justify-content: center; 
   height: 100%;  
@@ -35,7 +34,6 @@ body {
 
 /* --- Scrollable Content Area --- */
 .form-content {
- 
   overflow-y:scroll;
   padding-right: 1rem;
   padding-bottom: 3rem;
@@ -158,6 +156,7 @@ form .form-select:focus {
 /* --- Buttons --- */
 form .btn-primary,
 form .btn-accent {
+  align-items: center;
   background-color: var(--primary-color);
   color: var(--white-color);
   border: none;
@@ -212,18 +211,21 @@ form .btn-accent:hover {
   display: flex;
   flex-wrap: wrap;
   justify-content: center; 
-  align-items: center;     
-  gap: 2rem;
+  align-items: flex-start;     
+  gap: 3rem; /* Increased gap between sections */
   margin-bottom: 0.5rem;
 }
 
 .loan-section,
 .bill-section {
-  flex: 1 1 400px;
+  flex: 1 1 45%; /* Equal width for both sections */
+  min-width: 450px; /* Increased minimum width */
+  max-width: 550px; /* Increased maximum width */
   background-color: var(--form-bg);
-  padding: 1.5rem;
+  padding: 2rem; /* Increased padding */
   border-radius: 10px;
   box-shadow: 0 4px 10px var(--shadow-color);
+  margin: 0; /* Remove any default margins */
 }
 
 /* Tips Card section */
@@ -243,13 +245,91 @@ form .btn-accent:hover {
 }
 
 /* Make form fully responsive */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1024px) {
+  .form-sections-wrapper {
+    gap: 2rem;
+  }
+  
+  .loan-section,
+  .bill-section {
+    min-width: 400px;
+  }
+}
+
+@media screen and (max-width: 900px) {
   .form-sections-wrapper {
     flex-direction: column;
+    align-items: center;
   }
-
+  
   .loan-section,
   .bill-section {
     width: 100%;
+    max-width: 600px;
+    min-width: auto;
   }
+}
+
+
+/* --- Buttons Alignment --- */
+.form-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.btn-primary, 
+.btn-accent, .mt-4 {
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  border: none;
+  padding: 0.75rem 1.75rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+  width: auto;
+  margin: 0 0.5rem;
+}
+
+.btn-primary:hover,
+.btn-accent:hover {
+  background-color: var(--hover-color);
+}
+
+/* Specific button in loan/bill sections */
+.loan-section .btn-primary,
+.bill-section .btn-primary, .mt-4 {
+  margin: 1.5rem auto 0 auto;
+  display: block;
+  width: fit-content;
+}
+
+/* Submit button at bottom */
+.submit-section {
+  width: 100%;
+  text-align: center;
+  margin-top: 2rem;
+  padding: 1rem 0;
+}
+
+.submit-section .btn-accent, .mt-4 {
+  padding: 0.8rem 2.5rem;
+  font-size: 1.1rem;
+}
+
+/* Add this to your stylesheet */
+.btn-accent {
+  padding: 0.5rem rem !important; /* Reduced padding */
+  min-width: 10px; /* Set a smaller fixed width */
+  margin: 0 auto; /* Keep it centered */
+  display: block; /* Needed for margin auto to work */
+}
+
+/* If you're using the Spinner inside */
+.btn-accent .spinner-border {
+  margin: 0 auto;
+  display: inline-block;
+  vertical-align: middle;
 }

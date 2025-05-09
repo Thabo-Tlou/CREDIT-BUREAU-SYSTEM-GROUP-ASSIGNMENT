@@ -3,7 +3,7 @@ import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
 import "../styles/CreditScoreAnalysis.css";
 import Footer2 from "../components2/Footer2";
 import Logo from "../components/images/logo.png";
-import Sidebar from "../components2/Sidebar";
+import Header2 from "../components2/Header2";
 
 const CreditScoreAnalysis = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -38,7 +38,7 @@ const CreditScoreAnalysis = () => {
 
   return (
     <div className={`main-layout`}>
-      <Sidebar />
+      <Header2 />
       <div className="main-content">
         <div className="analysis-container">
           <div className="analysis-header">

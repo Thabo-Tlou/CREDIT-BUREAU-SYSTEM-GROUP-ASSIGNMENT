@@ -265,3 +265,19 @@ body {
   height: 100vh;
   background-color: #fff;
 }
+
+@media (max-width: 768px) {
+  .report-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .credit-summary h2 {
+    font-size: 1.5rem;
+  }
+
+  .summary-table th,
+  .summary-table td {
+    font-size: 0.9rem;
+    padding: 0.5rem;
+  }
+}
