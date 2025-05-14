@@ -1,4 +1,4 @@
-import "../styles/form-footer.css"; // Create and customize this CSS
+import "../styles/Form-Footer.css"; // Create and customize this CSS
 
 const Footer = () => {
   return (
