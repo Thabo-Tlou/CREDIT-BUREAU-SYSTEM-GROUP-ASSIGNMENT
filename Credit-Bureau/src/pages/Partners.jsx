@@ -6,7 +6,7 @@ import Footer from "../components2/Footer";
 const partnersData = [
   {
     name: "FNB",
-    logo: "./public/images/fnb-logo.png",
+    logo: "./images/fnb-logo.png",
     description:
       "FNB provides us with verified credit history, loan repayment trends, and transactional data that helps build accurate financial profiles for individuals and businesses. Their advanced digital systems make it easier for us to track financial reliability and detect potential risks early.",
   },
