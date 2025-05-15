@@ -50,7 +50,7 @@ const SignUp = () => {
 
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/users/signup",
+        "https://backend-credit-7sa9.onrender.com/api/users/signup",
         {
           username,
           email,

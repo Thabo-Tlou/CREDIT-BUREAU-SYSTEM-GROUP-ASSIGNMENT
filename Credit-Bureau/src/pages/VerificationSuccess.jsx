@@ -15,7 +15,7 @@ const VerificationSuccess = () => {
     if (token) {
       // Call the backend to verify the email
       axios
-        .get(`http://localhost:5000/api/users/verify-email?token=${token}`)
+        .get(`https://backend-credit-7sa9.onrender.com/api/users/verify-email?token=${token}`)
         .then((res) => {
           setMessage(res.data.message);
           setLoading(false);

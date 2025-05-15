@@ -9,7 +9,7 @@ const CreditDashboard = () => {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/loan-records')
+    fetch('https://backend-credit-7sa9.onrender.com/api/loan-records')
       .then((res) => res.json())
       .then((data) => {
         setLoanRecords(data);

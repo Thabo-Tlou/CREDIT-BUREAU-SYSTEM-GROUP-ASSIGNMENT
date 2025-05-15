@@ -83,7 +83,7 @@ const CreditForm = ({ onSubmit }) => {
     const userData = { loans, bills };
 
     try {
-      const response = await fetch("http://localhost:5000/api/loan-records", {
+      const response = await fetch("https://backend-credit-7sa9.onrender.com/api/loan-records", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -13,7 +13,7 @@ const Loans = () => {
   useEffect(() => {
     const fetchLoans = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/loans-apply");
+        const res = await fetch("https://backend-credit-7sa9.onrender.com/api/loans-apply");
         const data = await res.json();
         setLoans(data);
         setFilteredLoans(data);

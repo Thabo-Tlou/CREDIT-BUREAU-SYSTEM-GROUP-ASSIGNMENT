@@ -19,7 +19,7 @@ const ApplyForm = ({ loan, onClose }) => {
     };
 
     try {
-      const res = await fetch("http://localhost:5000/api/apply", {
+      const res = await fetch("https://backend-credit-7sa9.onrender.com/api/apply", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(application),
