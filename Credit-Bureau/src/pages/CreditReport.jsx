@@ -2,6 +2,7 @@ import React from "react";
 import Sidebar from "../components2/Sidebar";
 import jsPDF from "https://esm.sh/jspdf";
 import "../styles/credit-report.css";
+import Header from "../components2/Header2";
 
 const CreditReport = () => {
   const handlePrint = () => {
@@ -70,7 +71,7 @@ const CreditReport = () => {
 
   return (
     <div className="report-container">
-      <Sidebar />
+      <Header />
       <div className="report-content">
         <header className="report-header">
           <h1>Bokamoso Credit Bureau - Credit Report</h1>
@@ -222,7 +223,7 @@ const CreditReport = () => {
         </section>
 
         <footer className="report-footer">
-          <p>134 Greenwood Street, Maseru, Lesotho</p>
+          <p> Maseru, Lesotho</p>
           <p>Email: info@bokamoso.co.ls</p>
           <p>Phone: (+266) 2233 4455</p>
           <p>Website: www.bokamosocredit.co.ls</p>

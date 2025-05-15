@@ -1,5 +1,6 @@
 import React from "react";
 import "../styles/payment_history.css";
+import Header from "../components2/Header2";
 
 const agencies = ["Loans", "Payments", "Settled"];
 const months = [
@@ -20,33 +21,10 @@ const months = [
 const PaymentHistory = () => {
   return (
     <div className="credit-reports-wrapper">
-      <aside className="left-panel">
-        <h2>Payment History</h2>
-        <ul className="lender-list">
-          {[
-            "Payments",
-            "Loans Taken",
-            "Banks Involved",
-            "Accounts",
-            "Statements",
-          ].map((lender, index) => (
-            <li key={index}>
-              <span>{lender}</span>
-              <button className="view-btn">
-                {lender === "Bokamoso" ? "HIDE" : "VIEW"}
-              </button>
-            </li>
-          ))}
-          <li className="closed-accounts">
-            <span>6 Closed Accounts</span>
-            <button className="show-btn">SHOW</button>
-          </li>
-        </ul>
-      </aside>
-
+    <Header />
       <main className="report-main">
         <header className="report-header">
-          <h2>Bokamoso Credit Bureau</h2>
+          <h2>Payment History</h2>
         </header>
 
         <section className="agency-info">

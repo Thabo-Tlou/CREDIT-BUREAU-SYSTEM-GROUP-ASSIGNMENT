@@ -15,7 +15,7 @@ const HeaderLender = () => {
         <Link to="/sign-in-lender-form">
           <button className="log-in-btn">Log in</button>
         </Link>
-        <Link to="/sign-up">
+        <Link to="/sign-up-partner">
           <button className="sign-up-btn">Sign up</button>
         </Link>
       </nav>

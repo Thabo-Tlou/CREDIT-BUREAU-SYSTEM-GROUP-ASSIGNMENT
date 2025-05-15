@@ -32,13 +32,14 @@
 }
 .home-logo {
   display: flex;
-  width: 100px;
-  height: 150px;
+  width: 60px;
+  height: 95px;
   border-radius: 50%;
   margin-left: 80px;
   cursor: pointer;
-  margin-bottom: 30px;
-  margin-top: -40px;
+  margin-top: -35px;
+  margin-bottom: 0px;
+
 }
 
 .home-logo:hover {
