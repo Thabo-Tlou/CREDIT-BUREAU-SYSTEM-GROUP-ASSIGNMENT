@@ -12,7 +12,7 @@
 /* Header container */
 .header {
   height: auto; /* Changed from fixed height to auto for better responsiveness */
-  min-height: 125px;
+  min-height: 1 px;
   position: fixed;
   top: 0;
   left: 0;

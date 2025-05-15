@@ -1,15 +1,89 @@
 import React, { useState, useEffect } from "react";
 import "../styles/loans-offered.css";
-import Sidebar from "../components2/Sidebar"; // Adjust if path differs
+import Sidebar from "../components2/Sidebar";
+import Header from "../components2/Header2";
+
+const ApplyForm = ({ loan, onClose }) => {
+  const [name, setName] = useState("");
+  const [idNumber, setIdNumber] = useState("");
+  const [contact, setContact] = useState("");
+  const [message, setMessage] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const application = {
+      loanTitle: loan.title,
+      name,
+      idNumber,
+      contact,
+    };
+
+    try {
+      const res = await fetch("http://localhost:5000/api/apply", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(application),
+      });
+
+      if (res.ok) {
+        setMessage("✅ Application submitted successfully!");
+        setName("");
+        setIdNumber("");
+        setContact("");
+      } else {
+        setMessage("❌ Something went wrong. Try again.");
+      }
+    } catch (err) {
+      console.error(err);
+      setMessage("❌ Server error.");
+    }
+  };
+
+  return (
+    <div className="apply-modal">
+      <div className="apply-modal-content">
+        <h2>Apply for {loan.title}</h2>
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            placeholder="Full Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
+          <input
+            type="text"
+            placeholder="ID Number"
+            value={idNumber}
+            onChange={(e) => setIdNumber(e.target.value)}
+            required
+          />
+          <input
+            type="text"
+            placeholder="Contact Info"
+            value={contact}
+            onChange={(e) => setContact(e.target.value)}
+            required
+          />
+          <button type="submit">Submit Application</button>
+        </form>
+        {message && <p className="application-message">{message}</p>}
+        <button onClick={onClose} className="close-btn">
+          Close
+        </button>
+      </div>
+    </div>
+  );
+};
 
 const LoansOffered = () => {
   const [loans, setLoans] = useState([]);
   const [filteredLoans, setFilteredLoans] = useState([]);
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState("All");
+  const [selectedLoan, setSelectedLoan] = useState(null);
 
   useEffect(() => {
-    // Simulated API call
     const fetchedLoans = [
       {
         id: 1,
@@ -65,13 +139,12 @@ const LoansOffered = () => {
 
   return (
     <div className="loans-offered-page">
-      <Sidebar />
+      <Header />
       <div className="loans-main-content">
         <header className="loans-header">
           <h1>Loans Offered</h1>
           <p>
-            Browse our available loan packages tailored for your financial
-            needs.
+            Browse our available loan packages tailored for your financial needs.
           </p>
         </header>
 
@@ -114,12 +187,21 @@ const LoansOffered = () => {
                     <strong>Rate:</strong> {loan.rate}
                   </span>
                 </div>
-                <button className="apply-now-btn">Apply Now</button>
+                <button
+                  className="apply-now-btn"
+                  onClick={() => setSelectedLoan(loan)}
+                >
+                  Apply Now
+                </button>
               </div>
             ))
           )}
         </div>
       </div>
+
+      {selectedLoan && (
+        <ApplyForm loan={selectedLoan} onClose={() => setSelectedLoan(null)} />
+      )}
     </div>
   );
 };

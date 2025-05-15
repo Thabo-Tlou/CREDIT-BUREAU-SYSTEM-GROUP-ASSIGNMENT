@@ -4,6 +4,8 @@ import "../styles/creditForm.css";
 import Header2 from "../components2/Header2";
 import FooterNew from "../components2/FooterNew";
 
+const ALLOWED_LENDERS = ["FNB", "Postbank", "Nedbank", "Alliance Lesotho"];
+
 const CreditForm = ({ onSubmit }) => {
   const [loans, setLoans] = useState([
     {
@@ -159,8 +161,7 @@ const CreditForm = ({ onSubmit }) => {
                         <Col md={6}>
                           <Form.Group controlId={`lender-${index}`}>
                             <Form.Label>Lender</Form.Label>
-                            <Form.Control
-                              type="text"
+                            <Form.Select
                               value={loan.lender}
                               onChange={(e) =>
                                 handleLoanChange(
@@ -169,10 +170,19 @@ const CreditForm = ({ onSubmit }) => {
                                   e.target.value
                                 )
                               }
-                            />
+                              required
+                            >
+                              <option value="">Select Lender</option>
+                              {ALLOWED_LENDERS.map((lender) => (
+                                <option key={lender} value={lender}>
+                                  {lender}
+                                </option>
+                              ))}
+                            </Form.Select>
                           </Form.Group>
                         </Col>
                       </Row>
+                      {/* Rest of your loan form fields remain the same */}
                       <Row>
                         <Col md={6}>
                           <Form.Group controlId={`amount-${index}`}>
@@ -291,7 +301,7 @@ const CreditForm = ({ onSubmit }) => {
                 </div>
               </Col>
 
-              {/* Bill Form */}
+              {/* Bill Form (remains unchanged) */}
               <Col md={6}>
                 <div className="bill-section">
                   <h4 className="section-title">Bill Payments</h4>
@@ -403,7 +413,6 @@ const CreditForm = ({ onSubmit }) => {
               </Col>
             </Row>
 
-            {/* Submit Button */}
             <div className="mt-4">
               <Button type="submit" className="btn-accent" disabled={isLoading}>
                 {isLoading ? (
@@ -414,7 +423,6 @@ const CreditForm = ({ onSubmit }) => {
               </Button>
             </div>
 
-            {/* Tips Card (Placeholder) */}
             <div className="tips-card mt-5">
               <h4 className="section-title">Smart Credit Tips</h4>
               <div className="tip-box">
@@ -424,7 +432,7 @@ const CreditForm = ({ onSubmit }) => {
                     credit rating.
                   </li>
                   <li>
-                    <strong>Keep balances low:</strong> Don’t max out your
+                    <strong>Keep balances low:</strong> Don't max out your
                     credit cards.
                   </li>
                   <li>
@@ -445,7 +453,7 @@ const CreditForm = ({ onSubmit }) => {
           </Form>
         </div>
       </Container>
-       <FooterNew />
+  
     </>
   );
 };

@@ -37,7 +37,7 @@ const Header = () => {
   const navLinks = [
     { to: "/dashboard", label: "Dashboard" },
     { to: "/credit-report", label: "Credit Reports" },
-    { to: "/credit-form", label: "Loan" },
+    { to: "/loans-offered", label: "Loan" },
     { to: "/payment-history", label: "Payment History" },
     { to: "/credit-score-analysis", label: "Credit Score Analysis" },
     { to: "/settings", label: "Settings" },

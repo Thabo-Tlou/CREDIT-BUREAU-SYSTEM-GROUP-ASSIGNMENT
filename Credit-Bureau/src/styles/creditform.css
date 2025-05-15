@@ -1,262 +1,489 @@
 :root {
-  --shadow-color: rgba(0, 0, 0, 0.2);
+  --shadow-color: rgba(0, 0, 0, 0.12);
   --primary-color: #0e594a;
-  --hover-color: #0e594a80;
+  --primary-light: #1a7a68;
+  --primary-dark: #083c32;
+  --hover-color: rgba(14, 89, 74, 0.9);
   --accent-color: #fbba3f;
-  --bg-color: #f0f0f0f5;
-  --input-bg-color: #cedbe97c;
+  --accent-light: #ffd27a;
+  --accent-dark: #e6a82a;
+  --bg-color: #f8fafc;
+  --input-bg-color: #f1f5f9;
   --white-color: #ffffff;
-  --olive: #a3b49c;
-  --cool-white: #f9fafb;
-  --panel-dark: #2d2d3d;
-  --form-bg: #29293d;
-  --white: #ffffff;
-  --error-red: #ff6b6b;
+  --panel-dark: #1e1e2f;
+  --panel-darker: #161623;
+  --text-color: #2d3748;
+  --text-light: #4a5568;
+  --border-color: #e2e8f0;
+  --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  --elevation-1: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --elevation-2: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --elevation-3: 0 10px 15px rgba(0, 0, 0, 0.1);
+  --elevation-4: 0 20px 25px rgba(0, 0, 0, 0.1);
 }
 
 body {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   display: flex;
   flex-direction: column;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* --- Main Form Container with Sidebar --- */
+/* --- Main Form Container --- */
 .form-container {
   width: 100vw;
-  align-items: flex-start;
-  justify-content: center;
-  height: 100%;
-  gap: 2rem;
-  padding: 2rem;
-  margin-top: 100px;
-  overflow: hidden; /* Prevent global scroll */
+  max-width: 1400px;
+  margin: 100px auto 0;
+  padding: 3rem 5rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  position: relative;
+}
+
+/* Decorative background elements */
+.form-container::before {
+  content: '';
+  position: absolute;
+  top: -100px;
+  right: -100px;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(14, 89, 74, 0.08) 0%, rgba(255, 255, 255, 0) 70%);
+  z-index: -1;
+}
+
+.form-container::after {
+  content: '';
+  position: absolute;
+  bottom: -50px;
+  left: -50px;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(251, 186, 63, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
+  z-index: -1;
 }
 
 /* --- Scrollable Content Area --- */
 .form-content {
-  overflow-y: scroll;
+  overflow-y: auto;
   padding-right: 1rem;
   padding-bottom: 3rem;
-  height: 100%; /* Ensure content takes full height */
-  margin-bottom: 220px; /* Prevent any margin at the bottom */
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary-color) var(--bg-color);
 }
 
+.form-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.form-content::-webkit-scrollbar-track {
+  background: var(--bg-color);
+  border-radius: 10px;
+}
+
+.form-content::-webkit-scrollbar-thumb {
+  background-color: var(--primary-color);
+  border-radius: 10px;
+}
+
+/* --- Typography --- */
 .form-title {
   color: var(--primary-color);
-  font-weight: 600;
-  font-size: 1.8rem;
+  font-weight: 700;
+  font-size: 2.4rem;
   text-align: center;
-  margin-bottom: 1.5rem;
-  letter-spacing: 1px;
+  margin-bottom: 2.5rem;
+  position: relative;
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+  letter-spacing: -0.5px;
+}
+
+.form-title::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 0;
+  right: 0;
+  width: 80px;
+  height: 4px;
+  margin: 0 auto;
+  background: linear-gradient(90deg, var(--accent-color), var(--primary-color));
+  border-radius: 2px;
 }
 
 /* --- Section Titles --- */
 .section-title {
   color: var(--primary-color);
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   font-weight: 600;
-  margin: 1rem 0;
-  padding-left: 15px;
-  border-left: 4px solid var(--accent-color);
+  margin: 2rem 0 1.5rem;
+  padding-left: 1rem;
+  position: relative;
+  letter-spacing: -0.25px;
+}
+
+.section-title::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 24px;
+  background: linear-gradient(to bottom, var(--accent-color), var(--primary-color));
+  border-radius: 2px;
 }
 
 /* --- Cards (Loan / Bill Sections) --- */
 .loan-section,
 .bill-section {
-  margin-top: 0px;
+  flex: 1 1 45%;
+  min-width: 450px;
+  max-width: 550px;
   background-color: var(--white-color);
-  border: 1px solid var(--accent-color);
-  border-radius: 12px;
-  padding: 1rem;
-  margin-bottom: 0.5rem;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
-  transition: box-shadow 0.3s ease;
+  padding: 1.5rem;
+  border-radius: 16px;
+  box-shadow: var(--elevation-2);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  z-index: 1;
+}
+
+.loan-section::after,
+.bill-section::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent-color), var(--primary-color));
+  transition: var(--transition);
 }
 
 .loan-section:hover,
 .bill-section:hover {
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  transform: translateY(-5px);
+  box-shadow: var(--elevation-4);
+  border-color: var(--primary-light);
+}
+
+.loan-section:hover::after,
+.bill-section:hover::after {
+  height: 6px;
 }
 
 /* --- Tips Card --- */
 .tips-card {
   background-color: var(--white-color);
-  border: 1px solid #e0e0e0;
-  border-radius: 12px;
-  padding: 1.8rem;
-  margin: 2rem 0;
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.06);
-  transition: transform 0.3s ease;
+  border-radius: 16px;
+  padding: 2.5rem;
+  margin: 3rem 0;
+  box-shadow: var(--elevation-2);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  background-image: linear-gradient(135deg, #f9fafb 0%, #f0f4f8 100%);
+}
+
+.tips-card::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 150px;
+  height: 150px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230e594a' opacity='0.05'%3E%3Cpath d='M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91 4.59-1.15 8-5.86 8-10.91V5l-8-3zm-1.06 13.54L7.4 12l1.41-1.41 2.12 2.12 4.24-4.24 1.41 1.41-5.64 5.66z'/%3E%3C/svg%3E") no-repeat center center;
+  background-size: contain;
 }
 
 .tips-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-5px) scale(1.005);
+  box-shadow: var(--elevation-4);
+}
+
+.tip-box h3 {
+  color: var(--primary-color);
+  font-size: 1.4rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.tip-box h3::before {
+  content: '💡';
+  font-size: 1.4rem;
+  opacity: 0.8;
 }
 
 /* --- Tip List --- */
 .tip-box ul {
   list-style-type: none;
   padding-left: 0;
-  color: #333;
+  color: var(--text-light);
   line-height: 1.8;
 }
 
 .tip-box ul li {
   position: relative;
-  padding-left: 1.5rem;
+  padding-left: 2rem;
   margin-bottom: 1rem;
-  font-size: 0.95rem;
+  font-size: 1.05rem;
 }
 
 .tip-box ul li::before {
-  content: "✔";
-  color: var(--primary-color);
-  font-weight: bold;
+  content: '';
   position: absolute;
   left: 0;
-  top: 2px;
+  top: 0.6em;
+  width: 8px;
+  height: 8px;
+  background-color: var(--accent-color);
+  border-radius: 50%;
+  transform: scale(1);
+  transition: var(--transition);
+}
+
+.tip-box ul li:hover::before {
+  transform: scale(1.3);
+  background-color: var(--primary-color);
 }
 
 /* --- Form Elements --- */
 form {
-  padding: 0px;
+  padding: 0;
 }
 
 form .form-group {
-  margin-bottom: 2rem;
+  margin-bottom: 1.75rem;
+  position: relative;
 }
 
 form .form-label {
   display: block;
-  font-weight: 600;
-  color: var(--primary-color);
-  margin-bottom: 0.5rem;
-  margin-left: 20px;
+  font-weight: 500;
+  color: var(--primary-dark);
+  margin-bottom: 0.75rem;
+  font-size: 0.95rem;
+  transition: var(--transition);
+  transform-origin: left center;
 }
 
 form .form-control,
 form .form-select {
-  width: calc(100% - 40px);
-  margin-left: 20px;
-  background-color: var(--input-bg-color);
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 0.75rem;
+  width: 100%;
+  background-color: var(--white-color);
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  padding: 0.9rem 1.25rem;
   font-size: 1rem;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition: var(--transition);
+  color: var(--text-color);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 form .form-control:focus,
 form .form-select:focus {
   border-color: var(--primary-color);
-  box-shadow: 0 0 0 0.15rem var(--hover-color);
+  box-shadow: 0 0 0 3px rgba(14, 89, 74, 0.15);
+  outline: none;
   background-color: var(--white-color);
 }
 
+/* Floating label effect */
+.form-group.focused .form-label {
+  transform: translateY(-5px) scale(0.9);
+  color: var(--primary-color);
+}
+
 /* --- Buttons --- */
-form .btn-primary,
-form .btn-accent {
+.btn-primary,
+.btn-accent {
+  display: inline-flex;
   align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
   background-color: var(--primary-color);
   color: var(--white-color);
   border: none;
-  padding: 0.6rem 1.5rem;
-  border-radius: 6px;
+  padding: 1rem 2.25rem;
+  border-radius: 8px;
   cursor: pointer;
-  font-weight: 500;
-  margin: 1rem 0 1rem 20px;
-  transition: background-color 0.3s;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: var(--transition);
+  box-shadow: var(--elevation-1);
+  position: relative;
+  overflow: hidden;
+  letter-spacing: 0.5px;
+  margin-top: 20px;
 }
 
-form .btn-primary:hover,
-form .btn-accent:hover {
+.btn-primary::after,
+.btn-accent::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0.3),
+    rgba(255, 255, 255, 0)
+  );
+  transform: translateY(100%);
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.btn-primary:hover,
+.btn-accent:hover {
   background-color: var(--hover-color);
+  transform: translateY(-2px);
+  box-shadow: var(--elevation-3);
 }
 
-/* --- Responsive --- */
-@media (max-width: 1024px) {
-  .form-container {
-    flex-direction: column;
-    padding: 1.5rem;
-  }
-
-  .sidebar {
-    width: 100%;
-    position: static;
-  }
-
-  .form-content {
-    height: auto;
-  }
+.btn-primary:hover::after,
+.btn-accent:hover::after {
+  transform: translateY(0);
 }
 
-@media (max-width: 768px) {
-  .form-title {
-    font-size: 1.6rem;
-  }
-
-  .section-title {
-    font-size: 1.2rem;
-  }
-
-  .form-container {
-    margin: 1rem;
-  }
+.btn-primary:active,
+.btn-accent:active {
+  transform: translateY(0);
+  box-shadow: var(--elevation-1);
 }
 
+.btn-accent {
+  background-color: var(--accent-color);
+  color: var(--primary-dark);
+}
+
+.btn-accent:hover {
+  background-color: var(--accent-light);
+}
+
+/* --- Form Sections Layout --- */
 .form-sections-wrapper {
-  flex: 1;
-  padding-left: 40px;
-  margin-top: 1rem;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: flex-start;
-  gap: 3rem; /* Increased gap between sections */
-  margin-bottom: 0.5rem;
-}
-
-.loan-section,
-.bill-section {
-  flex: 1 1 45%; /* Equal width for both sections */
-  min-width: 450px; /* Increased minimum width */
-  max-width: 550px; /* Increased maximum width */
-  background-color: var(--form-bg);
-  padding: 2rem; /* Increased padding */
-  border-radius: 10px;
-  box-shadow: 0 4px 10px var(--shadow-color);
-  margin: 0; /* Remove any default margins */
+  gap: 3rem;
+  margin: 2rem 0;
 }
 
 /* Tips Card section */
 .tips-card-section {
-  margin-top: 1rem;
+  margin-top: 3rem;
   background-color: var(--panel-dark);
-  padding: 1rem 1.5rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px var(--shadow-color);
-  color: var(--white);
+  padding: 2.5rem;
+  border-radius: 16px;
+  box-shadow: var(--elevation-3);
+  color: var(--white-color);
+  background-image: linear-gradient(135deg, var(--panel-dark) 0%, var(--panel-darker) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.tips-card-section::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(251, 186, 63, 0.1) 0%, rgba(251, 186, 63, 0) 70%);
 }
 
 .tip-text {
   margin: 0;
-  font-size: 1rem;
-  color: var(--lighter-gray);
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.8;
+  position: relative;
 }
 
-/* Make form fully responsive */
-@media screen and (max-width: 1024px) {
+/* --- Buttons Alignment --- */
+.form-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+
+/* Submit button at bottom */
+.submit-section {
+  width: 100%;
+  text-align: center;
+  margin-top: 3rem;
+  padding: 2rem 0;
+  position: relative;
+}
+
+.submit-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, var(--border-color) 50%, transparent 100%);
+}
+
+.submit-section .btn-accent {
+  padding: 1.1rem 3.5rem;
+  font-size: 1.1rem;
+  min-width: 220px;
+  font-weight: 600;
+}
+
+/* Loading spinner */
+.btn-accent .spinner-border {
+  width: 1.25rem;
+  height: 1.25rem;
+  border-width: 2px;
+  border-color: currentColor transparent currentColor transparent;
+  animation: spin 0.75s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 1200px) {
+  .form-container {
+    padding: 5rem;
+  }
+}
+
+@media (max-width: 1024px) {
   .form-sections-wrapper {
     gap: 2rem;
   }
-
+  
   .loan-section,
   .bill-section {
     min-width: 400px;
+    padding: 2rem;
   }
 }
 
-@media screen and (max-width: 900px) {
+@media (max-width: 900px) {
   .form-sections-wrapper {
     flex-direction: column;
     align-items: center;
@@ -268,70 +495,113 @@ form .btn-accent:hover {
     max-width: 600px;
     min-width: auto;
   }
+  
+  .form-title {
+    font-size: 2rem;
+  }
 }
 
-/* --- Buttons Alignment --- */
-.form-actions {
-  display: flex;
-  justify-content: center;
-  margin-top: 1.5rem;
+@media (max-width: 768px) {
+  .form-container {
+    padding: 3.5rem;
+    margin-top: 80px;
+  }
+  
+  .loan-section,
+  .bill-section {
+    padding: 1.75rem;
+  }
+  
+  .form-actions {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .btn-primary,
+  .btn-accent {
+    width: 100%;
+  }
+  
+  .form-title {
+    font-size: 1.8rem;
+  }
+  
+  .section-title {
+    font-size: 1.4rem;
+  }
 }
 
-.btn-primary,
-.btn-accent,
-.mt-4 {
-  background-color: var(--primary-color);
-  color: var(--white-color);
-  border: none;
-  padding: 0.75rem 1.75rem;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 500;
-  font-size: 1rem;
-  transition: background-color 0.3s;
-  width: auto;
-  margin: 0 0.5rem;
+@media (max-width: 480px) {
+  .form-container {
+    padding: 3.25rem;
+  }
+  
+  .loan-section,
+  .bill-section {
+    padding: 1.5rem;
+  }
+  
+  .form-title {
+    font-size: 1.6rem;
+  }
 }
 
-.btn-primary:hover,
-.btn-accent:hover {
-  background-color: var(--hover-color);
+/* --- Animations --- */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* Specific button in loan/bill sections */
-.loan-section .btn-primary,
-.bill-section .btn-primary,
-.mt-4 {
-  margin: 1.5rem auto 0 auto;
-  display: block;
-  width: fit-content;
+.loan-section,
+.bill-section,
+.tips-card {
+  animation: fadeInUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  opacity: 0;
 }
 
-/* Submit button at bottom */
-.submit-section {
-  width: 100%;
+.loan-section {
+  animation-delay: 0.1s;
+}
+
+.bill-section {
+  animation-delay: 0.2s;
+}
+
+.tips-card {
+  animation-delay: 0.3s;
+}
+
+/* --- Utility Classes --- */
+.text-center {
   text-align: center;
-  margin-top: 2rem;
-  padding: 1rem 0;
 }
 
-.submit-section .btn-accent,
 .mt-4 {
-  padding: 0.8rem 2.5rem;
-  font-size: 1.1rem;
+  margin-top: 2rem !important;
 }
 
-/* Add this to your stylesheet */
-.btn-accent {
-  padding: 0.5rem rem !important; /* Reduced padding */
-  min-width: 10px; /* Set a smaller fixed width */
-  margin: 0 auto; /* Keep it centered */
-  display: block; /* Needed for margin auto to work */
+.hidden {
+  display: none;
 }
 
-/* If you're using the Spinner inside */
-.btn-accent .spinner-border {
-  margin: 0 auto;
-  display: inline-block;
-  vertical-align: middle;
+/* --- Input Validation States --- */
+.form-control.is-invalid {
+  border-color: var(--error-red);
+}
+
+.form-control.is-invalid:focus {
+  box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.25);
+}
+
+.invalid-feedback {
+  color: var(--error-red);
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+  display: block;
 }

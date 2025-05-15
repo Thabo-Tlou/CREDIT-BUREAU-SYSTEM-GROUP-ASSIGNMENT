@@ -5,7 +5,11 @@ import userRoutes from "./routes/userRoutes.js"; // This will already include yo
 import loanRoutes from "./routes/loanRoutes.js";
 import paymentRoutes from "./routes/paymentRoutes.js";
 import LoanRecordRoute from "./routes/LoanRecordRoute.js";
+import loans from "./routes/loans.js";
 import dotenv from "dotenv";
+import applicationRoutes from "./routes/applications.js";
+
+
 dotenv.config(); // load the variables from the .env file
 
 const app = express();
@@ -32,7 +36,9 @@ mongoose
 app.use("/api/users", userRoutes); // This will include both the signup and signin routes
 app.use("/api/loans", loanRoutes);
 app.use("/api/payments", paymentRoutes);
-app.use("/api/loan-records", LoanRecordRoute);  //api for credit form
+app.use("/api/loan-records", LoanRecordRoute);
+app.use("/api/loans-apply", loans);  //api for credit form
+app.use("/api/apply", applicationRoutes);
 
 // ✅ Start server
 const PORT = 5000;

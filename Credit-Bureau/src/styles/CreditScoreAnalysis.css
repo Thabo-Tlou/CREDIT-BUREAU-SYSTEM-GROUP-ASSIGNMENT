@@ -307,3 +307,98 @@ a {
   color: var(--link-color);
   transition: color 0.3s ease;
 }
+/* Responsive Layout Adjustments */
+@media (max-width: 1024px) {
+  .score-overview {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .score-box {
+    width: 45%;
+    padding: 1.5rem;
+  }
+
+  .score-chart {
+    width: 100%;
+    height: auto;
+    margin-top: 1rem;
+  }
+
+  .analysis-container {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-layout {
+    padding: 0.8rem;
+  }
+
+  .main-content {
+    padding: 1.5rem;
+  }
+
+  .score-box {
+    width: 100%;
+    padding: 1.2rem;
+  }
+
+  .score-overview {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .score-chart {
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .orgName {
+    font-size: 1.3rem;
+  }
+
+  .bonus-section {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-content {
+    padding: 1rem;
+  }
+
+  .score-box {
+    padding: 1rem;
+    font-size: 0.95rem;
+  }
+
+  .score-number {
+    font-size: 2rem;
+  }
+
+  .big-score {
+    font-size: 2.8rem;
+  }
+
+  .status-label {
+    font-size: 0.9rem;
+  }
+
+  .score-chart h5 {
+    font-size: 1rem;
+  }
+
+  .dark-toggle-btn {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1rem;
+  }
+
+  .update-button {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1rem;
+  }
+}

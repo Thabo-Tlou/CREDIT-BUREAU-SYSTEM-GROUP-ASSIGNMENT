@@ -6,6 +6,12 @@ const router = express.Router();
 // Add a Loan
 router.post("/", async (req, res) => {
   try {
+    // Validate lender
+    const allowedLenders = ["FNB", "Postbank", "Nedbank", "Alliance Lesotho"];
+    if (!allowedLenders.includes(req.body.lender)) {
+      return res.status(400).json({ message: "Invalid lender specified" });
+    }
+
     const loan = new Loan(req.body);
     await loan.save();
     res.status(201).json(loan);

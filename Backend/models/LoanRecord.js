@@ -11,8 +11,8 @@ const LoanRecordSchema = new mongoose.Schema({
       },
       lender: {
         type: String,
+        enum: ["FNB", "Postbank", "Nedbank", "Alliance Lesotho"],
         required: true,
-        trim: true,
       },
       amount: {
         type: Number,

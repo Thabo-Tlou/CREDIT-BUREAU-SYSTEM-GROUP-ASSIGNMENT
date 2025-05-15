@@ -1,284 +1,625 @@
-/* Global Styles */
-html,
-body {
+:root {
+  --primary-color: #0e594a;
+  --accent-color: #fbba3f;
+  --danger-color: #f4511e;
+  --light-bg: #f4f4f4;
+  --dark-text: #333;
+  --light-text: #fff;
+  --border-color: #ddd;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --mobile-breakpoint: 576px;
+  --tablet-breakpoint: 768px;
+  --desktop-breakpoint: 992px;
+}
+
+/* Base Styles with Improved Mobile First Approach */
+html, body {
   margin: 0;
   padding: 0;
   font-family: "Arial", sans-serif;
-  background-color: #f4f4f4;
-  overflow-x: hidden; /* Ensures no horizontal scrolling */
+  background-color: var(--light-bg);
+  overflow-x: hidden;
+  color: var(--dark-text);
+  line-height: 1.6;
+  font-size: 14px; /* Smaller base font for mobile */
 }
 
-/* Layout */
-.report-layout {
+@media (min-width: 768px) {
+  html, body {
+    font-size: 16px; /* Larger font for tablets and desktops */
+  }
+}
+
+/* Layout Structure with Better Mobile Handling */
+.report-container {
   display: flex;
-  height: 100vh;
+  flex-direction: column;
+  background-color: #fff;
+  margin-top: 60px; /* Smaller margin for mobile */
+  width: 100%;
+  min-height: calc(100vh - 60px);
+  margin-top: 80px;
+}
+
+@media (min-width: 768px) {
+  .report-container {
+    margin-top: 80px;
+    min-height: calc(100vh - 80px);
+  }
 }
 
 .report-content {
   flex: 1;
-  padding: 2rem;
+  padding: 1rem; /* Smaller padding for mobile */
   overflow-y: auto;
   background-color: #fff;
-  margin-left: 0px;
 }
 
-/* Header Section */
+@media (min-width: 768px) {
+  .report-content {
+    padding: 1.5rem;
+  }
+}
+
+/* Header Section - Enhanced Responsiveness */
 .report-header {
-  margin-bottom: 2rem;
-  padding-bottom: 1rem;
-  border-bottom: 2px solid #333;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--dark-text);
+}
+
+.header-top {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 480px) {
+  .header-top {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
 }
 
 .report-header h1 {
-  font-size: 2.5rem;
-  color: #0e594a;
-  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  margin: 0;
+  line-height: 1.2;
 }
 
-.report-info {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  margin-bottom: 2rem;
+@media (min-width: 480px) {
+  .report-header h1 {
+    font-size: clamp(1.5rem, 5vw, 2rem);
+  }
 }
 
-.report-info div {
-  flex: 1;
+.report-info-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+
+@media (min-width: 400px) {
+  .report-info-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+  .report-info-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+}
+
+.info-group {
   padding: 0.5rem;
+  background-color: rgba(14, 89, 74, 0.05);
+  border-radius: 6px;
 }
 
-.report-info p {
-  margin: 0.5rem 0;
+@media (min-width: 768px) {
+  .info-group {
+    padding: 0.75rem;
+  }
 }
 
-.report-info strong {
-  font-weight: bold;
+.info-item {
+  margin: 0.25rem 0;
+  font-size: 0.85rem;
 }
 
-/* Credit Summary Section */
-.credit-summary {
-  margin-bottom: 3rem;
+@media (min-width: 768px) {
+  .info-item {
+    margin: 0.5rem 0;
+    font-size: 0.9rem;
+  }
 }
 
-.credit-summary h2 {
-  font-size: 1.8rem;
-  margin-bottom: 1rem;
-  color: #0e594a;
+/* Action Buttons with Better Mobile Handling */
+.action-buttons {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
 }
 
-.summary-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 1rem;
+.action-btn {
+  background-color: var(--primary-color);
+  color: var(--light-text);
+  border: none;
+  padding: 0.5rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  min-width: 40px;
+  min-height: 40px;
 }
 
-.summary-table th,
-.summary-table td {
-  border: 1px solid #ddd;
-  padding: 1rem;
-  text-align: left;
+.action-btn .icon {
   font-size: 1rem;
 }
 
-.summary-table th {
-  background-color: #f1f1f1;
+.action-btn:hover {
+  background-color: var(--accent-color);
+  transform: translateY(-2px);
+  box-shadow: 0 2px 5px var(--shadow-color);
 }
 
-.summary-table td {
-  background-color: #fafafa;
+@media (min-width: 480px) {
+  .action-btn {
+    padding: 0.6rem 0.8rem;
+    min-width: auto;
+  }
+  
+  .action-btn .btn-text {
+    display: inline;
+  }
 }
 
-.summary-table tr:nth-child(even) td {
-  background-color: #f9f9f9;
+@media (min-width: 768px) {
+  .action-btn {
+    padding: 0.6rem 1rem;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+  }
+  
+  .action-btn .icon {
+    font-size: 1.1rem;
+  }
+}
+
+/* Responsive Table with Improved Mobile Scrolling */
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 0.75rem 0;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  position: relative;
+}
+
+/* Add scroll indicator for mobile */
+.table-wrapper::after {
+  content: '→';
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--primary-color);
+  font-size: 1.5rem;
+  opacity: 0.5;
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .table-wrapper::after {
+    display: block;
+  }
+}
+
+.responsive-table {
+  width: 100%;
+  min-width: 600px;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+@media (min-width: 768px) {
+  .responsive-table {
+    font-size: 0.9rem;
+    min-width: 100%;
+  }
+}
+
+.responsive-table th, 
+.responsive-table td {
+  padding: 0.5rem;
+  text-align: left;
+  border: 1px solid var(--border-color);
+}
+
+@media (min-width: 768px) {
+  .responsive-table th, 
+  .responsive-table td {
+    padding: 0.75rem 1rem;
+  }
+}
+
+.responsive-table th {
+  background-color: var(--primary-color);
+  color: var(--light-text);
+  font-weight: 600;
+  position: sticky;
+  top: 0;
+}
+
+.responsive-table tr:nth-child(even) {
+  background-color: rgba(14, 89, 74, 0.05);
+}
+
+.responsive-table tr:hover {
+  background-color: rgba(14, 89, 74, 0.1);
 }
 
 .total-row {
-  background-color: #0e594a;
-  color: white;
-}
-
-/* Debt Chart Section */
-.debt-chart {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin-bottom: 2rem;
-}
-
-.bar {
-  width: 30px;
-  height: 100%;
-  margin: 0 10px;
-  border-radius: 4px;
-}
-
-.mortgage {
-  height: 60%;
-  background-color: #0e594a;
-}
-
-.credit {
-  height: 80%;
-  background-color: #fbba3f;
-}
-
-.car {
-  height: 40%;
-  background-color: #f4511e;
-}
-
-.labels {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 1rem;
-  font-size: 0.9rem;
-  color: #333;
-}
-
-/* Account Age Section */
-.account-age {
-  background-color: #f4f4f4;
-  padding: 1rem;
-  border-radius: 8px;
-  margin-bottom: 2rem;
-}
-
-.account-age h3 {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-}
-
-.account-age p {
-  margin: 0.5rem 0;
-}
-
-.account-age strong {
+  background-color: var(--primary-color) !important;
+  color: var(--light-text);
   font-weight: bold;
 }
 
-/* Inquiries Section */
-.inquiries {
-  margin-bottom: 3rem;
+/* Data Visualization - Better Mobile Stacking */
+.data-visualization {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
 }
 
-.inquiries h2 {
-  font-size: 1.8rem;
+@media (min-width: 768px) {
+  .data-visualization {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+}
+
+.debt-distribution, 
+.account-details {
+  background-color: var(--light-bg);
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px var(--shadow-color);
+}
+
+@media (min-width: 768px) {
+  .debt-distribution, 
+  .account-details {
+    padding: 1.5rem;
+  }
+}
+
+.debt-distribution h3,
+.account-details h3 {
+  font-size: 1.1rem;
+  color: var(--primary-color);
+  margin-top: 0;
   margin-bottom: 1rem;
-  color: #0e594a;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-color);
 }
 
-.inquiries p {
+@media (min-width: 768px) {
+  .debt-distribution h3,
+  .account-details h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+.chart-container {
+  width: 100%;
+  height: 180px;
+}
+
+@media (min-width: 768px) {
+  .chart-container {
+    height: 200px;
+  }
+}
+
+.chart-bars {
+  display: flex;
+  height: 100%;
+  align-items: flex-end;
+  justify-content: space-around;
+  gap: 0.5rem;
+  padding: 0 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .chart-bars {
+    gap: 1rem;
+    padding: 0 1rem;
+  }
+}
+
+.bar-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  max-width: 60px;
+  height: 100%;
+}
+
+@media (min-width: 768px) {
+  .bar-container {
+    max-width: 80px;
+  }
+}
+
+.bar {
+  width: 70%;
+  border-radius: 4px 4px 0 0;
+  transition: height 0.5s ease;
+  position: relative;
+  min-height: 10px;
+}
+
+.bar-value {
+  position: absolute;
+  top: -22px;
+  width: 100%;
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+@media (min-width: 768px) {
+  .bar-value {
+    font-size: 0.8rem;
+    top: -25px;
+  }
+}
+
+.bar-label {
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  text-align: center;
+  word-break: break-word;
+}
+
+@media (min-width: 768px) {
+  .bar-label {
+    font-size: 0.8rem;
+  word-break: normal;
+  white-space: nowrap;
+  overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+  }
+}
+
+/* Account Details - Better Mobile Layout */
+.detail-item {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px dashed var(--border-color);
+}
+
+@media (min-width: 480px) {
+  .detail-item {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+
+.detail-label {
+  font-weight: bold;
+  color: var(--primary-color);
+  margin-right: 0;
+  margin-bottom: 0.25rem;
+  width: 100%;
+}
+
+@media (min-width: 480px) {
+  .detail-label {
+    min-width: 120px;
+    margin-right: 1rem;
+    margin-bottom: 0;
+    width: auto;
+  }
+}
+
+@media (min-width: 768px) {
+  .detail-label {
+    min-width: 150px;
+  }
+}
+
+.detail-value {
+  flex: 1;
+  min-width: 0;
+  word-break: break-word;
+}
+
+/* Inquiries Section - Better Grid Layout */
+.inquiries-section {
+  background-color: var(--light-bg);
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px var(--shadow-color);
+  margin-bottom: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .inquiries-section {
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+  }
+}
+
+.inquiries-section h2 {
+  font-size: 1.25rem;
+  color: var(--primary-color);
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+}
+
+@media (min-width: 768px) {
+  .inquiries-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+}
+
+.section-description {
   margin-bottom: 1rem;
+  font-size: 0.9rem;
 }
 
-.inquiries ul {
-  list-style-type: none;
-  padding: 0;
+@media (min-width: 768px) {
+  .section-description {
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+  }
 }
 
-.inquiries li {
+.inquiry-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.5rem;
+}
+
+@media (min-width: 400px) {
+  .inquiry-list {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+}
+
+.inquiry-item {
   background-color: #e0f7fa;
-  margin-bottom: 0.5rem;
-  padding: 0.5rem;
-  border-radius: 4px;
+  padding: 0.75rem;
+  border-radius: 6px;
+  border-left: 4px solid var(--primary-color);
+  transition: transform 0.2s ease;
 }
 
-/* Footer Section */
+.inquiry-item:hover {
+  transform: translateX(5px);
+}
+
+.inquiry-company {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 0.25rem;
+  font-size: 0.9rem;
+}
+
+.inquiry-date {
+  font-size: 0.8rem;
+  color: #666;
+}
+
+/* Footer - Better Mobile Layout */
 .report-footer {
   background-color: var(--primary-color);
-  color: #fff;
-  padding: 2rem;
+  color: var(--light-text);
+  padding: 1.5rem 1rem;
   text-align: center;
-  margin-top: 3rem;
+  margin-top: 2rem;
+  border-radius: 8px 8px 0 0;
 }
 
-.report-footer p {
-  margin: 0.3rem 0;
+@media (min-width: 768px) {
+  .report-footer {
+    padding: 2rem 1.5rem;
+    margin-top: 3rem;
+  }
 }
 
-/* Download Button */
-.download-btn {
-  background-color: #0e594a;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-top: 1rem;
+.footer-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
 }
 
-.download-btn:hover {
-  background-color: #fbba3f;
+@media (min-width: 480px) {
+  .footer-content {
+    grid-template-columns: 1fr 1fr;
+    text-align: left;
+    gap: 1.5rem;
+  }
 }
-/* credit-report.css */
 
-/* Normal screen styles */
-.report-container {
+.footer-info {
   display: flex;
-  flex-direction: row;
-  background-color: #fff;
-  margin-top: 120px;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 0.9rem;
 }
 
-.report-content {
-  flex: 1;
-  padding: 20px;
-  overflow-y: auto;
+.copyright {
+  font-size: 0.8rem;
+  opacity: 0.8;
+  margin: 0;
 }
 
-/* Print styles */
+/* Print Styles */
 @media print {
-  /* Adjust content width for printing */
-  .report-content {
-    width: 100%;
-    padding: 0;
+  body {
+    background-color: white;
+    color: black;
+    font-size: 10pt;
   }
 
-  /* Style for the print header */
   .report-header {
-    display: none; /* Hide the header in print */
+    display: block !important;
+    border-bottom: 2px solid black;
   }
 
-  .download-btn,
-  .print-btn {
-    display: none; /* Hide the buttons in print */
+  .action-buttons {
+    display: none;
   }
 
-  /* Add page break if the content is long */
   .report-content {
-    page-break-before: always;
-  }
-}
-
-/* Ensure layout accounts for sidebar */
-.report-layout {
-  display: flex;
-  height: 100vh;
-}
-
-/* Only .report-content scrolls */
-.report-content {
-  margin-left: 20px; /* Offset for fixed sidebar */
-  flex: 1;
-  padding: 2rem;
-  overflow-y: auto;
-  height: 100vh;
-  background-color: #fff;
-}
-
-@media (max-width: 768px) {
-  .report-header h1 {
-    font-size: 1.8rem;
+    padding: 0;
+    margin: 0;
   }
 
-  .credit-summary h2 {
-    font-size: 1.5rem;
+  .responsive-table {
+    min-width: 100%;
+    font-size: 8pt;
   }
 
-  .summary-table th,
-  .summary-table td {
-    font-size: 0.9rem;
-    padding: 0.5rem;
+  .responsive-table th, 
+  .responsive-table td {
+    padding: 0.25rem 0.5rem;
+  }
+
+  .data-visualization,
+  .inquiries-section {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    margin-bottom: 1rem;
+    box-shadow: none;
+  }
+
+  .report-footer {
+    display: none;
   }
 }
