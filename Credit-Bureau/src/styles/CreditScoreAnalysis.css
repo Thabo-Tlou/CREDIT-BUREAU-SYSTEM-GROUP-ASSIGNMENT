@@ -15,8 +15,11 @@
 .main-layout {
   display: flex;
   min-height: 100vh;
+  flex-direction: column;
   background-color: var(--bg-color);
   width: 100vw;
+  flex: 1;
+  padding: 1rem;
 }
 
 .main-content {

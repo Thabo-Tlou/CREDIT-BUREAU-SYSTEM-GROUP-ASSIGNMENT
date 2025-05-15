@@ -1,0 +1,16 @@
+.custom-footer {
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  padding: 1.5rem;
+  text-align: center;
+  width: 100%;
+  box-shadow: 0 -2px 10px var(--shadow-color);
+  position: relative;
+  margin:auto;
+}
+
+.custom-footer p {
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+}
+

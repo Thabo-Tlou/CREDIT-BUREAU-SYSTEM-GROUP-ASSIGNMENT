@@ -11,6 +11,7 @@ import {
 } from "react-icons/fa";
 import "../styles/Settings.css";
 import Header from "../components2/Header2";
+import FooterNew from "../components2/FooterNew";
 
 const Settings = () => {
   const navigate = useNavigate();
@@ -216,15 +217,9 @@ const Settings = () => {
               )}
             </form>
           </div>
-
-          <footer className="settings-footer">
-            <p>
-              &copy; {new Date().getFullYear()} Bokamoso Credit Bureau | All
-              rights reserved
-            </p>
-          </footer>
         </div>
       </div>
+      <FooterNew />
     </main>
   </>
 );

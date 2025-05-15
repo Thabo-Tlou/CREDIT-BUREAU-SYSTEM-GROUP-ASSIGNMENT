@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Container, Form, Button, Row, Col, Spinner } from "react-bootstrap";
 import "../styles/creditForm.css";
 import Header2 from "../components2/Header2";
-import FormFooter from "../components2/FormFooter";
+import FooterNew from "../components2/FooterNew";
 
 const CreditForm = ({ onSubmit }) => {
   const [loans, setLoans] = useState([
@@ -444,8 +444,8 @@ const CreditForm = ({ onSubmit }) => {
             </div>
           </Form>
         </div>
-        <form-footer />
       </Container>
+       <FooterNew />
     </>
   );
 };

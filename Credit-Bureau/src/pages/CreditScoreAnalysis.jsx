@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
 import "../styles/CreditScoreAnalysis.css";
-import Footer2 from "../components2/Footer2";
+import FooterNew from "../components2/FooterNew";
 import Logo from "../components/images/logo.png";
 import Header2 from "../components2/Header2";
 
@@ -144,8 +144,10 @@ const CreditScoreAnalysis = () => {
           </div>
         </div>
       </div>
+       <FooterNew />
     </div>
   );
+  
 };
 
 export default CreditScoreAnalysis;
